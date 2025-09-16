@@ -485,6 +485,7 @@ h3 {
 
 .map-container {
     width:100vw;
+    height: 10vh;
     margin-right:var(--space-sm);
     display: flex;
     justify-content: flex-end;
