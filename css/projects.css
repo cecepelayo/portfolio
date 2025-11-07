@@ -1,0 +1,144 @@
+/* reseteamos los estilos */
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Italianno&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* variables */
+:root {
+    --color-gr:#00DBDE;
+    --font-cr: 'Italianno', cursive;
+    --space-xs: 0.5rem;  /* 8px aprox. */
+    --space-sm: 1rem;    /* 16px */
+    --space-lg: 2rem;    /* 32px */
+    --space-xl: 3rem;    /* 48px */
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family: "Funnel Display", sans-serif;
+    color: black;
+    
+}
+
+a {
+    text-decoration: none;
+}
+
+/* PROJECTS */
+.projects {
+   width: 100vw; 
+   padding: 3rem;
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   flex-direction: column;
+   background: var(--color-gr);
+   
+}
+
+.projects h1 {
+    font-size: 80px;
+    font-family: var(--font-cr);
+    font-weight: bold;
+    /* margin: var(--space-lg); */
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+}
+
+.video {
+    width: 100vw;
+    padding-top: 6rem;
+}
+
+.gallery {
+    display: grid;
+    gap: var(--space-xl);
+    padding: var(--space-xs);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gal1 {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+}
+.gal1 img {
+    padding: var(--space-xl);
+}
+.gal2 {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+}
+.gal3 {
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+}
+
+.project-card {
+    background-color: #ffffff43;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-card h3 {
+    font-size: var(--space-sm);
+    margin: var(--space-sm);
+    color: #000;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    
+    .projects h1 {
+      font-size: 60px;
+    }
+  
+    .project-card h3 {
+      margin: var(--space-xs);
+      font-size: 15px;
+    }
+    .gal1 img {
+        padding: var(--space-xs);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .video {
+        width: 100vw;
+        padding: 6rem 0;
+    }
+    .projects h1 {
+      font-size: 2.5rem;
+    }
+    .gallery {
+        gap: var(--space-xs);
+    }
+  
+    .project-card h3 {
+      margin: var(--space-xs);
+      font-size: var(--space-xs);
+    }
+    
+    .gal1 img {
+        padding: var(--space-xs);
+    }
+  }

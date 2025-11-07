@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <link rel="stylesheet" href="css/projects.css">
     <link rel="icon" href="img/logo_portfolio.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,11 +31,7 @@
                     </li>
                 </ul>
         </nav>
-        <section class="loop">
-            <video autoplay loop muted class="video">
-                <source src="img/videoloop.mp4" type="video/mp4">
-            </video>
-        </section>
+       
         
         <section class="projects">
             <div>
@@ -42,57 +40,73 @@
             <div class="gallery">
                 <div class="gal1">
                     <div class="project-card">
-                        <img src="img/gorillaz.png" alt="Project 1" />
-                        <h3>Gorillaz. Demon Days</h3>
+                        <a href="graphic.html">
+                            <img src="img/gorillaz.png" alt="Project 1" />
+                        </a>
+                        <h3>Vinils design in Photoshop</h3>
                     </div>
                     <div class="project-card">
-                        <img src="img/MOONLIGHT 922 copia.png" alt="Project 2" />
+                        <a href="paintings.html">
+                            <img src="img/MOONLIGHT 922 copia.png" alt="Project 2" />
+                        </a>
                         <h3>Cruz Cafuné. Moonlight 922</h3>
                     </div>
-                    <div class="project-card">
+                    <!-- <div class="project-card">
                         <img src="img/killers.png" alt="Project 3" />
                         <h3>The Killers. Hot Fuss</h3>
-                    </div>
+                    </div> -->
                 </div>
-                <div class="gal2">
-                    <div class="project-card">
-                        <img src="img/soldaddito _os.png" alt="Project 4" />
-                        <h3>Ilustración Infantil. El soldadito de plomo</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/patitomockup.png" alt="Project 5" />
-                        <h3>Ilustración Infantil. El patito feo</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/hyg_mockup.png" alt="Project 6" />
-                        <h3>Ilustración Infantil. Hansel y Gretel</h3>
-                    </div>
-                </div>
-                <div class="gal3">
-                    <div class="project-card">
-                        <img src="img/instasupermarket.png" alt="Project 7" />
-                        <h3>Campaña de Glovo. Comida genérica</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/instaoriental.png" alt="Project 8" />
-                        <h3>Campaña de Glovo. Comida oriental</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/instatexmex.png" alt="Project 9" />
-                        <h3>Campaña de Glovo. Comida tex-mex</h3>
-                    </div>
-                </div>
+                
                 
             </div>
         </section>
-        <section class="paintings">
-            <div>More personal</div>
-        </section>
         
-    </div>
-    
-    
-    
+        
+    </div>   
     
 </body>
+<footer>
+    <section class="contact-container">
+        <div class="contenedor2">
+            <div class="text">
+                <h1>Contact Me</h1>
+                <p>Feel free to reach out for collaborations or just a chat.</p>
+                <div class="rss">
+                    <p>Follow me on:</p>
+                    <ul>
+                        <li><a href="https://www.instagram.com/cecemellaman/">Instagram: @cecemellaman</a></li>
+                        <li><a href="https://es.linkedin.com/in/cecilia-pr85a">LinkedIn: linkedin.com/in/cecilia-pr85a</a></li>
+                        <li><a href="https://workspace.google.com/intl/es/gmail/">Email: cecilia.pelayorodriguez@gmail.com</a></li>
+                    
+                    </ul>
+                </div>
+            </div>
+
+            <div class="formulario">
+                <form>
+                    <h2>Contact me</h2>
+        
+                    <div class="input-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Name">
+        
+                        <label for="Number">Number</label>
+                        <input type="num" name="Number" id="Number" placeholder="Number">
+        
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Email">
+        
+                        <label for="comment">Comment</label>
+                        <textarea name="comment" id="comment" cols="20" rows="5" placeholder="Comment"></textarea>
+        
+                        <input class="btn" type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+        
+    </section>
+</footer>
+
 </html>
