@@ -81,6 +81,7 @@ a {
 
 .skills {
     width: 100vw;
+    height: 100vh;
     background: linear-gradient(to top,  #000000, var(--color-gr));
     display: flex;
     flex-direction: column;

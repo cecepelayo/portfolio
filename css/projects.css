@@ -32,8 +32,7 @@ a {
    justify-content: space-between;
    flex-wrap: wrap;
    flex-direction: column;
-   background: var(--color-gr);
-   
+   /* background: var(--color-gr); */
 }
 
 .projects h1 {
@@ -48,10 +47,7 @@ h3 {
     font-size: 25px;
 }
 
-.video {
-    width: 100vw;
-    padding-top: 6rem;
-}
+
 
 .gallery {
     display: grid;
@@ -64,6 +60,7 @@ h3 {
 .gal1 {
     display: flex;
     flex-direction: row;
+    /* flex-wrap: wrap; */
     gap: var(--space-xs);
 }
 .gal1 img {

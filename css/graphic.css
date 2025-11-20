@@ -1,0 +1,103 @@
+/* GRAPHICS */
+
+.loop .video {
+    width: 100vw;
+    padding: 1rem 0;
+    overflow-x: hidden;
+}
+
+
+
+
+@media (max-width: 480px) {
+    .video {
+        width: 100vw;
+        padding: 1rem 0;
+    }
+    
+  }
+
+
+  /* seccion Editorial */
+
+.editorial {
+    width: 100vw;
+    height: auto;
+    width: 100vw; 
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+h1 {
+    font-size: 80px;
+    font-family: var(--font-cr);
+    font-weight: bold;
+    /* margin: var(--space-lg); */
+}
+
+/* seccion Packaging */
+
+.packaging {
+    width: 100vw;
+    height: auto;
+    width: 100vw; 
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+h1 {
+    font-size: 80px;
+    font-family: var(--font-cr);
+    font-weight: bold;
+    /* margin: var(--space-lg); */
+}
+
+/* seccion 3D Design */
+
+.threed {
+    width: 100vw;
+    height: auto;
+    width: 100vw; 
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+h1 {
+    font-size: 80px;
+    font-family: var(--font-cr);
+    font-weight: bold;
+    /* margin: var(--space-lg); */
+}
+
+/* seccion Illustration */
+
+.illustration {
+    width: 100vw;
+    height: auto;
+    width: 100vw; 
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+}
+
+h1 {
+    font-size: 80px;
+    font-family: var(--font-cr);
+    font-weight: bold;
+    /* margin: var(--space-lg); */
+}
