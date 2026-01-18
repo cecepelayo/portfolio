@@ -7,39 +7,45 @@
     <link rel="stylesheet" href="css/about.css">
     <link rel="icon" href="img/logo_portfolio.png" />
 
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Italianno&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <title>About me</title>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="head">
-            <nav class="menu">
-                <a href="index.html"><img src="img/logo_portfolio.png" alt="home" class="logo"></a>
-                    <ul>
-                        <li>
-                            <a href="about.html">ABOUT</a>
-                        </li>
-                                            
-                        <li>
-                            <a href="projects.html">PROJECTS</a>
-                        </li>
-                        
-                        <li>
-                            <a href="contact.html">CONTACT</a>
-                        </li>
-                    </ul>
-                   
-    
-            </nav>
-
-
+    <!-- NAVIGATION BOOTSTRAP -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo_portfolio.png" alt="home" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">PROJECTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">CONTACT</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        
+    </nav>
+
+    <!-- Espaciador para compensar navbar fixed -->
+    <div style="height: 70px;"></div>
+
+    <div class="wrapper">
         <section id="about" class="about-section">
             <div class="text-content">
                 <h1>Hi, I´m Cece!!! </h1>
@@ -47,7 +53,6 @@
                     Graphic Designer
                 </h2>
                 <p>I'm a student at UDIT, the University of Design, Innovation, and Technology. I'm passionate about art and design, and this is my portfolio.</p>
-                
             </div>
             
             <div class="me">
@@ -84,13 +89,8 @@
                         <div>
                             <strong>Concept Art & Visual Storytelling</strong>
                         </div><br>
-                        
                     </div>
-                                   
-                        
-                    
                 </div>
-                
             </div>
             <div class="icons">
                 <img src="img/procreate_icon.png" alt="Procreate">
@@ -101,13 +101,10 @@
                 <img src="img/illustrator_icon.webp" alt="Illustrator">
             </div>
         </section>
-
     </div>
-        
-    
-    
-    
+
 </body>
+
 <footer>
     <section class="contact-container">
         <div class="contenedor2">
@@ -120,7 +117,6 @@
                         <li><a href="https://www.instagram.com/cecemellaman/">Instagram: @cecemellaman</a></li>
                         <li><a href="https://es.linkedin.com/in/cecilia-pr85a">LinkedIn: linkedin.com/in/cecilia-pr85a</a></li>
                         <li><a href="https://workspace.google.com/intl/es/gmail/">Email: cecilia.pelayorodriguez@gmail.com</a></li>
-                    
                     </ul>
                 </div>
             </div>
@@ -147,8 +143,10 @@
                 </form>
             </div>
         </div>
-       
-        
     </section>
 </footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </html>
