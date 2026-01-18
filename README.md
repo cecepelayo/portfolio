@@ -28,3 +28,13 @@
                         <h3>Campaña de Glovo. Comida tex-mex</h3>
                     </div>
                 </div>
+
+===============================================
+-----------------ABOUT ME----------------------
+===============================================
+ 
+ Arreglar scroll y hacerlo vertical, animaciones fade out y fade in de los elementos.
+
+ carrusel de imagenes (seccion abilities and skills)
+
+ toggle al final de enlace a contact.html ---> en vez de footer

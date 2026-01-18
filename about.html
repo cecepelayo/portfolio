@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/about.css" type="text/css">
     <link rel="icon" href="img/logo_portfolio.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,11 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Swiper CSS para el carrusel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+
 
     <title>About me</title>
 </head>
@@ -45,108 +50,160 @@
     <!-- Espaciador para compensar navbar fixed -->
     <div style="height: 70px;"></div>
 
-    <div class="wrapper">
-        <section id="about" class="about-section">
-            <div class="text-content">
-                <h1>Hi, I´m Cece!!! </h1>
-                <h2 class="subtitle">
-                    Graphic Designer
-                </h2>
-                <p>I'm a student at UDIT, the University of Design, Innovation, and Technology. I'm passionate about art and design, and this is my portfolio.</p>
-            </div>
+    <!-- ============================================
+         CONTENEDOR DE SCROLL HORIZONTAL
+         ============================================ -->
+    <div class="horizontal-scroll-wrapper">
+        <div class="horizontal-scroll-container">
             
-            <div class="me">
-                <img src="img/selfportrait.webp" alt="selfPortrait">
-            </div>            
-        </section>
-               
-        <section id="skills-sec" class="skills">
-            <div class="skill-tittle">
-                <div><h1>Skills & </h1></div>
-                <div><h1><span>Abilities</span></h1></div>
+            <!-- PANEL 1: INTRODUCCIÓN -->
+            <!-- EDITAR: Cambia el texto y la imagen aquí -->
+            <div class="panel panel-intro">
+                <div class="intro-content">
+                    <div class="intro-text">
+                        <h1>Hi, I'm Cece!!!</h1>
+                        <h2>Graphic Designer</h2>
+                        <p>I'm a student at UDIT, the University of Design, Innovation, and Technology. I'm passionate about art and design, and this is my portfolio where I showcase my creative journey and skills.</p>
+                    </div>
+                    <div class="intro-image">
+                        <!-- CAMBIAR IMAGEN: Reemplaza la ruta aquí -->
+                        <img src="img/selfportrait.webp" alt="Cecilia Portrait">
+                    </div>
+                </div>
             </div>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill1">
-                        <div>
-                            <strong>Adobe Suite</strong> (Photoshop, Illustrator, InDesign)
-                        </div><br>
-                        <div>
-                            <strong>Figma</strong> (Diseño UI/UX, prototipado)
-                        </div><br>
-                        <div>
-                            <strong>Procreate</strong> (Ilustración digital)
+
+            <!-- PANEL 2: EDUCACIÓN -->
+            <!-- EDITAR: Modifica los títulos, fechas y descripciones -->
+            <div class="panel panel-education">
+                <div class="education-content">
+                    <h2>Education</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h3>Bachelor in Graphic Design</h3>
+                            <div class="date">2023 - Present</div>
+                            <p>Currently studying at UDIT (University of Design, Innovation, and Technology), focusing on visual communication, branding, and digital design.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3>Digital Illustration Course</h3>
+                            <div class="date">2022</div>
+                            <p>Specialized training in digital illustration using Procreate and Adobe Creative Suite, focusing on character design and concept art.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h3>UI/UX Design Bootcamp</h3>
+                            <div class="date">2021</div>
+                            <p>Intensive program covering user interface design, user experience principles, and prototyping with Figma.</p>
                         </div>
                     </div>
-                    <div class="skill2">
-                        <div>
-                            <strong>Digital Sketching</strong>
-                        </div><br>
-                        <div>
-                            <strong>Branding & Logo Design</strong>
-                        </div><br>
-                        <div>
-                            <strong>Concept Art & Visual Storytelling</strong>
-                        </div><br>
+                </div>
+            </div>
+
+            <!-- PANEL 3: SKILLS CON CARRUSEL -->
+            <!-- EDITAR: Cambia los iconos y textos en cada slide -->
+            <div class="panel panel-skills">
+                <div class="skills-content">
+                    <h2>Skills & Abilities</h2>
+                    
+                    <!-- Carrusel Swiper -->
+                    <div class="swiper skillsSwiper">
+                        <div class="swiper-wrapper">
+                            
+                            <!-- Slide 1 - CAMBIAR: Icono y texto -->
+                            <div class="swiper-slide">
+                                <img src="img/photoshop_icon.png" alt="Photoshop">
+                                <h3>Photoshop</h3>
+                                <p>Advanced photo editing and digital composition</p>
+                            </div>
+
+                            <!-- Slide 2 - CAMBIAR: Icono y texto -->
+                            <div class="swiper-slide">
+                                <img src="img/illustrator_icon.webp" alt="Illustrator">
+                                <h3>Illustrator</h3>
+                                <p>Vector graphics and logo design</p>
+                            </div>
+
+                            <!-- Slide 3 - CAMBIAR: Icono y texto -->
+                            <div class="swiper-slide">
+                                <img src="img/indesign_icon.webp" alt="InDesign">
+                                <h3>InDesign</h3>
+                                <p>Editorial design and layout</p>
+                            </div>
+
+                            <!-- Slide 4 - CAMBIAR: Icono y texto -->
+                            <div class="swiper-slide">
+                                <img src="img/procreate_icon.png" alt="Procreate">
+                                <h3>Procreate</h3>
+                                <p>Digital illustration and painting</p>
+                            </div>
+
+                            <!-- Slide 5 - CAMBIAR: Icono y texto -->
+                            <div class="swiper-slide">
+                                <img src="img/after_icon.png" alt="After Effects">
+                                <h3>After Effects</h3>
+                                <p>Motion graphics and animation</p>
+                            </div>
+
+                            <!-- Slide 6 - CAMBIAR: Icono y texto -->
+                            <div class="swiper-slide">
+                                <img src="img/premiere_icon.png" alt="Premiere">
+                                <h3>Premiere Pro</h3>
+                                <p>Video editing and post-production</p>
+                            </div>
+
+                        </div>
+                        <!-- Paginación y navegación -->
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
                     </div>
                 </div>
             </div>
-            <div class="icons">
-                <img src="img/procreate_icon.png" alt="Procreate">
-                <img src="img/photoshop_icon.png" alt="Photoshop">
-                <img src="img/after_icon.png" alt="After Effects">
-                <img src="img/premiere_icon.png" alt="Premiere Pro">
-                <img src="img/indesign_icon.webp" alt="InDesign">
-                <img src="img/illustrator_icon.webp" alt="Illustrator">
+
+            <!-- PANEL 4: EXPERIENCIA -->
+            <!-- EDITAR: Modifica los proyectos y descripciones -->
+            <div class="panel panel-experience">
+                <div class="experience-content">
+                    <h2>Experience</h2>
+                    <div class="experience-grid">
+                        
+                        <div class="experience-card">
+                            <h3>Freelance Designer</h3>
+                            <div class="company">Self-Employed</div>
+                            <div class="date">2023 - Present</div>
+                            <p>Creating custom designs for clients including branding, social media content, and digital illustrations.</p>
+                        </div>
+
+                        <div class="experience-card">
+                            <h3>Design Intern</h3>
+                            <div class="company">Creative Studio</div>
+                            <div class="date">2022 - 2023</div>
+                            <p>Assisted in various design projects, from concept development to final execution, working with a multidisciplinary team.</p>
+                        </div>
+
+                        <div class="experience-card">
+                            <h3>Social Media Content Creator</h3>
+                            <div class="company">Various Brands</div>
+                            <div class="date">2021 - 2022</div>
+                            <p>Developed visual content for social media campaigns, increasing engagement and brand awareness.</p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        </section>
+
+        </div>
     </div>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- GSAP y ScrollTrigger para el scroll horizontal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Swiper JS para el carrusel -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="JS/javascript.js"></script>
+
 </body>
-
-<footer>
-    <section class="contact-container">
-        <div class="contenedor2">
-            <div class="text">
-                <h1>Contact Me</h1>
-                <p>Feel free to reach out for collaborations or just a chat.</p>
-                <div class="rss">
-                    <p>Follow me on:</p>
-                    <ul>
-                        <li><a href="https://www.instagram.com/cecemellaman/">Instagram: @cecemellaman</a></li>
-                        <li><a href="https://es.linkedin.com/in/cecilia-pr85a">LinkedIn: linkedin.com/in/cecilia-pr85a</a></li>
-                        <li><a href="https://workspace.google.com/intl/es/gmail/">Email: cecilia.pelayorodriguez@gmail.com</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="formulario">
-                <form>
-                    <h2>Contact me</h2>
-        
-                    <div class="input-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" placeholder="Name">
-        
-                        <label for="Number">Number</label>
-                        <input type="num" name="Number" id="Number" placeholder="Number">
-        
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email">
-        
-                        <label for="comment">Comment</label>
-                        <textarea name="comment" id="comment" cols="20" rows="5" placeholder="Comment"></textarea>
-        
-                        <input class="btn" type="submit" value="Submit">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-</footer>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </html>
