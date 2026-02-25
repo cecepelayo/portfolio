@@ -65,14 +65,19 @@
     </div>
   </div>
 </div>
-<!-- ──────────────────────────────────────────────────────────── -->
 
 <!-- ===================== PAGE: HOME ===================== -->
 <div id="page-home" class="page active">
 
   <!-- Hero -->
   <section id="hero">
-    <div class="hero-number">01</div>
+
+    <!-- Logo posicionado a la derecha -->
+    <div class="hero-logo">
+      <img src="img/logo_portfolio.png" alt="Cecemellaman" />
+    </div>
+
+    <!-- Texto izquierda -->
     <p class="hero-tag">Diseñadora · Ilustradora · Brandingmaker</p>
     <h1 class="hero-title serif">
       Hola, soy<br/>
@@ -208,32 +213,19 @@
 
     <div class="projects-grid" id="projects-grid">
 
-      <!-- ══════════════════════════════════════════════════════
-           CÓMO AÑADIR IMÁGENES AL MODAL:
-           · data-images  → rutas separadas por | (máx. recomendado: 6)
-             Ej: data-images="img/proyecto-a.webp|img/proyecto-b.webp"
-           · Si data-images está vacío, el modal usa la imagen de portada.
-
-           METADATOS DEL PIE DEL MODAL:
-           · data-year    → Año del proyecto
-           · data-role    → Tu rol
-           · data-tools   → Herramientas usadas
-           · data-client  → Cliente o contexto
-      ══════════════════════════════════════════════════════════ -->
-
       <!-- Proyecto 1 -->
       <div class="project-card" data-cat="editorial"
-           data-title=" En el ojo del artista"
+           data-title="En el ojo del artista"
            data-tag="Diseño Editorial · 24/25"
            data-desc="Para este proyecto se presenta una exposición dedicada a Neil Leifer, uno de los fotógrafos más influyentes en la historia del deporte.
 
-           La exposición busca ofrecer una experiencia inmersiva que resalte su legado a través de un diseño gráfico cohesivo y una identidad visual impactante. Para ello, se han desarrollado los elementos clave de la muestra, incluyendo la señáletica, el catálogo y otros materiales editoriales que complementan la narrativa expositiva.
+La exposición busca ofrecer una experiencia inmersiva que resalte su legado a través de un diseño gráfico cohesivo y una identidad visual impactante. Para ello, se han desarrollado los elementos clave de la muestra, incluyendo la señáletica, el catálogo y otros materiales editoriales que complementan la narrativa expositiva.
 
-           Este proyecto propone una manera innovadora de acercar la obra de Leifer al público, combinando con diseño, fotografía y storytelling en un recorrido visual dinámico y memorable."
-           data-images="img/Baner Free Mockup copia.png|img/Free Vertical Billboard on th Brick Wall Mockup copia.png|img/Free Vertical Billboard on th Brick Wall Mockup copia.png|img/neil.png|img/portada_mockup.png|img/sala_museo.png|img/sala_museo2.png|img/sala_principal.png|img/squarecard.png|img/tickets_mockup.png|img/vistaarea_mockup.png"
-           data-year="2024" data-role="Dirección de Arte" data-tools="InDesign, Illustrator" data-client="Nómada Media"
+Este proyecto propone una manera innovadora de acercar la obra de Leifer al público, combinando diseño, fotografía y storytelling en un recorrido visual dinámico y memorable."
+           data-images="img/Baner Free Mockup copia.png|img/Free Vertical Billboard on th Brick Wall Mockup copia.png|img/neil.png|img/portada_mockup.png|img/sala_museo.png|img/sala_museo2.png|img/sala_principal.png|img/squarecard.png|img/tickets_mockup.png|img/vistaarea_mockup.png"
+           data-year="2024" data-role="Diseño productos editoriales" data-tools="InDesign, Illustrator, Photoshop" data-client="UDIT"
            onclick="openModal(this)">
-        <img src="img/Neil.Leifer46.png" alt="Revista Nómada" loading="lazy" />
+        <img src="img/Neil.Leifer46.png" alt="UDIT" loading="lazy" />
         <div class="project-placeholder"></div>
         <div class="project-overlay">
           <div class="project-meta">
@@ -245,18 +237,18 @@
 
       <!-- Proyecto 2 -->
       <div class="project-card" data-cat="branding"
-           data-title="Origen Studio"
-           data-tag="Branding · 2024"
-           data-desc="Identidad completa para estudio de arquitectura sostenible. El encargo abarcó desde la conceptualización del nombre hasta la entrega de todos los activos digitales e impresos. El sistema de color parte de tonos tierra y mineral que evocan los materiales naturales con los que trabaja el estudio. Incluye logotipo principal, versiones adaptativas, tipografía corporativa y librería de iconos propia."
-           data-images="img/origen-01.webp|img/origen-02.webp|img/origen-03.webp"
-           data-year="2024" data-role="Branding & Identidad" data-tools="Illustrator, Figma" data-client="Origen Studio"
+           data-title="Cháchara"
+           data-tag="Branding · 2023"
+           data-desc="Creación de una marca de vinos valenciana con enfoque en sostenibilidad y producción orgánica. El diseño de identidad visual se basa en la idea de conversación y comunidad, reflejada en el logotipo y las ilustraciones de las etiquetas."
+           data-images="img/tinto.png|img/blanco.png|img/rosado.png|img/copy.png"
+           data-year="2023" data-role="Branding & Identidad" data-tools="Illustrator, Photoshop" data-client="UDIT"
            onclick="openModal(this)">
-        <img src="" alt="Origen Studio" loading="lazy" />
-        <div class="project-placeholder">Imagen del proyecto</div>
+        <img src="img/chachara.png" alt="Cháchara" loading="lazy" />
+        <div class="project-placeholder"></div>
         <div class="project-overlay">
           <div class="project-meta">
-            <h3 class="serif">Origen Studio</h3>
-            <span>Branding · 2024</span>
+            <h3 class="serif">Branding y etiquetado</h3>
+            <span>Branding · 2023</span>
           </div>
         </div>
       </div>
@@ -279,13 +271,12 @@
         </div>
       </div>
 
-      <!-- Proyecto 4 — Black Sheep (ya tienes imagen real) -->
+      <!-- Proyecto 4 — Black Sheep -->
       <div class="project-card" data-cat="branding"
            data-title="Black Sheep — Iced Coffee"
            data-tag="Modelado 3D · 2026"
            data-desc="Exploración de packaging tridimensional para una línea de café helado de specialty. El concepto visual gira alrededor de la contracultura del café: rechazo a lo genérico, apuesta por la singularidad. Modelado y texturizado en Cinema 4D, render final con iluminación de estudio HDRI. El resultado busca integrar referencias al streetwear y al packaging japonés minimalista."
            data-images="img/lata_classic copia.jpg|img/Pelayo.Cecilia_3.2_Lata2.png|img/Pelayo.Cecilia_3.2_Lata3.png"
-           data-contain="true"
            data-year="2026" data-role="3D & Art Direction" data-tools="Cinema 4D, Photoshop" data-client="Black Sheep Coffee"
            onclick="openModal(this)">
         <img src="img/lata_classic copia.jpg" alt="Black Sheep Iced Coffee" loading="lazy" />
@@ -302,7 +293,7 @@
       <div class="project-card" data-cat="editorial"
            data-title="Catálogo Galería Norte"
            data-tag="Diseño Editorial · 2023"
-           data-desc="Catálogo anual para galería de arte contemporáneo. 80 páginas sobre papel offset 90gr con forro de tela en cubierta dura. El diseño prioriza la obra: márgenes generosos, tipografía invisible, retícula a 8 columnas que permite tanto la página de sangría total como el texto académico en columna estrecha. Los textos críticos fueron maquetados junto a la fotografía de piezas en un único flujo narrativo."
+           data-desc="Catálogo anual para galería de arte contemporáneo. 80 páginas sobre papel offset 90gr con forro de tela en cubierta dura. El diseño prioriza la obra: márgenes generosos, tipografía invisible, retícula a 8 columnas que permite tanto la página de sangría total como el texto académico en columna estrecha."
            data-images="img/galeria-01.webp|img/galeria-02.webp|img/galeria-03.webp"
            data-year="2023" data-role="Diseño Editorial" data-tools="InDesign, Lightroom" data-client="Galería Norte"
            onclick="openModal(this)">
@@ -320,7 +311,7 @@
       <div class="project-card" data-cat="ilustracion"
            data-title="Carteles Urbanos"
            data-tag="Ilustración · 2022"
-           data-desc="Colección de 6 carteles para el festival de música independiente Circuito. La restricción creativa era auto-impuesta: simular texturas de impresión risográfica usando solo capas de color en modo multiplicar. La tipografía expresiva, casi gestual, contrasta con la precisión geométrica de las composiciones. Los carteles se imprimieron en formato 50×70 cm sobre papel kraft reciclado."
+           data-desc="Colección de 6 carteles para el festival de música independiente Circuito. La restricción creativa era auto-impuesta: simular texturas de impresión risográfica usando solo capas de color en modo multiplicar. La tipografía expresiva, casi gestual, contrasta con la precisión geométrica de las composiciones."
            data-images="img/carteles-01.webp|img/carteles-02.webp|img/carteles-03.webp"
            data-year="2022" data-role="Ilustración & Tipografía" data-tools="Illustrator, Photoshop" data-client="Festival Circuito"
            onclick="openModal(this)">

@@ -127,14 +127,6 @@ function openModal(card) {
     thumbsEl.innerHTML = '';
   }
 
-  /* — Modo contain para imágenes que no deben recortarse — */
-  const slider = document.querySelector('.modal-slider');
-  if (card.dataset.contain === 'true') {
-    slider.classList.add('contain-mode');
-  } else {
-    slider.classList.remove('contain-mode');
-  }
-
   updateSlider();
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
