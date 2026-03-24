@@ -1,44 +1,53 @@
-/* ---- Cursor ---- */
+/* ══════════════════════════════════════════════════
+   CURSOR
+══════════════════════════════════════════════════ */
 const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .project-card, .wip-card, .skill-tag').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
-
-/* ---- Header scroll ---- */
-window.addEventListener('scroll', () => {
-  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
-});
-
-/* ---- Page routing ---- */
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  initFadeUps();
+if (cursor) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .project-card, .masonry-item, .skill-tag').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
 }
 
-/* ---- Drawer ---- */
-const drawer = document.getElementById('drawer');
+/* ══════════════════════════════════════════════════
+   HEADER — borde al hacer scroll
+══════════════════════════════════════════════════ */
+const header = document.getElementById('header');
+if (header) {
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+}
+
+/* ══════════════════════════════════════════════════
+   DRAWER MÓVIL
+══════════════════════════════════════════════════ */
+const drawer    = document.getElementById('drawer');
 const hamburger = document.getElementById('hamburger');
+
 function toggleDrawer() {
+  if (!drawer || !hamburger) return;
   drawer.classList.toggle('open');
   hamburger.classList.toggle('open');
 }
 
-/* ---- Scroll to contact ---- */
-function scrollToContact() {
-  showPage('home');
-  setTimeout(() => {
-    document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
-  }, 100);
+/* Cerrar drawer al hacer clic en un enlace */
+if (drawer) {
+  drawer.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      if (hamburger) hamburger.classList.remove('open');
+    });
+  });
 }
 
-/* ---- Filter ---- */
+/* ══════════════════════════════════════════════════
+   PORTFOLIO — FILTROS
+══════════════════════════════════════════════════ */
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -54,29 +63,22 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
   });
 });
 
-/* ════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
    MODAL CON SLIDER
-   ─ Cada project-card puede tener:
-     · data-images  → rutas separadas por | (usa la portada si está vacío)
-     · data-year    → año
-     · data-role    → tu rol en el proyecto
-     · data-tools   → herramientas usadas
-     · data-client  → cliente o contexto
-════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════════ */
 let currentSlide = 0;
 let totalSlides  = 0;
 
 function openModal(card) {
-  /* — Datos de texto — */
-  const title  = card.dataset.title  || '';
-  const tag    = card.dataset.tag    || '';
-  const desc   = card.dataset.desc   || '';
+  const title = card.dataset.title || '';
+  const tag   = card.dataset.tag   || '';
+  const desc  = card.dataset.desc  || '';
 
   document.getElementById('modal-title').textContent = title;
   document.getElementById('modal-tag').textContent   = tag;
   document.getElementById('modal-desc').textContent  = desc;
 
-  /* — Metadatos pie — */
+  /* Metadatos */
   const metaDefs = [
     { label: 'Año',          value: card.dataset.year   },
     { label: 'Rol',          value: card.dataset.role   },
@@ -92,40 +94,35 @@ function openModal(card) {
     </div>`).join('');
   metaGrid.style.display = metaDefs.length ? 'grid' : 'none';
 
-  /* — Imágenes — */
-  const rawImages  = (card.dataset.images || '').split('|').map(s => s.trim()).filter(Boolean);
-  const coverSrc   = card.querySelector('img').getAttribute('src');
-  // Usar data-images si existen; si no, la portada; si no, array vacío
-  const srcs = rawImages.length ? rawImages : (coverSrc ? [coverSrc] : []);
+  /* Imágenes */
+  const rawImages = (card.dataset.images || '').split('|').map(s => s.trim()).filter(Boolean);
+  const coverSrc  = card.querySelector('img').getAttribute('src');
+  const srcs      = rawImages.length ? rawImages : (coverSrc ? [coverSrc] : []);
 
   totalSlides  = srcs.length || 1;
   currentSlide = 0;
 
-  /* — Construir slides — */
+  /* Slides */
   const track = document.getElementById('slider-track');
-  if (srcs.length) {
-    track.innerHTML = srcs.map((src, i) => `
-      <div class="slide">
-        <img src="${src}" alt="${title} — ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-        <div class="slide-placeholder" style="display:none">Sin imagen</div>
-      </div>`).join('');
-  } else {
-    track.innerHTML = `<div class="slide"><div class="slide-placeholder">Sin imágenes</div></div>`;
-  }
+  track.innerHTML = srcs.length
+    ? srcs.map((src, i) => `
+        <div class="slide">
+          <img src="${src}" alt="${title} — ${i + 1}"
+               loading="${i === 0 ? 'eager' : 'lazy'}"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="slide-placeholder" style="display:none">Sin imagen</div>
+        </div>`).join('')
+    : `<div class="slide"><div class="slide-placeholder">Sin imágenes</div></div>`;
 
-  /* — Thumbnails (solo si hay más de 1 imagen) — */
+  /* Thumbnails */
   const thumbsEl = document.getElementById('slider-thumbs');
-  if (srcs.length > 1) {
-    thumbsEl.innerHTML = srcs.map((src, i) => `
-      <img class="thumb ${i === 0 ? 'active' : ''}"
-           src="${src}" alt="thumb ${i + 1}"
-           onclick="goToSlide(${i})"
-           loading="lazy"
-           onerror="this.outerHTML='<div class=\\'thumb-placeholder ${i === 0 ? 'active' : ''}\\' onclick=\\'goToSlide(${i})\\'><span>${i + 1}</span></div>'" />`).join('');
-  } else {
-    thumbsEl.innerHTML = '';
-  }
+  thumbsEl.innerHTML = srcs.length > 1
+    ? srcs.map((src, i) => `
+        <img class="thumb ${i === 0 ? 'active' : ''}"
+             src="${src}" alt="thumb ${i + 1}"
+             onclick="goToSlide(${i})" loading="lazy"
+             onerror="this.outerHTML='<div class=\\'thumb-placeholder ${i === 0 ? 'active' : ''}\\' onclick=\\'goToSlide(${i})\\'><span>${i+1}</span></div>'" />`).join('')
+    : '';
 
   updateSlider();
   document.getElementById('modal').classList.add('open');
@@ -133,20 +130,15 @@ function openModal(card) {
 }
 
 function updateSlider() {
-  /* Mover track */
   document.getElementById('slider-track').style.transform =
     `translateX(-${currentSlide * 100}%)`;
-
-  /* Contador */
   document.getElementById('slider-counter').textContent =
     `${currentSlide + 1} / ${totalSlides}`;
 
-  /* Thumb activo */
   document.querySelectorAll('.thumb, .thumb-placeholder').forEach((t, i) => {
     t.classList.toggle('active', i === currentSlide);
   });
 
-  /* Botones prev/next */
   const prevBtn = document.getElementById('slider-prev');
   const nextBtn = document.getElementById('slider-next');
   if (prevBtn) prevBtn.disabled = currentSlide === 0;
@@ -175,15 +167,17 @@ function closeModal(e) {
   }
 }
 
-/* Teclado: Esc cierra, ← → navegan el slider */
 document.addEventListener('keydown', e => {
-  if (!document.getElementById('modal').classList.contains('open')) return;
-  if (e.key === 'Escape')      closeModal({});
-  if (e.key === 'ArrowLeft')   slideBy(-1);
-  if (e.key === 'ArrowRight')  slideBy(1);
+  const modal = document.getElementById('modal');
+  if (!modal || !modal.classList.contains('open')) return;
+  if (e.key === 'Escape')     closeModal({});
+  if (e.key === 'ArrowLeft')  slideBy(-1);
+  if (e.key === 'ArrowRight') slideBy(1);
 });
 
-/* ---- Form validation ---- */
+/* ══════════════════════════════════════════════════
+   FORMULARIO DE CONTACTO
+══════════════════════════════════════════════════ */
 function handleSubmit(e) {
   e.preventDefault();
   let valid = true;
@@ -202,23 +196,38 @@ function handleSubmit(e) {
 
   const form    = document.getElementById('contact-form');
   const success = document.getElementById('form-success');
-  form.style.opacity       = '0.3';
-  form.style.pointerEvents = 'none';
-  success.style.display    = 'block';
 
-  // Para envío real descomenta:
-  // fetch(form.action, { method:'POST', body: new FormData(form), headers:{ Accept:'application/json' } })
-  //   .then(r => { if(r.ok){ form.style.opacity='0.3'; success.style.display='block'; } });
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { Accept: 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      form.style.opacity       = '0.3';
+      form.style.pointerEvents = 'none';
+      success.style.display    = 'block';
+    }
+  }).catch(() => {
+    /* fallback demo sin servidor */
+    form.style.opacity       = '0.3';
+    form.style.pointerEvents = 'none';
+    success.style.display    = 'block';
+  });
 }
 
-/* ---- Fade-up on scroll ---- */
+/* ══════════════════════════════════════════════════
+   FADE-UP EN SCROLL
+══════════════════════════════════════════════════ */
 function initFadeUps() {
   const els = document.querySelectorAll('.fade-up');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target); }
+      if (en.isIntersecting) {
+        en.target.classList.add('visible');
+        obs.unobserve(en.target);
+      }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
   els.forEach(el => obs.observe(el));
 }
 initFadeUps();

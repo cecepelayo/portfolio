@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cecemellaman — Contacto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<header id="header">
+  <a href="index.html" class="logo"><img src="img/logo_portfolio.png" alt=""></a>
+  <nav>
+    <a href="index.html" class="nav-active">Inicio</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="personal.html">Personal</a>
+    <a href="contacto.html">Contacto</a>
+  </nav>
+  <button id="hamburger" aria-label="Menú" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div id="drawer">
+  <a href="index.html">Inicio</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="personal.html">Personal</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<main>
+  <section id="contact-section" class="section" style="padding-top: 8rem;">
+    <p class="section-label">Hablemos</p>
+    <h2 class="section-title serif">Contacto</h2>
+
+    <div class="contact-grid">
+      <div>
+        <p class="contact-intro">
+          Si tienes un proyecto en mente, una colaboración o simplemente quieres hablar de diseño,
+          me encantaría escucharte.<br/><br/>
+          Tiempo de respuesta habitual: 24-48 horas.
+        </p>
+        <div class="social-row">
+          <a class="social-link" href="https://instagram.com/cecemellaman" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+          <a class="social-link" href="https://www.behance.net/ceciliapelayo" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 9H3v6h6a3 3 0 000-6zM3 9V6h5a2 2 0 010 3M15 7h6M15 17h6M17 7v10"/></svg>
+            Behance
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/cecilia-pr85a" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form" id="contact-form"
+              action="https://formspree.io/f/TU_ID_AQUI"
+              method="POST" novalidate onsubmit="handleSubmit(event)">
+          <div class="form-field" id="field-name">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" />
+            <p class="error-msg">Por favor, introduce tu nombre.</p>
+          </div>
+          <div class="form-field" id="field-email">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" />
+            <p class="error-msg">Introduce un email válido.</p>
+          </div>
+          <div class="form-field" id="field-message">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto…"></textarea>
+            <p class="error-msg">El mensaje no puede estar vacío.</p>
+          </div>
+          <button type="submit" class="btn-submit">Enviar mensaje</button>
+          <p class="form-success" id="form-success">✓ Mensaje enviado. Gracias, te respondo pronto.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="JS/javascript.js"></script>
+</body>
+</html>
