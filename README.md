@@ -1,40 +1,31 @@
-# portfolio
-<!-- DENTRO DE SECTION GALERIA EN PROJECTS.HTML -->
-<div class="gal2">
-                    <div class="project-card">
-                        <img src="img/soldaddito _os.png" alt="Project 4" />
-                        <h3>Ilustración Infantil. El soldadito de plomo</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/patitomockup.png" alt="Project 5" />
-                        <h3>Ilustración Infantil. El patito feo</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/hyg_mockup.png" alt="Project 6" />
-                        <h3>Ilustración Infantil. Hansel y Gretel</h3>
-                    </div>
-                </div>
-                <div class="gal3">
-                    <div class="project-card">
-                        <img src="img/instasupermarket.png" alt="Project 7" />
-                        <h3>Campaña de Glovo. Comida genérica</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/instaoriental.png" alt="Project 8" />
-                        <h3>Campaña de Glovo. Comida oriental</h3>
-                    </div>
-                    <div class="project-card">
-                        <img src="img/instatexmex.png" alt="Project 9" />
-                        <h3>Campaña de Glovo. Comida tex-mex</h3>
-                    </div>
-                </div>
+# Portfolio Web de Diseño Gráfico y Multimedia  
+**"Un espacio donde el diseño cobra vida y las ideas se transforman en proyectos."**
 
-===============================================
------------------ABOUT ME----------------------
-===============================================
- 
- Arreglar scroll y hacerlo vertical, animaciones fade out y fade in de los elementos.
+[![Estado del Proyecto](https://img.shields.io/badge/Estado-En%20Desarrollo-brightgreen)](https://portfolioweb-roan-two.vercel.app/)  
+🌐 **[Ver Demo](https://portfolioweb-roan-two.vercel.app/)**  
 
- carrusel de imagenes (seccion abilities and skills)
+---
 
- toggle al final de enlace a contact.html ---> en vez de footer
+## 🖋️ Descripción del Proyecto  
+Este portfolio web está diseñado para destacar mis habilidades y proyectos en diseño gráfico y multimedia. Su objetivo principal es captar la atención de reclutadores y clientes, ofreciendo una experiencia visual atractiva y profesional.  
+
+### ✨ Características principales:  
+- **Responsive Design**: Adaptado para cualquier dispositivo.  
+- **Modo Oscuro**: Interfaz moderna y cómoda para la vista.  
+- **Animaciones Suaves**: Transiciones fluidas para una experiencia interactiva.  
+
+---
+
+## 📸 Vista Previa  
+![Vista Principal](screenshots/Mac.mockup%20copia.png)  
+*Vista de la página principal del portfolio.*
+---
+
+## 🛠️ Tecnologías Utilizadas  
+- **Frontend**:  
+  - React  
+  - Tailwind CSS  
+  - Vite  
+  - Framer Motion  
+
+---
