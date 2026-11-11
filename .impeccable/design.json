@@ -140,21 +140,6 @@
           "#FAEDD5"
         ]
       },
-      "striker": {
-        "role": "tertiary",
-        "displayName": "Rascador",
-        "canonical": "oklch(33.6% 0.083 34.0)",
-        "tonalRamp": [
-          "#170603",
-          "#431309",
-          "#653125",
-          "#835347",
-          "#A2766C",
-          "#C19B92",
-          "#E0C1BA",
-          "#F7ECE9"
-        ]
-      },
       "board": {
         "role": "neutral",
         "displayName": "Cartón del expositor",
@@ -301,7 +286,7 @@
       },
       {
         "name": "single-focus",
-        "value": "filter: saturate(0.2); opacity: 0.55 · 0.35s",
+        "value": "filter: saturate(0.45) en la caja entera, opaca · 0.35s",
         "purpose": "Las cajas no enfocadas bajan de tinta."
       },
       {
@@ -342,7 +327,7 @@
       "name": "Botón de acción",
       "kind": "button",
       "refersTo": "button-action",
-      "description": "Lo que se pulsa: «Hablemos», «Copiar email». Turquesa reservado.",
+      "description": "Lo que se pulsa: «Hablemos», «Copiar email». Turquesa reservado (en cartoncillo sobre la banda de contacto).",
       "html": "<a class=\"ds-btn-action\" href=\"#\">Hablemos</a>",
       "css": ".ds-btn-action{display:inline-flex;align-items:center;min-height:44px;padding:.55rem 1.15rem;background:#5ECFC5;color:#141413;border:2px solid #141413;border-radius:0;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-variation-settings:'wdth' 85;font-size:1rem;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s cubic-bezier(.16,1,.3,1)}.ds-btn-action:hover{transform:translateY(-2px);box-shadow:0 6px 14px -6px rgba(20,20,19,.45)}.ds-btn-action:active{transform:translateY(0);box-shadow:none}.ds-btn-action:focus-visible{outline:3px solid #141413;outline-offset:3px}"
     },
@@ -403,12 +388,12 @@
       "css": ".ds-svc{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:24px;padding:1.25rem 0;border-top:2px solid #141413;border-bottom:2px solid #141413;color:#141413}.ds-svc-swatch{width:56px;height:40px;background:#5BAA52;border:2px solid #141413;box-shadow:inset 0 0 0 3px #FFFDF9,inset 0 0 0 4.5px #141413}.ds-svc h3{font-family:'Bodoni Moda','Didot',serif;font-style:italic;font-weight:600;font-size:2rem;line-height:1.05;margin:0}.ds-svc-refs{font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}"
     },
     {
-      "name": "Banda de rascador",
+      "name": "Banda de contacto",
       "kind": "custom",
-      "refersTo": "contact-striker",
-      "description": "Cierre de contacto en marrón granulado, nunca en tinta de disciplina.",
-      "html": "<section class=\"ds-striker\"><h2>¿Hablamos?</h2><a href=\"#\">cecilia.pelayorodriguez@gmail.com</a></section>",
-      "css": ".ds-striker{padding:56px 24px;color:#FFFDF9;border-top:3px solid #141413;background:radial-gradient(circle at 30% 40%,rgba(255,253,249,.07) 0 1px,transparent 1.5px) 0 0/7px 7px,radial-gradient(circle at 70% 70%,rgba(0,0,0,.25) 0 1px,transparent 1.5px) 0 0/5px 5px,#5A2418}.ds-striker h2{font-family:'Bodoni Moda','Didot',serif;font-style:italic;font-weight:600;font-size:4rem;line-height:1;letter-spacing:-.02em;margin:0 0 1.5rem}.ds-striker a{color:inherit;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 80;font-size:1.8rem;text-underline-offset:.2em;text-decoration-thickness:2px}.ds-striker a:hover{text-decoration-thickness:4px}.ds-striker a:focus-visible{outline:3px solid #FFFDF9;outline-offset:3px}"
+      "refersTo": "contact-label",
+      "description": "Cierre de contacto: banda turquesa a sangre con borde superior y el filete interior de las cajas, sin cajón, cabecera mono y rotulación condensada.",
+      "html": "<section class=\"ds-contact\"><p class=\"ds-contact-head\"><span>Contacto</span><span>Madrid</span></p><h2>¿Hablamos?</h2><a href=\"#\">cecilia.pelayorodriguez@gmail.com</a></section>",
+      "css": ".ds-contact{position:relative;padding:30px;background:#5ECFC5;color:#141413;border-top:3px solid #141413}.ds-contact::before{content:'';position:absolute;inset:16px;border:1.5px solid #141413;pointer-events:none}.ds-contact-head{display:flex;justify-content:space-between;margin:0 0 2.5rem;padding-bottom:12px;border-bottom:1.5px solid #141413;font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}.ds-contact h2{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 75;font-size:4rem;line-height:.9;text-transform:uppercase;margin:0 0 1.5rem}.ds-contact a{color:inherit;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 80;font-size:1.8rem;text-underline-offset:.2em;text-decoration-thickness:2px}.ds-contact a:hover{text-decoration-thickness:4px}.ds-contact a:focus-visible{outline:3px solid #141413;outline-offset:3px}"
     }
   ],
   "narrative": {
@@ -416,7 +401,7 @@
     "overview": "El sitio es el expositor de un coleccionista de cajas de cerillas: cada proyecto es una etiqueta numerada de una serie, y el nombre de Cecilia es la etiqueta maestra en el centro. Fondo claro de cartón, tintas planas y vivas sobre negro de imprenta, filetes gruesos, numeración en mono. La impresión manda: nada brilla, nada flota, todo está impreso y enmarcado.\n\nLa densidad es alta en la primera pantalla (el tablero de cajas ocupa el viewport y deja asomar la tercera fila) y se relaja después en pasajes separados por cenefas ornamentales. La composición es ortogonal (solo 0/90°); el movimiento imita el objeto físico: el cajón de la caja asoma, sale al abrir y las demás cajas pierden tinta cuando una tiene el foco.\n\nDecisiones fijadas por la propietaria: fondo claro, display en serif italiana de alto contraste (Bodoni Moda) y cenefas ornamentales. El adorno actual de las cenefas es **provisional**: un SVG dibujado a la espera de los recortes PNG de los motivos de Cecilia.",
     "keyCharacteristics": [
       "Expositor de cajas de cerillas: etiquetas numeradas (Nº 0X) con filete negro grueso y filete interior.",
-      "Una tinta plana por disciplina; turquesa del logo reservado a las acciones.",
+      "Una tinta plana por disciplina; turquesa del logo reservado a las acciones y a su destino, la banda de contacto.",
       "Display en Bodoni Moda italic; rotulación en grotesca condensada; numeración en DM Mono.",
       "Esquinas rectas, composición a 0/90°, profundidad por capas físicas (cajón, manga), no por sombras.",
       "Cenefas ornamentales entre pasajes (adorno provisional)."
@@ -424,7 +409,7 @@
     "rules": [
       {
         "name": "The Turquoise-Is-Action Rule",
-        "body": "El turquesa del logo solo pinta lo que se pulsa o señala que se puede pulsar. Nunca es fondo de sección, tinta de disciplina ni decoración.",
+        "body": "El turquesa del logo solo pinta lo que se pulsa o señala que se puede pulsar, y la banda de contacto a la que lleva «Hablemos». Nunca es fondo de otra sección, tinta de disciplina ni decoración. Sobre la banda de contacto, las acciones pasan a cartoncillo con borde negro y la selección a tinta negra.",
         "section": "colors"
       },
       {
@@ -433,8 +418,8 @@
         "section": "colors"
       },
       {
-        "name": "The Striker Close Rule",
-        "body": "El bloque de contacto es la banda de rascador: marrón granulado, nunca una tinta de disciplina.",
+        "name": "The Turquoise Close Rule",
+        "body": "El bloque de contacto es una banda turquesa a sangre con el filete interior de las etiquetas (sin cajón, porque no se abre), nunca una tinta de disciplina. En la web no hay marrones: la paleta es la de las tintas, el cartón y la madera clara del cajón.",
         "section": "colors"
       },
       {
@@ -454,7 +439,7 @@
       }
     ],
     "dos": [
-      "**Do** reservar el turquesa del logo para acciones: botones, cursor «Ver», hover de controles, selección.",
+      "**Do** reservar el turquesa del logo para acciones (botones, cursor «Ver», hover de controles, selección) y para la banda de contacto.",
       "**Do** asignar a cada disciplina su única tinta mediante `--field` (ink-ilustracion, ink-editorial, ink-packaging, ink-identidad, ink-3d).",
       "**Do** usar el bermellón de texto, y no el bermellón de fondo, cuando el bermellón sea texto sobre cartoncillo.",
       "**Do** enmarcar etiquetas con borde de 3px en tinta negra y filete interior de 1.5px, con esquinas rectas.",
@@ -463,8 +448,8 @@
       "**Do** etiquetar el contexto de cada proyecto con honestidad (académico, concurso, propuesta no encargada) en la cara de la caja."
     ],
     "donts": [
-      "**Don't** usar el turquesa como fondo de sección, tinta de disciplina o decoración.",
-      "**Don't** pintar el bloque de contacto con una tinta de disciplina; es la banda de rascador.",
+      "**Don't** usar el turquesa como fondo de otra sección que no sea contacto, como tinta de disciplina o como decoración.",
+      "**Don't** pintar el bloque de contacto con una tinta de disciplina ni introducir marrones en la paleta.",
       "**Don't** redondear esquinas de contenedores ni girar elementos fuera de 0/90°.",
       "**Don't** destacar una caja con sombra o elevación; se destaca sacando el cajón y apagando a las demás.",
       "**Don't** poner titulares de Bodoni Moda en redonda ni en un peso distinto de 600.",

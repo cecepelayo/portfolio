@@ -15,7 +15,6 @@ colors:
   pink: "#F2A3BC"
   wood: "#EED9AC"
   wood-grain: "#DDBF85"
-  striker: "#5A2418"
   gallery-well: "#EEEAE2"
 typography:
   display-master:
@@ -102,9 +101,11 @@ components:
   ornament-band:
     backgroundColor: "{colors.card}"
     height: "48px"
-  contact-striker:
-    backgroundColor: "{colors.striker}"
-    textColor: "{colors.card}"
+  contact-label:
+    backgroundColor: "{colors.turq}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.none}"
+    padding: "14px"
   look-cursor:
     backgroundColor: "{colors.turq}"
     textColor: "{colors.ink}"
@@ -126,7 +127,7 @@ Decisiones fijadas por la propietaria: fondo claro, display en serif italiana de
 
 **Key Characteristics:**
 - Expositor de cajas de cerillas: etiquetas numeradas (Nº 0X) con filete negro grueso y filete interior.
-- Una tinta plana por disciplina; turquesa del logo reservado a las acciones.
+- Una tinta plana por disciplina; turquesa del logo reservado a las acciones y a su destino, la banda de contacto.
 - Display en Bodoni Moda italic; rotulación en grotesca condensada; numeración en DM Mono.
 - Esquinas rectas, composición a 0/90°, profundidad por capas físicas (cajón, manga), no por sombras.
 - Cenefas ornamentales entre pasajes (adorno provisional).
@@ -136,7 +137,7 @@ Decisiones fijadas por la propietaria: fondo claro, display en serif italiana de
 Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi puro como tinta de dibujo.
 
 ### Primary
-- **Turquesa del logo** (turq): el color de lo que se pulsa. Botón «Hablemos» y «Copiar email», enlace de salto, cursor «Ver» sobre las cajas, hover de los botones de la galería y la selección de texto.
+- **Turquesa del logo** (turq): el color de lo que se pulsa. Botón «Hablemos», enlace de salto, cursor «Ver» sobre las cajas, hover de los botones de la galería y la selección de texto. Es también el fondo de la banda de contacto, el destino de «Hablemos».
 
 ### Secondary (tintas de disciplina)
 - **Bermellón** (red): Ilustración. Fondo de la manga de la caja, cabezas de cerilla del cajón y adorno.
@@ -148,21 +149,20 @@ Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi pur
 
 ### Tertiary (materiales de la caja)
 - **Madera de bandeja** (wood) con **veta** (wood-grain): rayado del cajón interior que asoma bajo la manga.
-- **Rascador** (striker): marrón granulado de la banda de contacto, con texto en cartoncillo.
 
 ### Neutral
 - **Cartón del expositor** (board): fondo de página y de la barra.
-- **Cartoncillo** (card): interior de etiquetas, marcos de imagen, cenefas, diálogo, texto sobre el rascador.
+- **Cartoncillo** (card): interior de etiquetas, marcos de imagen, cenefas, diálogo, botón de copiar sobre la banda de contacto.
 - **Tinta negra** (ink): texto, filetes y bordes, estado activo del selector de idioma, contorno de foco.
 - **Tinta suave** (ink-soft): texto secundario (rol, descripciones, herramientas, términos de ficha).
 - **Fondo de galería** (gallery-well): pozo gris cálido donde se presenta la imagen en el cajón abierto.
 
 ### Named Rules
-**The Turquoise-Is-Action Rule.** El turquesa del logo solo pinta lo que se pulsa o señala que se puede pulsar. Nunca es fondo de sección, tinta de disciplina ni decoración.
+**The Turquoise-Is-Action Rule.** El turquesa del logo solo pinta lo que se pulsa o señala que se puede pulsar, y la banda de contacto a la que lleva «Hablemos». Nunca es fondo de otra sección, tinta de disciplina ni decoración. Sobre la banda de contacto, las acciones pasan a cartoncillo con borde negro y la selección a tinta negra.
 
 **The One Ink Per Discipline Rule.** Cada disciplina tiene una única tinta (ilustración bermellón, editorial aciano, packaging verde hoja, identidad amarillo, 3D rosa), aplicada mediante `--field` en la caja, la muestra de servicios y la base del cajón abierto. Dos proyectos de la misma disciplina comparten tinta.
 
-**The Striker Close Rule.** El bloque de contacto es la banda de rascador: marrón granulado, nunca una tinta de disciplina.
+**The Turquoise Close Rule.** El bloque de contacto es una banda turquesa a sangre con el filete interior de las etiquetas (sin cajón, porque no se abre), nunca una tinta de disciplina. En la web no hay marrones: la paleta es la de las tintas, el cartón y la madera clara del cajón.
 
 ## Typography
 
@@ -194,7 +194,7 @@ Responsive: a 1100px el tablero pasa a 6 columnas con cajas de dos columnas y la
 
 ## Elevation & Depth
 
-Sistema plano. La profundidad es física, no atmosférica: la manga de la caja se apoya sobre su cajón, que asoma 7px en reposo, 18px en hover/foco y un 42% al abrir. Las cajas no enfocadas bajan de tinta (saturación 0.2, opacidad 0.55) en vez de elevar la enfocada. Las únicas sombras son suaves y de respuesta: el hover del botón de acción y la sombra proyectada del logo sobre el nombre.
+Sistema plano. La profundidad es física, no atmosférica: la manga de la caja se apoya sobre su cajón, que asoma 7px en reposo, 18px en hover/foco y un 42% al abrir. Las cajas no enfocadas bajan de tinta (la caja entera a saturación 0.45, opaca, para que el cajón no se transparente) en vez de elevar la enfocada. Las únicas sombras son suaves y de respuesta: el hover del botón de acción y la sombra proyectada del logo sobre el nombre.
 
 ### Shadow Vocabulary
 - **Lift de acción** (`box-shadow: 0 6px 14px -6px rgba(20, 20, 19, 0.45)`): solo en hover del botón de acción, junto a `translateY(-2px)`.
@@ -214,7 +214,7 @@ Esquinas rectas en todo el sistema (0px). La forma se construye con filetes: bor
 Rotulados e impresos, con borde negro.
 - **Shape:** esquinas rectas (0px), borde de 2px en tinta negra, altura mínima 44px.
 - **Acción:** fondo turquesa, texto en tinta negra, Bricolage 700 condensada (wdth 85), relleno 0.55rem 1.15rem.
-- **Hover / Focus:** sube 2px con el lift de acción (0.25s, `ease-out`); en `:active` vuelve a 0 sin sombra. Foco global: contorno de 3px en tinta negra con 3px de separación (en cartoncillo dentro del rascador).
+- **Hover / Focus:** sube 2px con el lift de acción (0.25s, `ease-out`); en `:active` vuelve a 0 sin sombra. Foco global: contorno de 3px en tinta negra con 3px de separación (también sobre la banda turquesa de contacto).
 - **Icono (galería, cerrar):** cuadrado de 44px en cartoncillo con borde de 2px e icono SVG de trazo 1.8; hover a turquesa; deshabilitado a opacidad 0.3.
 
 ### Chips (selector de idioma)
@@ -241,13 +241,13 @@ Banda de 48px en cartoncillo entre filetes de 2px arriba y abajo, con el adorno 
 ### Cajón abierto (galería)
 Diálogo de hasta 1240px con borde de 3px: escenario de imagen sobre el fondo de galería, controles y miniaturas a la izquierda; texto y ficha a la derecha, cerrado por una base en la tinta de la disciplina con número de serie en mono. Fondo de página al 72% de tinta negra.
 
-### Contacto (banda de rascador)
-Fondo marrón rascador con grano de dos puntos en degradado radial, texto en cartoncillo, titular display grande, email en grotesca 800 condensada, botón de acción turquesa para copiar e iconos sociales SVG de trazo.
+### Contacto (banda turquesa)
+Banda turquesa a sangre, de borde a borde de la pantalla, con borde superior de 3px en tinta negra y, al margen del tablero, el filete interior de 1.5px de las etiquetas con relleno de 14px; sin cajón. Cabecera en mono mayúsculas («Contacto · Madrid», sin número de serie) separada por un filete de 1.5px que llega al filete interior; al hacer scroll una cerilla rasca ese filete y lo deja trazado. Titular «¿Hablamos?» en la rotulación de caja (Bricolage 800, wdth 75, mayúsculas), email en grotesca 800 condensada, botón de copiar en cartoncillo con borde negro e iconos sociales SVG de trazo. El colofón va bajo el filete, en mono sobre el turquesa: la página termina en la banda, y el fondo del body es turquesa para que Safari de iPhone la continúe bajo su barra.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** reservar el turquesa del logo para acciones: botones, cursor «Ver», hover de controles, selección.
+- **Do** reservar el turquesa del logo para acciones (botones, cursor «Ver», hover de controles, selección) y para la banda de contacto.
 - **Do** asignar a cada disciplina su única tinta mediante `--field` (ink-ilustracion, ink-editorial, ink-packaging, ink-identidad, ink-3d).
 - **Do** usar el bermellón de texto, y no el bermellón de fondo, cuando el bermellón sea texto sobre cartoncillo.
 - **Do** enmarcar etiquetas con borde de 3px en tinta negra y filete interior de 1.5px, con esquinas rectas.
@@ -256,8 +256,8 @@ Fondo marrón rascador con grano de dos puntos en degradado radial, texto en car
 - **Do** etiquetar el contexto de cada proyecto con honestidad (académico, concurso, propuesta no encargada) en la cara de la caja.
 
 ### Don't:
-- **Don't** usar el turquesa como fondo de sección, tinta de disciplina o decoración.
-- **Don't** pintar el bloque de contacto con una tinta de disciplina; es la banda de rascador.
+- **Don't** usar el turquesa como fondo de otra sección que no sea contacto, como tinta de disciplina o como decoración.
+- **Don't** pintar el bloque de contacto con una tinta de disciplina ni introducir marrones en la paleta.
 - **Don't** redondear esquinas de contenedores ni girar elementos fuera de 0/90°.
 - **Don't** destacar una caja con sombra o elevación; se destaca sacando el cajón y apagando a las demás.
 - **Don't** poner titulares de Bodoni Moda en redonda ni en un peso distinto de 600.
