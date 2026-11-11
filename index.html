@@ -3,143 +3,277 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cecemellaman — Inicio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Cecilia Pelayo · Diseño gráfico</title>
+  <meta name="description" content="Cecilia Pelayo, diseñadora gráfica e ilustradora. Packaging, diseño editorial, ilustración e identidad: dibujo yo y lo convierto en producto." />
+  <meta name="theme-color" content="#F6F3EE" />
+  <link rel="icon" href="img/web/logo.webp" type="image/webp" />
+  <script>
+    // Si la página se va a mostrar en inglés, se oculta hasta aplicar los textos (evita el parpadeo en español)
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem('lang'); } catch (e) {}
+      var lang = saved || (navigator.language || 'es').toLowerCase();
+      if (lang.indexOf('es') !== 0) {
+        var root = document.documentElement;
+        root.classList.add('i18n-pending');
+        // Red de seguridad: nunca se queda oculta si el JS principal falla
+        setTimeout(function () { root.classList.remove('i18n-pending'); }, 1500);
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<!-- Custom cursor -->
-<div id="cursor"></div>
+<a class="skip-link" href="#coleccion" data-i18n="skip">Saltar a los proyectos</a>
 
-<!-- ── HEADER (igual en todas las páginas, solo cambia el active) ── -->
-<header id="header">
-  <a href="index.html" class="logo"><img src="img/logo_portfolio.png" alt=""></a>
-  <nav>
-    <a href="index.html" class="nav-active">Inicio</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="personal.html">Personal</a>
-    <a href="contacto.html">Contacto</a>
-  </nav>
-  <button id="hamburger" aria-label="Menú" onclick="toggleDrawer()">
-    <span></span><span></span><span></span>
-  </button>
+<!-- Cabecera fija: logo, idioma y llamada a contacto -->
+<header class="bar" id="bar">
+  <a href="#top" class="bar-logo" aria-label="Cecilia Pelayo, inicio">
+    <img src="img/web/logo.webp" alt="" width="1000" height="695" />
+  </a>
+  <div class="bar-actions">
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" class="lang-btn" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a href="#contacto" class="btn-action" data-i18n="cta">Hablemos</a>
+  </div>
 </header>
 
-<!-- Mobile Drawer -->
-<div id="drawer">
-  <a href="index.html">Inicio</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="personal.html">Personal</a>
-  <a href="contacto.html">Contacto</a>
-</div>
+<main id="top">
 
-<!-- ── MODAL con slider (presente en todas las páginas que lo necesiten) ── -->
-<div id="modal" onclick="closeModal(event)">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-slider">
-      <div class="slider-track" id="slider-track"></div>
-      <div class="slider-thumbs" id="slider-thumbs"></div>
-      <div class="slider-counter" id="slider-counter">1 / 1</div>
-      <button class="slider-btn prev" id="slider-prev" onclick="slideBy(-1)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4L6 8l4 4"/></svg>
-      </button>
-      <button class="slider-btn next" id="slider-next" onclick="slideBy(1)">
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l4 4-4 4"/></svg>
-      </button>
-    </div>
-    <div class="modal-info">
-      <p class="modal-tag" id="modal-tag"></p>
-      <h2 class="modal-title serif" id="modal-title"></h2>
-      <div class="modal-divider"></div>
-      <p class="modal-desc" id="modal-desc"></p>
-      <div class="modal-meta-grid" id="modal-meta-grid"></div>
-    </div>
-  </div>
-</div>
+  <!-- ══════════════════════════════════════
+       EXPOSITOR: etiqueta principal + serie de cajas
+  ══════════════════════════════════════ -->
+  <section class="board" id="coleccion" aria-labelledby="name">
 
-<!-- ══════════════════════════════════════
-     CONTENIDO: HOME
-══════════════════════════════════════ -->
-<main>
-
-  <!-- Hero -->
-  <section id="hero">
-    <div class="hero-logo">
-      <img src="img/logo_portfolio.png" alt="Cecemellaman" />
+    <div class="master">
+      <div class="master-band">
+        <div class="master-inner">
+          <img class="master-logo" src="img/web/logo.webp" alt="CECE" width="1000" height="695" />
+          <h1 class="master-name" id="name">
+            <span class="ink-red">Cecilia</span>
+            <span>Pelayo</span>
+          </h1>
+          <p class="master-claim" data-i18n="claim">Dibujo yo. Y lo convierto en producto.</p>
+          <p class="master-role"><span data-i18n="role">Diseñadora gráfica e ilustradora</span> <span class="place">Madrid</span></p>
+        </div>
+      </div>
     </div>
-    <p class="hero-tag">Diseñadora · Ilustradora · Brandingmaker</p>
-    <h1 class="hero-title serif">
-      Hola, soy<br/>
-      <em>Cece</em>
-    </h1>
-    <p class="hero-sub">
-      Creo identidades visuales y narrativas gráficas que conectan marcas con personas.
-      Especializada en diseño editorial, ilustración y branding con raíces en cultura contemporánea.
-    </p>
-    <a class="btn-outline" href="portfolio.html">
-      Ver proyectos
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <div class="hero-scroll">Scroll</div>
+
+    <!-- Nº 01 — Cata la Lata (caja grande) -->
+    <button type="button" class="box box--lead ink-ilustracion" data-project="cata"
+            data-images="img/web/cata-la-lata-cover.webp|img/web/cata-la-lata-1.webp|img/web/cata-la-lata-2.webp|img/web/cata-la-lata-3.webp">
+      <span class="box-tray" aria-hidden="true"></span>
+      <span class="box-sleeve">
+        <span class="box-head"><span class="serial">Nº 01</span><span data-i18n="d.ilustracion">Ilustración</span></span>
+        <span class="box-stack">
+          <span class="box-frame"><img src="img/web/cata-la-lata-box.webp" alt="" loading="eager" /></span>
+          <span class="box-minis">
+            <span class="box-frame"><img src="img/web/cata-la-lata-1.webp" alt="" loading="eager" /></span>
+            <span class="box-frame"><img src="img/web/cata-la-lata-3.webp" alt="" loading="eager" /></span>
+          </span>
+        </span>
+        <span class="box-title" data-i18n="p.cata.short">Cata la Lata 2026</span>
+        <span class="box-line" data-i18n="p.cata.line">Atún · Sardinillas · Mejillones</span>
+        <span class="box-ctx" data-i18n="p.cata.ctx">Concurso · 8ª edición</span>
+      </span>
+    </button>
+
+    <!-- Nº 02 — Colores -->
+    <button type="button" class="box ink-editorial" data-project="colores"
+            data-images="img/web/colores-1.webp|img/web/colores-2.webp|img/web/colores-3.webp|img/web/colores-4.webp|img/web/colores-5.webp|img/web/colores-6.webp|img/web/colores-7.webp|img/web/colores-8.webp|img/web/colores-9.webp|img/web/colores-10.webp|img/web/colores-11.webp">
+      <span class="box-tray" aria-hidden="true"></span>
+      <span class="box-sleeve">
+        <span class="box-head"><span class="serial">Nº 02</span><span data-i18n="d.editorial">Editorial</span></span>
+        <span class="box-frame"><img src="img/web/colores-cover.webp" alt="" loading="eager" /></span>
+        <span class="box-title" data-i18n="p.colores.short">Colores</span>
+        <span class="box-ctx" data-i18n="p.colores.ctx">Académico · UDIT</span>
+      </span>
+    </button>
+
+    <!-- Nº 03 — Buna Coffee -->
+    <button type="button" class="box ink-packaging" data-project="buna"
+            data-images="img/web/buna-cover.webp|img/web/buna-1.webp|img/web/buna-2.webp|img/web/buna-3.webp">
+      <span class="box-tray" aria-hidden="true"></span>
+      <span class="box-sleeve">
+        <span class="box-head"><span class="serial">Nº 03</span><span data-i18n="d.packaging">Packaging</span></span>
+        <span class="box-frame"><img src="img/web/buna-cover.webp" alt="" loading="eager" /></span>
+        <span class="box-title" data-i18n="p.buna.short">Buna Coffee</span>
+        <span class="box-ctx" data-i18n="p.buna.ctx">Académico · UDIT</span>
+      </span>
+    </button>
+
+    <!-- Nº 04 — Cháchara -->
+    <button type="button" class="box ink-identidad" data-project="chachara"
+            data-images="img/web/chachara-cover.webp|img/web/chachara-1.webp|img/web/chachara-2.webp|img/web/chachara-3.webp|img/web/chachara-4.webp">
+      <span class="box-tray" aria-hidden="true"></span>
+      <span class="box-sleeve">
+        <span class="box-head"><span class="serial">Nº 04</span><span data-i18n="d.identidad">Identidad</span></span>
+        <span class="box-frame"><img src="img/web/chachara-cover.webp" alt="" loading="lazy" /></span>
+        <span class="box-title" data-i18n="p.chachara.short">Cháchara</span>
+        <span class="box-ctx" data-i18n="p.chachara.ctx">Académico · UDIT</span>
+      </span>
+    </button>
+
+    <!-- Nº 05 — En el ojo del artista (Neil Leifer) -->
+    <button type="button" class="box ink-editorial" data-project="neil"
+            data-images="img/web/neil-leifer-cover.webp|img/web/neil-leifer-1.webp|img/web/neil-leifer-2.webp|img/web/neil-leifer-3.webp|img/web/neil-leifer-4.webp|img/web/neil-leifer-5.webp|img/web/neil-leifer-6.webp|img/web/neil-leifer-7.webp|img/web/neil-leifer-8.webp|img/web/neil-leifer-9.webp|img/web/neil-leifer-10.webp">
+      <span class="box-tray" aria-hidden="true"></span>
+      <span class="box-sleeve">
+        <span class="box-head"><span class="serial">Nº 05</span><span data-i18n="d.editorial">Editorial</span></span>
+        <span class="box-frame"><img src="img/web/neil-leifer-cover.webp" alt="" loading="lazy" /></span>
+        <span class="box-title" data-i18n="p.neil.short">En el ojo del artista</span>
+        <span class="box-ctx" data-i18n="p.neil.ctx">Académico · UDIT</span>
+      </span>
+    </button>
+
+    <!-- Nº 06 — Black Sheep -->
+    <button type="button" class="box ink-3d" data-project="blacksheep"
+            data-images="img/web/black-sheep-cover.webp|img/web/black-sheep-1.webp|img/web/black-sheep-2.webp">
+      <span class="box-tray" aria-hidden="true"></span>
+      <span class="box-sleeve">
+        <span class="box-head"><span class="serial">Nº 06</span><span data-i18n="d.3d">3D</span></span>
+        <span class="box-frame"><img src="img/web/black-sheep-cover.webp" alt="" loading="lazy" /></span>
+        <span class="box-title" data-i18n="p.blacksheep.short">Black Sheep</span>
+        <span class="box-ctx" data-i18n="p.blacksheep.ctx">Propuesta · no encargo</span>
+      </span>
+    </button>
   </section>
 
-  <hr class="divider" />
+  <!-- Cenefa: provisional con adorno dibujado; sustituir por los motivos de Cecilia (data-motif) -->
+  <div class="band" data-motif="pending" aria-hidden="true"></div>
 
-  <!-- Skills -->
-  <section class="section fade-up">
-    <p class="section-label">Herramientas &amp; Disciplinas</p>
-    <h2 class="section-title serif">Herramientas &amp;<br/><em>disciplinas</em></h2>
-    <div class="skills-grid">
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
-        Adobe Illustrator
+  <!-- ══════════════════════════════════════
+       FUERA DE SERIE: obra personal
+  ══════════════════════════════════════ -->
+  <section class="offseries" aria-labelledby="offseries-title">
+    <div class="offseries-text">
+      <h2 class="display" id="offseries-title" data-i18n="off.title">Fuera de serie</h2>
+      <p data-i18n="off.text">Pintura y experimentos personales. Lo que hago cuando nadie me lo encarga, y de donde sale buena parte de mi mano.</p>
+    </div>
+    <figure class="piece">
+      <img src="img/web/jazz.webp" alt="Pintura «Jazz»: figura en azules y rojos" data-i18n-alt="off.jazz.alt" loading="lazy" />
+      <figcaption><span class="serial">s/n</span> <span data-i18n="off.jazz">Jazz · pintura</span></figcaption>
+    </figure>
+    <figure class="piece piece--wide">
+      <img src="img/web/feelit.webp" alt="Pintura «Feel it»: torso rojo sobre fondo de color" data-i18n-alt="off.feelit.alt" loading="lazy" />
+      <figcaption><span class="serial">s/n</span> <span data-i18n="off.feelit">Feel it · pintura</span></figcaption>
+    </figure>
+  </section>
+
+  <div class="band" data-motif="pending" aria-hidden="true"></div>
+
+  <!-- ══════════════════════════════════════
+       SERVICIOS + HERRAMIENTAS
+  ══════════════════════════════════════ -->
+  <section class="services" aria-labelledby="services-title">
+    <h2 class="display" id="services-title" data-i18n="svc.title">Lo que puedo hacer por tu marca</h2>
+    <ul class="svc-list">
+      <li class="svc ink-packaging">
+        <span class="svc-swatch" aria-hidden="true"></span>
+        <h3 data-i18n="svc.packaging.t">Packaging</h3>
+        <p data-i18n="svc.packaging.p">Envases, etiquetas y cajas pensados para el lineal, vestidos con ilustración propia.</p>
+        <span class="svc-refs serial">Nº 01 · 03 · 06</span>
+      </li>
+      <li class="svc ink-editorial">
+        <span class="svc-swatch" aria-hidden="true"></span>
+        <h3 data-i18n="svc.editorial.t">Diseño editorial</h3>
+        <p data-i18n="svc.editorial.p">Libros, catálogos y colecciones, de la cubierta a la última página y sus piezas promocionales.</p>
+        <span class="svc-refs serial">Nº 02 · 05</span>
+      </li>
+      <li class="svc ink-ilustracion">
+        <span class="svc-swatch" aria-hidden="true"></span>
+        <h3 data-i18n="svc.ilustracion.t">Ilustración</h3>
+        <p data-i18n="svc.ilustracion.p">Dibujo a mano en Procreate, preparado para imprimirse sobre producto real.</p>
+        <span class="svc-refs serial">Nº 01 · 03</span>
+      </li>
+      <li class="svc ink-identidad">
+        <span class="svc-swatch" aria-hidden="true"></span>
+        <h3 data-i18n="svc.identidad.t">Identidad y branding</h3>
+        <p data-i18n="svc.identidad.p">Marcas con carácter: logotipo, sistema gráfico y sus aplicaciones.</p>
+        <span class="svc-refs serial">Nº 04</span>
+      </li>
+      <li class="svc ink-3d">
+        <span class="svc-swatch" aria-hidden="true"></span>
+        <h3 data-i18n="svc.3d.t">3D y dirección de arte</h3>
+        <p data-i18n="svc.3d.p">Renders de producto en Cinema 4D para enseñar un envase antes de fabricarlo.</p>
+        <span class="svc-refs serial">Nº 06</span>
+      </li>
+    </ul>
+    <p class="tools"><span data-i18n="svc.tools">Trabajo con</span> Illustrator · InDesign · Photoshop · Procreate · Figma · Cinema 4D · After Effects · Premiere</p>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTACTO
+  ══════════════════════════════════════ -->
+  <section class="contact" id="contacto" aria-labelledby="contact-title">
+    <div class="contact-inner">
+      <div class="contact-lead">
+        <h2 class="contact-title display" id="contact-title" data-i18n="ct.title">¿Hablamos?</h2>
+        <p class="contact-text" data-i18n="ct.text">Cuéntame qué quieres sacar al mundo. Respondo en 24–48 horas.</p>
       </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        Adobe InDesign
+      <div class="contact-ways">
+      <div class="contact-mail">
+        <a class="mail-link" href="mailto:cecilia.pelayorodriguez@gmail.com">cecilia.pelayorodriguez@gmail.com</a>
+        <button type="button" class="btn-action" id="copy-mail" data-i18n="ct.copy">Copiar email</button>
+        <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
       </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        Photoshop
-      </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/><path d="M12 8v8M8 12h8"/></svg>
-        Figma
-      </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        Procreate
-      </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-        After Effects
-      </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        Adobe Premiere
-      </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Cinema 4D
-      </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
-        Dirección de Arte*
-      </div>
-      <div class="skill-tag">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-        Branding &amp; Identidad*
+      <ul class="social">
+        <li><a href="https://www.behance.net/ceciliapelayo" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h5.2a2.8 2.8 0 010 5.6H3zM3 11.6h6a3.2 3.2 0 010 6.4H3zM14 9h7M13.5 14.5h8a4 4 0 00-8 0 4 4 0 007.4 2.1"/></svg>Behance</a></li>
+        <li><a href="https://instagram.com/cecemellaman" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.6"/></svg>Instagram</a></li>
+        <li><a href="https://www.linkedin.com/in/cecilia-pr85a" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5v10M4 5.2v.1M9 19.5v-10M9 13.5a4 4 0 018 0v6"/></svg>LinkedIn</a></li>
+      </ul>
       </div>
     </div>
+    <p class="colophon"><span>© 2026 Cecilia Pelayo</span><span data-i18n="ct.colophon">Serie completa: 6 cajas · 2 fuera de serie</span></p>
   </section>
 
 </main>
 
+<!-- ══════════════════════════════════════
+     CAJÓN ABIERTO: galería del proyecto
+══════════════════════════════════════ -->
+<dialog class="drawer" id="drawer" aria-labelledby="drawer-title">
+  <div class="drawer-gallery">
+    <div class="drawer-stage">
+      <img id="drawer-img" src="img/web/cata-la-lata-cover.webp" alt="" loading="lazy" />
+      <p class="stage-error" id="drawer-img-error" data-i18n="g.imgError" hidden>Esta imagen no se ha podido cargar.</p>
+    </div>
+    <div class="drawer-controls">
+      <button type="button" class="nav-btn" id="prev" aria-label="Imagen anterior" data-i18n-aria="g.prev">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>
+      </button>
+      <span class="serial" id="counter">1 / 1</span>
+      <button type="button" class="nav-btn" id="next" aria-label="Imagen siguiente" data-i18n-aria="g.next">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>
+      </button>
+    </div>
+    <div class="drawer-thumbs" id="thumbs"></div>
+  </div>
+  <div class="drawer-info">
+    <button type="button" class="close-btn" id="close" aria-label="Cerrar" data-i18n-aria="g.close">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+    </button>
+    <h2 class="drawer-title display" id="drawer-title"></h2>
+    <div class="drawer-desc" id="drawer-desc"></div>
+    <dl class="drawer-meta" id="drawer-meta"></dl>
+    <!-- Base de la etiqueta: número de serie y disciplina en la tinta del proyecto -->
+    <p class="drawer-base"><span class="serial" id="drawer-serial"></span><span id="drawer-disc"></span></p>
+  </div>
+</dialog>
+
+<!-- Cursor «Ver» solo sobre las cajas -->
+<div class="look" id="look" aria-hidden="true"></div>
+
+<script src="JS/i18n.js"></script>
 <script src="JS/javascript.js"></script>
 </body>
 </html>
