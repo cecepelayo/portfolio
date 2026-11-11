@@ -7,7 +7,7 @@
         "rule": "repeating-stripes-gradient",
         "value": "*",
         "files": [
-          "css/style.css"
+          "assets/css/style.css"
         ],
         "createdAt": "2026-11-11T12:24:41.194Z",
         "reason": "agent: the stripes are the matchbox tray's wood grain, a material of the chosen Fosforera world, not decoration"
