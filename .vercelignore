@@ -1,0 +1,5 @@
+# Lo que no forma parte de la web publicada
+source-images/
+.impeccable/
+.claude/
+*.md
