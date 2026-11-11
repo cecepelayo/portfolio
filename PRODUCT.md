@@ -47,9 +47,9 @@ She draws her own illustration (Procreate) and turns it into real, finished prod
 
 Six projects (images in `source-images/<project>/`):
 
-1. Cata la Lata 2026 · 8ª edición: illustrated packaging for three tins (tuna, sardines, mussels). Competition. Featured piece.
+1. Cata la Lata 2026 · 8ª edición: illustrated packaging for three tins (tuna, sardines, mussels). Competition.
 2. Colores: three-volume book collection (blue, red, yellow), covers, interiors, promo and merchandising. Academic, UDIT, 2025.
-3. Buna Coffee: premium coffee pack, six varieties plus collective pack, illustrated. Academic, UDIT, 2026.
+3. Buna Coffee: premium coffee pack, six varieties plus collective pack, illustrated. Academic, UDIT, 2026. Featured piece (lead box, Nº 01).
 4. Cháchara: Valencian wine brand identity and labels. Academic, UDIT, 2023.
 5. En el ojo del artista: Neil Leifer exhibition (signage, catalogue, tickets, spaces). Academic, UDIT, 2024.
 6. Black Sheep Iced Coffee: 3D packaging in Cinema 4D. Speculative proposal, not a commission. 2026.

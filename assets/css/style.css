@@ -181,9 +181,9 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 
 .master                        { grid-column: 5 / 10;  grid-row: 1 / 3; }
-.box[data-project="cata"]      { grid-column: 1 / 5;   grid-row: 1 / 3; }
+.box[data-project="buna"]      { grid-column: 1 / 5;   grid-row: 1 / 3; }
 .box[data-project="colores"]   { grid-column: 10 / 13; grid-row: 1; }
-.box[data-project="buna"]      { grid-column: 10 / 13; grid-row: 2; }
+.box[data-project="cata"]      { grid-column: 10 / 13; grid-row: 2; }
 .box[data-project="chachara"]  { grid-column: 1 / 5;   grid-row: 3; }
 .box[data-project="neil"]      { grid-column: 5 / 9;   grid-row: 3; }
 .box[data-project="blacksheep"]{ grid-column: 9 / 13;  grid-row: 3; }
@@ -732,9 +732,9 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 .motion .master,
 .motion .box { animation: deal 0.9s var(--ease-out) both; }
-.motion .box[data-project="cata"]       { animation-delay: 0.12s; }
+.motion .box[data-project="buna"]       { animation-delay: 0.12s; }
 .motion .box[data-project="colores"]    { animation-delay: 0.2s; }
-.motion .box[data-project="buna"]       { animation-delay: 0.28s; }
+.motion .box[data-project="cata"]       { animation-delay: 0.28s; }
 .motion .box[data-project="chachara"]   { animation-delay: 0.36s; }
 .motion .box[data-project="neil"]       { animation-delay: 0.42s; }
 .motion .box[data-project="blacksheep"] { animation-delay: 0.48s; }
@@ -815,7 +815,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   }
   .master                         { grid-column: 1 / -1; grid-row: auto; min-height: 62svh; }
   .box[data-project]              { grid-column: span 2; grid-row: auto; }
-  .box[data-project="cata"]       { grid-column: 1 / -1; }
+  .box[data-project="buna"]       { grid-column: 1 / -1; }
   .box-frame { flex: none; aspect-ratio: 4 / 3; }
   .box-stack { flex: none; grid-template-rows: auto auto; }
   .box-stack > .box-frame { height: auto; aspect-ratio: 6 / 5; }
@@ -843,7 +843,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   .master { min-height: 0; }
   .master-band { padding: 10px; }
   .box[data-project] { grid-column: span 1; }
-  .box[data-project="cata"],
+  .box[data-project="buna"],
   .box[data-project="blacksheep"] { grid-column: 1 / -1; }
   .box-sleeve { padding: 10px; gap: 6px; }
   .box-head { flex-direction: column; gap: 0; }
