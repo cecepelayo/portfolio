@@ -47,13 +47,14 @@
 <main id="top">
 
   <!-- ══════════════════════════════════════
-       EXPOSITOR: etiqueta principal + serie de cajas
+       ÁLBUM: portada con el nombre + sobres de cromos
   ══════════════════════════════════════ -->
   <section class="board" id="coleccion" aria-labelledby="name">
 
     <div class="master">
       <div class="master-band">
         <div class="master-inner">
+          <p class="master-kicker" data-i18n="album">Colección</p>
           <img class="master-logo" src="assets/img/brand/logo.webp" alt="CECE" width="1000" height="695" />
           <h1 class="master-name" id="name">
             <span class="ink-red">Cecilia</span>
@@ -65,83 +66,89 @@
       </div>
     </div>
 
-    <!-- Nº 01 — Buna Coffee (caja grande) -->
-    <button type="button" class="box box--lead ink-packaging" data-project="buna"
+    <!-- Nº 01 — Buna Coffee (sobre grande). Los cromos de dentro los crea el script con data-images -->
+    <button type="button" class="pack pack--lead ink-packaging" data-project="buna"
             data-images="assets/img/buna/cover.webp|assets/img/buna/1.webp|assets/img/buna/2.webp|assets/img/buna/3.webp">
-      <span class="box-tray" aria-hidden="true"></span>
-      <span class="box-sleeve">
-        <span class="box-head"><span class="serial">Nº 01</span><span data-i18n="d.packaging">Packaging</span></span>
-        <span class="box-stack">
-          <span class="box-frame"><img src="assets/img/buna/cover.webp" alt="" loading="eager" /></span>
-          <span class="box-minis">
-            <span class="box-frame"><img src="assets/img/buna/1.webp" alt="" loading="eager" /></span>
-            <span class="box-frame"><img src="assets/img/buna/2.webp" alt="" loading="eager" /></span>
+      <span class="pack-cromos" aria-hidden="true"></span>
+      <span class="pack-body"><span class="pack-face">
+        <span class="pack-head"><span class="serial">Nº 01</span><span data-i18n="d.packaging">Packaging</span></span>
+        <span class="pack-stack">
+          <span class="pack-frame"><img src="assets/img/buna/cover.webp" alt="" loading="eager" /></span>
+          <span class="pack-minis">
+            <span class="pack-frame"><img src="assets/img/buna/1.webp" alt="" loading="eager" /></span>
+            <span class="pack-frame"><img src="assets/img/buna/2.webp" alt="" loading="eager" /></span>
           </span>
         </span>
-        <span class="box-title" data-i18n="p.buna.short">Buna Coffee</span>
-        <span class="box-line" data-i18n="p.buna.line">Seis variedades · Pack colectivo</span>
-        <span class="box-ctx" data-i18n="p.buna.ctx">Académico · UDIT</span>
-      </span>
+        <span class="pack-title" data-i18n="p.buna.short">Buna Coffee</span>
+        <span class="pack-line" data-i18n="p.buna.line">Seis variedades · Pack colectivo</span>
+        <span class="pack-ctx" data-i18n="p.buna.ctx">Académico · UDIT</span>
+      </span></span>
+      <span class="pack-strip" aria-hidden="true"><span data-i18n="pk.tear">Abrir por aquí</span></span>
     </button>
 
     <!-- Nº 02 — Colores -->
-    <button type="button" class="box ink-editorial" data-project="colores"
+    <button type="button" class="pack ink-editorial" data-project="colores"
             data-images="assets/img/colores/1.webp|assets/img/colores/2.webp|assets/img/colores/3.webp|assets/img/colores/4.webp|assets/img/colores/5.webp|assets/img/colores/6.webp|assets/img/colores/7.webp|assets/img/colores/8.webp|assets/img/colores/9.webp|assets/img/colores/10.webp|assets/img/colores/11.webp">
-      <span class="box-tray" aria-hidden="true"></span>
-      <span class="box-sleeve">
-        <span class="box-head"><span class="serial">Nº 02</span><span data-i18n="d.editorial">Editorial</span></span>
-        <span class="box-frame"><img src="assets/img/colores/cover.webp" alt="" loading="eager" /></span>
-        <span class="box-title" data-i18n="p.colores.short">Colores</span>
-        <span class="box-ctx" data-i18n="p.colores.ctx">Académico · UDIT</span>
-      </span>
+      <span class="pack-cromos" aria-hidden="true"></span>
+      <span class="pack-body"><span class="pack-face">
+        <span class="pack-head"><span class="serial">Nº 02</span><span data-i18n="d.editorial">Editorial</span></span>
+        <span class="pack-frame"><img src="assets/img/colores/cover.webp" alt="" loading="eager" /></span>
+        <span class="pack-title" data-i18n="p.colores.short">Colores</span>
+        <span class="pack-ctx" data-i18n="p.colores.ctx">Académico · UDIT</span>
+      </span></span>
+      <span class="pack-strip" aria-hidden="true"><span data-i18n="pk.tear">Abrir por aquí</span></span>
     </button>
 
     <!-- Nº 03 — Cata la Lata -->
-    <button type="button" class="box ink-ilustracion" data-project="cata"
+    <button type="button" class="pack ink-ilustracion" data-project="cata"
             data-images="assets/img/cata-la-lata/cover.webp|assets/img/cata-la-lata/1.webp|assets/img/cata-la-lata/2.webp|assets/img/cata-la-lata/3.webp">
-      <span class="box-tray" aria-hidden="true"></span>
-      <span class="box-sleeve">
-        <span class="box-head"><span class="serial">Nº 03</span><span data-i18n="d.ilustracion">Ilustración</span></span>
-        <span class="box-frame"><img src="assets/img/cata-la-lata/cover.webp" alt="" loading="eager" /></span>
-        <span class="box-title" data-i18n="p.cata.short">Cata la Lata 2026</span>
-        <span class="box-ctx" data-i18n="p.cata.ctx">Concurso · 8ª edición</span>
-      </span>
+      <span class="pack-cromos" aria-hidden="true"></span>
+      <span class="pack-body"><span class="pack-face">
+        <span class="pack-head"><span class="serial">Nº 03</span><span data-i18n="d.ilustracion">Ilustración</span></span>
+        <span class="pack-frame"><img src="assets/img/cata-la-lata/cover.webp" alt="" loading="eager" /></span>
+        <span class="pack-title" data-i18n="p.cata.short">Cata la Lata 2026</span>
+        <span class="pack-ctx" data-i18n="p.cata.ctx">Concurso · 8ª edición</span>
+      </span></span>
+      <span class="pack-strip" aria-hidden="true"><span data-i18n="pk.tear">Abrir por aquí</span></span>
     </button>
 
     <!-- Nº 04 — Cháchara -->
-    <button type="button" class="box ink-identidad" data-project="chachara"
+    <button type="button" class="pack ink-identidad" data-project="chachara"
             data-images="assets/img/chachara/cover.webp|assets/img/chachara/1.webp|assets/img/chachara/2.webp|assets/img/chachara/3.webp|assets/img/chachara/4.webp">
-      <span class="box-tray" aria-hidden="true"></span>
-      <span class="box-sleeve">
-        <span class="box-head"><span class="serial">Nº 04</span><span data-i18n="d.identidad">Identidad</span></span>
-        <span class="box-frame"><img src="assets/img/chachara/cover.webp" alt="" loading="lazy" /></span>
-        <span class="box-title" data-i18n="p.chachara.short">Cháchara</span>
-        <span class="box-ctx" data-i18n="p.chachara.ctx">Académico · UDIT</span>
-      </span>
+      <span class="pack-cromos" aria-hidden="true"></span>
+      <span class="pack-body"><span class="pack-face">
+        <span class="pack-head"><span class="serial">Nº 04</span><span data-i18n="d.identidad">Identidad</span></span>
+        <span class="pack-frame"><img src="assets/img/chachara/cover.webp" alt="" loading="lazy" /></span>
+        <span class="pack-title" data-i18n="p.chachara.short">Cháchara</span>
+        <span class="pack-ctx" data-i18n="p.chachara.ctx">Académico · UDIT</span>
+      </span></span>
+      <span class="pack-strip" aria-hidden="true"><span data-i18n="pk.tear">Abrir por aquí</span></span>
     </button>
 
     <!-- Nº 05 — En el ojo del artista (Neil Leifer) -->
-    <button type="button" class="box ink-editorial" data-project="neil"
+    <button type="button" class="pack ink-editorial" data-project="neil"
             data-images="assets/img/neil-leifer/cover.webp|assets/img/neil-leifer/1.webp|assets/img/neil-leifer/2.webp|assets/img/neil-leifer/3.webp|assets/img/neil-leifer/4.webp|assets/img/neil-leifer/5.webp|assets/img/neil-leifer/6.webp|assets/img/neil-leifer/7.webp|assets/img/neil-leifer/8.webp|assets/img/neil-leifer/9.webp|assets/img/neil-leifer/10.webp">
-      <span class="box-tray" aria-hidden="true"></span>
-      <span class="box-sleeve">
-        <span class="box-head"><span class="serial">Nº 05</span><span data-i18n="d.editorial">Editorial</span></span>
-        <span class="box-frame"><img src="assets/img/neil-leifer/cover.webp" alt="" loading="lazy" /></span>
-        <span class="box-title" data-i18n="p.neil.short">En el ojo del artista</span>
-        <span class="box-ctx" data-i18n="p.neil.ctx">Académico · UDIT</span>
-      </span>
+      <span class="pack-cromos" aria-hidden="true"></span>
+      <span class="pack-body"><span class="pack-face">
+        <span class="pack-head"><span class="serial">Nº 05</span><span data-i18n="d.editorial">Editorial</span></span>
+        <span class="pack-frame"><img src="assets/img/neil-leifer/cover.webp" alt="" loading="lazy" /></span>
+        <span class="pack-title" data-i18n="p.neil.short">En el ojo del artista</span>
+        <span class="pack-ctx" data-i18n="p.neil.ctx">Académico · UDIT</span>
+      </span></span>
+      <span class="pack-strip" aria-hidden="true"><span data-i18n="pk.tear">Abrir por aquí</span></span>
     </button>
 
     <!-- Nº 06 — Black Sheep -->
-    <button type="button" class="box ink-3d" data-project="blacksheep"
+    <button type="button" class="pack ink-3d" data-project="blacksheep"
             data-images="assets/img/black-sheep/cover.webp|assets/img/black-sheep/1.webp|assets/img/black-sheep/2.webp">
-      <span class="box-tray" aria-hidden="true"></span>
-      <span class="box-sleeve">
-        <span class="box-head"><span class="serial">Nº 06</span><span data-i18n="d.3d">3D</span></span>
-        <span class="box-frame"><img src="assets/img/black-sheep/cover.webp" alt="" loading="lazy" /></span>
-        <span class="box-title" data-i18n="p.blacksheep.short">Black Sheep</span>
-        <span class="box-ctx" data-i18n="p.blacksheep.ctx">Propuesta · no encargo</span>
-      </span>
+      <span class="pack-cromos" aria-hidden="true"></span>
+      <span class="pack-body"><span class="pack-face">
+        <span class="pack-head"><span class="serial">Nº 06</span><span data-i18n="d.3d">3D</span></span>
+        <span class="pack-frame"><img src="assets/img/black-sheep/cover.webp" alt="" loading="lazy" /></span>
+        <span class="pack-title" data-i18n="p.blacksheep.short">Black Sheep</span>
+        <span class="pack-ctx" data-i18n="p.blacksheep.ctx">Propuesta · no encargo</span>
+      </span></span>
+      <span class="pack-strip" aria-hidden="true"><span data-i18n="pk.tear">Abrir por aquí</span></span>
     </button>
   </section>
 
@@ -212,9 +219,15 @@
        CONTACTO
   ══════════════════════════════════════ -->
   <section class="contact" id="contacto" aria-labelledby="contact-title">
-    <!-- Etiqueta turquesa enmarcada como las cajas, sin cajón: no se abre -->
+    <!-- Etiqueta turquesa enmarcada como los sobres; el último cromo, el de Cecilia, se pega en su hueco -->
     <div class="contact-sleeve">
-    <p class="contact-head"><span data-i18n="ct.head">Contacto</span><span>Madrid</span></p>
+    <p class="contact-head">
+      <span data-i18n="ct.head">Contacto</span>
+      <span class="contact-end">
+        <span class="contact-slot" aria-hidden="true"><span class="serial">Nº 07</span><span class="contact-cromo"><img src="assets/img/brand/logo.webp" alt="" width="1000" height="695" loading="lazy" /></span></span>
+        <span>Madrid</span>
+      </span>
+    </p>
     <div class="contact-inner">
       <div class="contact-lead">
         <h2 class="contact-title" id="contact-title" data-i18n="ct.title">¿Hablamos?</h2>
@@ -237,30 +250,28 @@
       </div>
     </div>
     </div>
-    <p class="colophon"><span>© 2026 Cecilia Pelayo</span><span data-i18n="ct.colophon">Serie completa: 6 cajas · 2 fuera de serie</span></p>
+    <p class="colophon"><span>© 2026 Cecilia Pelayo</span><span data-i18n="ct.colophon">Colección completa: 6 sobres · 2 fuera de serie</span></p>
   </section>
 
 </main>
 
 <!-- ══════════════════════════════════════
-     CAJÓN ABIERTO: galería del proyecto
+     SOBRE ABIERTO: galería del proyecto como mazo de cromos
 ══════════════════════════════════════ -->
 <dialog class="drawer" id="drawer" aria-labelledby="drawer-title">
   <div class="drawer-gallery">
     <div class="drawer-stage">
-      <img id="drawer-img" src="assets/img/buna/cover.webp" alt="" loading="lazy" />
-      <p class="stage-error" id="drawer-img-error" data-i18n="g.imgError" hidden>Esta imagen no se ha podido cargar.</p>
+      <div class="deck" id="deck"></div>
     </div>
     <div class="drawer-controls">
       <button type="button" class="nav-btn" id="prev" aria-label="Imagen anterior" data-i18n-aria="g.prev">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3L5 8l5 5"/></svg>
       </button>
-      <span class="serial" id="counter">1 / 1</span>
+      <span class="serial" id="counter" aria-live="polite">1 / 1</span>
       <button type="button" class="nav-btn" id="next" aria-label="Imagen siguiente" data-i18n-aria="g.next">
         <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5"/></svg>
       </button>
     </div>
-    <div class="drawer-thumbs" id="thumbs"></div>
   </div>
   <div class="drawer-info">
     <button type="button" class="close-btn" id="close" autofocus aria-label="Cerrar" data-i18n-aria="g.close">
@@ -272,9 +283,11 @@
     <!-- Base de la etiqueta: número de serie y disciplina en la tinta del proyecto -->
     <p class="drawer-base"><span class="serial" id="drawer-serial"></span><span id="drawer-disc"></span></p>
   </div>
+  <!-- Vuelo de los cromos del abanico al mazo: dentro del diálogo para quedar por encima de su fondo -->
+  <div class="flight" id="flight" aria-hidden="true"></div>
 </dialog>
 
-<!-- Cursor «Ver» solo sobre las cajas -->
+<!-- Cursor «Ver» solo sobre los sobres -->
 <div class="look" id="look" aria-hidden="true"></div>
 
 <script src="assets/js/i18n.js"></script>

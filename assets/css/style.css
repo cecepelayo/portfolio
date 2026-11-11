@@ -1,11 +1,11 @@
 /* ══════════════════════════════════════════════════
-   FOSFORERA — expositor de coleccionista
-   Cada proyecto es una caja de cerillas de una serie numerada.
+   EL ÁLBUM — colección de cromos
+   El nombre es la portada del álbum y cada proyecto, un sobre numerado de la colección.
 ══════════════════════════════════════════════════ */
 
 /* ── Tokens ── */
 :root {
-  --board:   #F7F4EF;   /* fondo del expositor */
+  --board:   #F7F4EF;   /* cartón del álbum: fondo de página */
   --card:    #FFFDF9;   /* cartoncillo de etiqueta */
   --ink:     #141413;   /* tinta negra */
   --ink-soft:#45433E;   /* texto secundario */
@@ -14,8 +14,7 @@
   --green:   #5BAA52;   /* verde hoja · packaging */
   --yellow:  #F2B705;   /* amarillo · identidad */
   --pink:    #F2A3BC;   /* rosa · 3D */
-  --turq:    #5ECFC5;   /* turquesa del logo: acciones y banda de contacto */
-  --wood:    #EED9AC;   /* bandeja de la caja */
+  --turq:    #5ECFC5;   /* turquesa del logo: acciones, progreso de la barra y banda de contacto */
 
   --display: 'Bodoni Moda', 'Didot', serif;
   --sans:    'Bricolage Grotesque', system-ui, sans-serif;
@@ -181,7 +180,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .btn-action:active { transform: translateY(0); box-shadow: none; }
 
 /* ══════════════════════════════════════════════════
-   EXPOSITOR
+   ÁLBUM
 ══════════════════════════════════════════════════ */
 .board {
   /* Filas 1-2 dejan asomar ~150px de la fila 3 en la primera pantalla */
@@ -191,17 +190,19 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   grid-template-rows: var(--row) var(--row) clamp(300px, 42svh, 440px);
   gap: var(--gap);
   padding: var(--pad);
+  /* El abanico de cromos sobresale por los lados: sin recorte, el móvil ensancha la página */
+  overflow-x: clip;
 }
 
-.master                        { grid-column: 5 / 10;  grid-row: 1 / 3; }
-.box[data-project="buna"]      { grid-column: 1 / 5;   grid-row: 1 / 3; }
-.box[data-project="colores"]   { grid-column: 10 / 13; grid-row: 1; }
-.box[data-project="cata"]      { grid-column: 10 / 13; grid-row: 2; }
-.box[data-project="chachara"]  { grid-column: 1 / 5;   grid-row: 3; }
-.box[data-project="neil"]      { grid-column: 5 / 9;   grid-row: 3; }
-.box[data-project="blacksheep"]{ grid-column: 9 / 13;  grid-row: 3; }
+.master                         { grid-column: 5 / 10;  grid-row: 1 / 3; }
+.pack[data-project="buna"]      { grid-column: 1 / 5;   grid-row: 1 / 3; }
+.pack[data-project="colores"]   { grid-column: 10 / 13; grid-row: 1; }
+.pack[data-project="cata"]      { grid-column: 10 / 13; grid-row: 2; }
+.pack[data-project="chachara"]  { grid-column: 1 / 5;   grid-row: 3; }
+.pack[data-project="neil"]      { grid-column: 5 / 9;   grid-row: 3; }
+.pack[data-project="blacksheep"]{ grid-column: 9 / 13;  grid-row: 3; }
 
-/* ── Etiqueta principal ── */
+/* ── Portada del álbum ── */
 .master {
   background: var(--card);
   border: 3px solid var(--ink);
@@ -226,6 +227,13 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   padding: clamp(16px, 2.5vw, 40px);
   background: var(--card);
   border: 1.5px solid var(--ink);
+}
+.master-kicker {
+  margin-bottom: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 .master-logo {
   width: clamp(150px, min(15vw, 24svh), 240px);
@@ -263,12 +271,16 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 .master-role .place::before { content: '· '; }
 
-/* ── Caja de cerillas ── */
-.box {
+/* ── Sobre de cromos ── */
+.pack {
+  --strip-h: 34px;
+  --tooth: 7px;
+  --tooth-w: 12px;
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-height: 0;
-  padding: 0;
+  padding: var(--strip-h) 0 0;
   border: 0;
   background: none;
   text-align: left;
@@ -276,42 +288,69 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   isolation: isolate;
   transition: filter 0.35s ease;
 }
+.pack:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
 
-/* Bandeja interior: asoma al pasar el ratón y sale al abrir */
-.box-tray {
-  position: absolute;
-  inset: 12px 0 12px 0;
-  z-index: 0;
-  border: 3px solid var(--ink);
-  background:
-    /* Cabezas de cerilla metidas hacia dentro: solo se ven al abrir el cajón */
-    linear-gradient(to left, transparent 0 26px, var(--red) 26px 40px, var(--ink) 40px 43px, transparent 43px),
-    repeating-linear-gradient(to bottom, var(--wood) 0 9px, #DDBF85 9px 11px);
-  /* En reposo el cajón asoma un poco: se lee como caja de cerillas también en táctil */
-  transform: translateX(7px);
-  transition: transform 0.36s var(--ease-out);
+/* Dientes de la soldadura: triángulos repetidos en el borde, recortados con máscara.
+   La capa negra hace de filete exterior y el papel, 3 px más adentro, lleva la tinta */
+.pack-strip,
+.pack-strip::before {
+  -webkit-mask:
+    conic-gradient(from 135deg at 50% 0, #000 90deg, #0000 0) var(--mx, 0px) 0 / var(--tooth-w) var(--tooth) repeat-x,
+    linear-gradient(#000 0 0) 0 calc(var(--tooth) - 0.5px) / 100% 100% no-repeat;
+          mask:
+    conic-gradient(from 135deg at 50% 0, #000 90deg, #0000 0) var(--mx, 0px) 0 / var(--tooth-w) var(--tooth) repeat-x,
+    linear-gradient(#000 0 0) 0 calc(var(--tooth) - 0.5px) / 100% 100% no-repeat;
+}
+.pack-body,
+.pack-face {
+  -webkit-mask:
+    conic-gradient(from -45deg at 50% 100%, #000 90deg, #0000 0) var(--mx, 0px) 100% / var(--tooth-w) var(--tooth) repeat-x,
+    linear-gradient(#000 0 0) 0 0 / 100% calc(100% - var(--tooth) + 0.5px) no-repeat;
+          mask:
+    conic-gradient(from -45deg at 50% 100%, #000 90deg, #0000 0) var(--mx, 0px) 100% / var(--tooth-w) var(--tooth) repeat-x,
+    linear-gradient(#000 0 0) 0 0 / 100% calc(100% - var(--tooth) + 0.5px) no-repeat;
 }
 
-.box-sleeve {
+/* Cuerpo: capa negra con el papel en la tinta de la disciplina dentro */
+.pack-body {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  padding: 2px 3px 3px;
+  background: var(--ink);
+}
+.pack-face {
+  --mx: -3px;
+  position: relative;
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  height: 100%;
-  padding: 14px;
+  padding: 12px 14px calc(var(--tooth) + 24px);
   background: var(--field);
-  border: 3px solid var(--ink);
 }
-.box-sleeve::before {
+/* Filete interior de etiqueta, por encima de la soldadura */
+.pack-face::before {
   content: '';
   position: absolute;
-  inset: 5px;
+  inset: 5px 5px calc(var(--tooth) + 16px);
   border: 1.5px solid var(--ink);
   pointer-events: none;
 }
+/* Soldadura inferior: estrías verticales del sellado */
+.pack-face::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: calc(var(--tooth) + 11px);
+  background: repeating-linear-gradient(90deg, rgba(20, 20, 19, 0.2) 0 1px, transparent 1px 4px);
+  border-top: 1.5px solid var(--ink);
+}
 
-.box-head {
+.pack-head {
   display: flex;
   justify-content: space-between;
   gap: 8px;
@@ -321,21 +360,21 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   text-transform: uppercase;
 }
 
-.box-frame {
+.pack-frame {
   flex: 1;
   min-height: 0;
   overflow: hidden;
   border: 2px solid var(--ink);
   background: var(--card);
 }
-.box-frame img {
+.pack-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.7s var(--ease-out);
 }
 
-.box-title {
+.pack-title {
   font-family: var(--sans);
   font-weight: 800;
   font-variation-settings: 'wdth' 75;
@@ -344,56 +383,140 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   text-transform: uppercase;
   letter-spacing: 0.005em;
 }
-/* Caja grande: imagen apaisada arriba y rotulación grande abajo, como una etiqueta real */
-.box-stack {
+/* Sobre grande: imagen apaisada arriba y rotulación grande abajo, como un sobre de colección */
+.pack-stack {
   flex: 1;
   min-height: 0;
   display: grid;
   grid-template-rows: minmax(0, 2.6fr) minmax(0, 1fr);
   gap: 8px;
 }
-.box-stack > .box-frame { height: 100%; }
+.pack-stack > .pack-frame { height: 100%; }
 /* Las otras dos latas de la serie, debajo de la principal */
-.box-minis {
+.pack-minis {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
   min-height: 0;
 }
-.box-minis .box-frame { min-height: 0; height: 100%; }
-.box--lead .box-title { margin-top: 4px; }
-.box--lead .box-line {
+.pack-minis .pack-frame { min-height: 0; height: 100%; }
+.pack--lead .pack-title { margin-top: 4px; font-size: clamp(2rem, min(3.4vw, 6svh), 3.4rem); }
+.pack--lead .pack-line {
   font-family: var(--mono);
   font-size: 0.8rem;
 }
-.box--lead .box-title { font-size: clamp(2rem, min(3.4vw, 6svh), 3.4rem); }
 
 /* Encuadre de cada portada para no cortar su propia rotulación */
-.box[data-project="neil"] .box-frame img { object-position: 50% 0%; }
-.box[data-project="blacksheep"] .box-frame img { object-position: 100% 0%; }
+.pack[data-project="neil"] .pack-frame img { object-position: 50% 0%; }
+.pack[data-project="blacksheep"] .pack-frame img { object-position: 100% 0%; }
 
-.box-ctx {
+.pack-ctx {
   font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.04em;
 }
 
-/* Estados */
-.box:hover, .box:focus-visible { z-index: 3; }
-.box:hover .box-tray,
-.box:focus-visible .box-tray { transform: translateX(18px); }
-.box:hover .box-frame img { transform: scale(1.04); }
-.box.is-opening .box-tray { transform: translateX(42%); }
-.box:focus-visible { outline: none; }
-.box:focus-visible .box-sleeve { outline: 3px solid var(--ink); outline-offset: 4px; }
+/* Tira de rasgado: soldadura superior con la línea troquelada; gira sobre su extremo derecho */
+.pack-strip {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 3;
+  height: calc(var(--strip-h) + 1px);
+  background: var(--ink);
+  transform-origin: 100% 100%;
+  transition: transform 0.36s var(--ease-out);
+}
+.pack-strip::before {
+  --mx: -3px;
+  content: '';
+  position: absolute;
+  inset: 3px 3px 0;
+  background:
+    repeating-linear-gradient(90deg, rgba(20, 20, 19, 0.2) 0 1px, transparent 1px 4px) 0 0 / 100% calc(var(--tooth) + 8px) no-repeat,
+    var(--field);
+}
+/* Línea troquelada por donde se rasga */
+.pack-strip::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 10px);
+}
+.pack-strip span {
+  position: absolute;
+  left: 12px;
+  bottom: 5px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 
-/* Un solo foco: al pasar sobre una caja, las demás bajan de tinta. Se desatura la caja entera
-   y sin transparencia, para que el cajón con las cerillas no se vea a través de la manga */
-.board:has(.box:hover) .box:not(:hover) { filter: saturate(0.45); }
+/* Cromos guardados dentro: detrás del cuerpo, centrados y con la altura del sobre */
+.pack-cromos {
+  position: absolute;
+  top: calc(var(--strip-h) + 6px);
+  bottom: 14px;
+  left: 50%;
+  z-index: 1;
+  max-width: 80%;
+  aspect-ratio: 5 / 7;
+  transform: translateX(-50%);
+}
+.pack-cromos .cromo {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  transition: transform 0.36s var(--ease-out);
+}
+/* El sobre que se abre nunca baja de tinta, aunque el puntero pase a otro sobre durante la apertura */
+.pack.is-opening { z-index: 5; filter: none !important; }
+.pack.is-opening .pack-strip,
+.pack.is-opening .cromo { transition: none; }
+
+/* Estados con puntero: la tira se entreabre, asoma el primer cromo y los demás sobres
+   bajan de tinta, enteros y opacos. En táctil no se aplican para que no se queden pegados */
+@media (hover: hover) {
+  .pack:hover, .pack:focus-visible { z-index: 3; }
+  .pack:hover .pack-strip,
+  .pack:focus-visible .pack-strip { transform: translateY(-10px) rotate(-4deg); }
+  .pack:hover .cromo.is-front,
+  .pack:focus-visible .cromo.is-front { transform: translateY(-20px); }
+  .pack:hover .pack-frame img { transform: scale(1.04); }
+  .board:has(.pack:hover) .pack:not(:hover) { filter: saturate(0.45); }
+}
+
+/* ── Cromo: imagen con borde de cartoncillo y su número ── */
+.cromo {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 6px 0;
+  background: var(--card);
+  border: 2px solid var(--ink);
+}
+.cromo-img {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1.5px solid var(--ink);
+  background: #EEEAE2;
+}
+.cromo-img img { width: 100%; height: 100%; object-fit: cover; }
+.cromo-num {
+  padding: 4px 1px 5px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+}
 
 /* Cursor «Ver» */
 @media (hover: hover) and (pointer: fine) {
-  .box { cursor: none; }
+  .pack { cursor: none; }
 }
 .look {
   position: fixed;
@@ -506,7 +629,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
    CONTACTO — la banda turquesa
 ══════════════════════════════════════════════════ */
 /* El cierre es una banda turquesa a sangre, en el color de la acción: es el destino de «Hablemos».
-   Lleva dentro el filete de etiqueta de las cajas, al margen del tablero, y el colofón debajo */
+   Lleva dentro el filete interior de los sobres, al margen del tablero, y el colofón debajo */
 .contact {
   margin-top: clamp(48px, 7vw, 96px);
   padding: var(--pad) var(--pad) 0;
@@ -515,7 +638,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 .contact ::selection { background: var(--ink); color: var(--card); }
 
-/* Filete interior de etiqueta: 1,5px en tinta negra, con el relleno de las mangas */
+/* Filete interior de los sobres: 1,5px en tinta negra, con el relleno de su cara */
 .contact-sleeve {
   padding: 14px;
   border: 1.5px solid var(--ink);
@@ -526,6 +649,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   gap: 8px;
   padding-bottom: 12px;
   font-family: var(--mono);
@@ -533,6 +657,31 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+/* A la derecha, el hueco numerado del álbum con el cromo de Cecilia pegado, y la ciudad */
+.contact-end {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+}
+.contact-slot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  aspect-ratio: 5 / 7;
+  border: 1.5px dashed var(--ink);
+}
+.contact-slot .serial { font-size: 0.6rem; }
+.contact-cromo {
+  position: absolute;
+  inset: 3px;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  background: var(--card);
+  border: 2px solid var(--ink);
+}
+.contact-cromo img { width: 100%; height: auto; }
 .contact-head::after {
   content: '';
   position: absolute;
@@ -550,7 +699,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   align-items: end;
   padding: clamp(40px, 6vw, 88px) clamp(4px, 2.5vw, 40px) clamp(28px, 4vw, 64px);
 }
-/* Rotulación de caja: la grotesca condensada en mayúsculas */
+/* Rotulación de sobre: la grotesca condensada en mayúsculas */
 .contact-title {
   font-family: var(--sans);
   font-weight: 800;
@@ -626,7 +775,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 
 /* ══════════════════════════════════════════════════
-   CAJÓN ABIERTO (galería)
+   SOBRE ABIERTO (galería: mazo de cromos)
 ══════════════════════════════════════════════════ */
 .drawer {
   width: min(1240px, 94vw);
@@ -655,21 +804,34 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 .drawer-stage {
   height: min(66vh, 680px);
-  /* Flex (no grid) para que max-height: 100% de la imagen se resuelva contra una altura definida */
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  padding: clamp(12px, 2vw, 24px);
+  padding: clamp(16px, 2.4vw, 32px);
 }
-.drawer-stage img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
-  min-height: 0;
-  object-fit: contain;
+/* El mazo ocupa el escenario; cada cromo toma la proporción de su imagen y su caja la calcula
+   el script para que la imagen se vea entera. El de delante sale y vuelve al fondo al pasar */
+.deck {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
+.deck .cromo,
+.flight .cromo {
+  position: absolute;
+  padding: 10px 10px 0;
+  border-width: 3px;
+}
+.deck .cromo { transition: transform 0.39s var(--ease-out); }
+.deck .cromo-num,
+.flight .cromo-num { font-size: 0.75rem; padding: 6px 2px 8px; }
+.deck.is-landing .cromo { visibility: hidden; }
+/* Capa de vuelo: copias de los cromos entre el abanico y el mazo */
+.flight {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+.flight .cromo { position: fixed; transform-origin: 50% 100%; }
 .stage-error {
   font-family: var(--mono);
   font-size: 0.85rem;
@@ -704,28 +866,6 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.drawer-thumbs {
-  display: flex;
-  gap: 8px;
-  padding: 0 0.75rem 0.75rem;
-  overflow-x: auto;
-  scrollbar-width: thin;
-}
-.thumb {
-  flex: none;
-  width: 64px;
-  height: 48px;
-  padding: 0;
-  border: 2px solid transparent;
-  background: var(--card);
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
-}
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
-.thumb:hover { opacity: 1; }
-.thumb.active { border-color: var(--ink); opacity: 1; }
-
 .drawer-info {
   position: relative;
   padding: 0 clamp(20px, 2.5vw, 36px) clamp(24px, 3vw, 40px);
@@ -780,31 +920,33 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 @keyframes deal {
   from { opacity: 0; transform: translateY(22px); }
 }
-@keyframes slide-open {
-  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+/* Solo opacidad: una transformación en el diálogo descolocaría la capa de vuelo, que es fija */
+@keyframes fade-in {
+  from { opacity: 0; }
 }
 .motion .master,
-.motion .box { animation: deal 0.9s var(--ease-out) both; }
-.motion .box[data-project="buna"]       { animation-delay: 0.12s; }
-.motion .box[data-project="colores"]    { animation-delay: 0.2s; }
-.motion .box[data-project="cata"]       { animation-delay: 0.28s; }
-.motion .box[data-project="chachara"]   { animation-delay: 0.36s; }
-.motion .box[data-project="neil"]       { animation-delay: 0.42s; }
-.motion .box[data-project="blacksheep"] { animation-delay: 0.48s; }
-.motion .drawer[open] { animation: slide-open 0.45s var(--ease-out); }
+.motion .pack { animation: deal 0.9s var(--ease-out) both; }
+.motion .pack[data-project="buna"]       { animation-delay: 0.12s; }
+.motion .pack[data-project="colores"]    { animation-delay: 0.2s; }
+.motion .pack[data-project="cata"]       { animation-delay: 0.28s; }
+.motion .pack[data-project="chachara"]   { animation-delay: 0.36s; }
+.motion .pack[data-project="neil"]       { animation-delay: 0.42s; }
+.motion .pack[data-project="blacksheep"] { animation-delay: 0.48s; }
+.motion .drawer[open],
+.motion .drawer[open]::backdrop { animation: fade-in 0.34s ease-out; }
 
 /* ── Movimiento ligado al scroll (mejora progresiva: sin soporte, todo se ve en su sitio) ── */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    /* Mecha: la línea roja de la cabecera arde según se avanza por la página */
+    /* Progreso de la colección: la línea turquesa de la cabecera se llena según se avanza */
     .bar::after {
       content: '';
       position: absolute;
       inset: auto 0 -2px 0;
       height: 3px;
-      background: var(--red);
+      background: var(--turq);
       transform-origin: left;
-      animation: burn linear both;
+      animation: trace linear both;
       animation-timeline: scroll(root);
     }
 
@@ -831,38 +973,24 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
       animation-range: cover 15% cover 35%;
     }
 
-    /* Contacto: una cerilla rasca la etiqueta bajo la cabecera y su rastro queda como el filete
-       que separa cabecera y titular; el titular se descubre tras ella y el resto sube.
+    /* Contacto: el último cromo de la colección, el de Cecilia, entra girando y se pega en su
+       hueco; tras él se traza el filete que separa cabecera y titular, y el resto sube.
        Es la última sección, así que «entry 100%» coincide con el final del scroll: los rangos
-       terminan antes para que todo se complete, y arrancan con un tercio de sección a la vista */
+       terminan antes para que todo se complete, y arrancan con un cuarto de sección a la vista */
     .contact {
       overflow: clip;
       view-timeline: --contact block;
     }
-    .contact-head::before,
-    .contact-head::after {
+    .contact-cromo {
+      animation: stick linear both;
       animation-timeline: --contact;
-      animation-range: entry 30% entry 75%;
-      animation-timing-function: linear;
-      animation-fill-mode: both;
+      animation-range: entry 25% entry 58%;
     }
-    /* La cerilla: palo color bandeja con cabeza bermellón, centrada sobre el filete */
-    .contact-head::before {
-      content: '';
-      position: absolute;
-      left: -14px;
-      bottom: -3px;
-      z-index: 1;
-      width: 72px;
-      height: 7px;
-      border-radius: 0 4px 4px 0;
-      background: linear-gradient(to right, var(--wood) 78%, var(--red) 78%);
-      animation-name: strike;
-    }
-    /* El rastro que deja al rascar es el propio filete */
     .contact-head::after {
       transform-origin: left;
-      animation-name: burn;
+      animation: trace linear both;
+      animation-timeline: --contact;
+      animation-range: entry 48% entry 78%;
     }
     .contact-title {
       animation: uncover linear both;
@@ -880,7 +1008,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
     .social       { animation-range: entry 65% entry 90%; }
   }
 }
-@keyframes burn {
+@keyframes trace {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
 }
@@ -897,10 +1025,12 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   from { opacity: 0; transform: translateX(-28px); }
   to   { opacity: 1; transform: none; }
 }
-@keyframes strike {
-  from { opacity: 1; transform: translateX(-90px) rotate(-8deg); }
-  85%  { opacity: 1; }
-  to   { opacity: 0; transform: translateX(calc(100vw + 20px)) rotate(0deg); }
+/* El cromo llega desde la izquierda girando, se pasa un poco y se asienta en el hueco */
+@keyframes stick {
+  from { opacity: 0; transform: translate(-60vw, -40px) rotate(-200deg) scale(1.3); }
+  15%  { opacity: 1; }
+  80%  { transform: translate(3px, -4px) rotate(4deg) scale(1.06); }
+  to   { opacity: 1; transform: none; }
 }
 /* Insets negativos: la cursiva con line-height 1 sobresale de su caja y no debe quedar recortada */
 @keyframes uncover {
@@ -929,12 +1059,12 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
     grid-template-rows: auto;
   }
   .master                         { grid-column: 1 / -1; grid-row: auto; min-height: 62svh; }
-  .box[data-project]              { grid-column: span 2; grid-row: auto; }
-  .box[data-project="buna"]       { grid-column: 1 / -1; }
-  .box-frame { flex: none; aspect-ratio: 4 / 3; }
-  .box-stack { flex: none; grid-template-rows: auto auto; }
-  .box-stack > .box-frame { height: auto; aspect-ratio: 6 / 5; }
-  .box-minis .box-frame { aspect-ratio: 4 / 3; height: auto; }
+  .pack[data-project]              { grid-column: span 2; grid-row: auto; }
+  .pack[data-project="buna"]       { grid-column: 1 / -1; }
+  .pack-frame { flex: none; aspect-ratio: 4 / 3; }
+  .pack-stack { flex: none; grid-template-rows: auto auto; }
+  .pack-stack > .pack-frame { height: auto; aspect-ratio: 6 / 5; }
+  .pack-minis .pack-frame { aspect-ratio: 4 / 3; height: auto; }
 
   .offseries-text { grid-column: 1 / -1; }
   .piece { grid-column: 1 / 6; }
@@ -957,15 +1087,16 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .master { min-height: 0; }
   .master-band { padding: 10px; }
-  .box[data-project] { grid-column: span 1; }
-  .box[data-project="buna"],
-  .box[data-project="blacksheep"] { grid-column: 1 / -1; }
-  .box-sleeve { padding: 10px; gap: 6px; }
-  .box-head { flex-direction: column; gap: 0; }
+  .pack[data-project] { grid-column: span 1; }
+  .pack[data-project="buna"],
+  .pack[data-project="blacksheep"] { grid-column: 1 / -1; }
+  .pack { --strip-h: 30px; }
+  .pack-face { padding: 10px 10px calc(var(--tooth) + 22px); gap: 6px; }
+  .pack-head { flex-direction: column; gap: 0; }
   .master-role .place { display: block; }
   .master-role .place::before { content: none; }
   .svc-refs { text-align: left; }
-  /* La manga estrecha el contenido: sin relleno lateral extra y email algo menor para que quepa en una línea */
+  /* El filete estrecha el contenido: sin relleno lateral extra y email algo menor para que quepa en una línea */
   .contact-inner { padding-inline: 0; }
   .mail-link { font-size: 1.2rem; }
 

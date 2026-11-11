@@ -2,7 +2,7 @@
    TEXTOS ES / EN
    Fuente única de todos los textos traducibles.
    · Claves simples: se aplican a los elementos con data-i18n.
-   · projects: fichas de la galería (cajón) de cada proyecto.
+   · projects: fichas de la galería (sobre abierto) de cada proyecto.
 ══════════════════════════════════════════════════ */
 const I18N = {
   es: {
@@ -11,6 +11,8 @@ const I18N = {
     claim: 'Dibujo yo. Y lo convierto en producto.',
     role: 'Diseñadora gráfica e ilustradora',
     look: 'Ver',
+    album: 'Colección',
+    'pk.tear': 'Abrir por aquí',
 
     'd.ilustracion': 'Ilustración',
     'd.editorial': 'Editorial',
@@ -59,13 +61,12 @@ const I18N = {
     'ct.copy': 'Copiar email',
     'ct.copied': 'Email copiado',
     'ct.copyFail': 'No se pudo copiar; selecciona el email a mano',
-    'ct.colophon': 'Serie completa: 6 cajas · 2 fuera de serie',
+    'ct.colophon': 'Colección completa: 6 sobres · 2 fuera de serie',
 
     'g.prev': 'Imagen anterior',
     'g.next': 'Imagen siguiente',
     'g.close': 'Cerrar',
     'g.imgError': 'Esta imagen no se ha podido cargar.',
-    'g.thumb': 'Ver imagen',
     'g.open': 'Abrir proyecto',
 
     'm.year': 'Año',
@@ -155,6 +156,8 @@ const I18N = {
     claim: 'I draw it. Then I turn it into product.',
     role: 'Graphic designer and illustrator',
     look: 'View',
+    album: 'Collection',
+    'pk.tear': 'Tear here',
 
     'd.ilustracion': 'Illustration',
     'd.editorial': 'Editorial',
@@ -203,13 +206,12 @@ const I18N = {
     'ct.copy': 'Copy email',
     'ct.copied': 'Email copied',
     'ct.copyFail': 'Could not copy; please select the email by hand',
-    'ct.colophon': 'Full series: 6 boxes · 2 off the series',
+    'ct.colophon': 'Full collection: 6 packs · 2 off the series',
 
     'g.prev': 'Previous image',
     'g.next': 'Next image',
     'g.close': 'Close',
     'g.imgError': 'This image could not be loaded.',
-    'g.thumb': 'Show image',
     'g.open': 'Open project',
 
     'm.year': 'Year',

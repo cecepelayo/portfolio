@@ -55,16 +55,15 @@ function applyLang(next) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
   });
-  boxes.forEach(box => {
-    const project = I18N[lang].projects[box.dataset.project];
-    if (project) box.setAttribute('aria-label', `${t('g.open')}: ${project.title}`);
+  packs.forEach(pack => {
+    const project = I18N[lang].projects[pack.dataset.project];
+    if (project) pack.setAttribute('aria-label', `${t('g.open')}: ${project.title}`);
   });
   if (look) look.textContent = t('look');
   if (drawer.open && current) {
-    // Con la galería abierta se rehace todo para que miniaturas y alt cambien también de idioma
+    // Con la galería abierta se rehacen la ficha y los textos alternativos en el nuevo idioma
     renderInfo();
-    renderThumbs();
-    renderSlide();
+    renderDeckText();
   }
   root.classList.remove('i18n-pending');
 }
@@ -85,70 +84,214 @@ window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
 /* ══════════════════════════════════════════════════
-   CAJAS — el cajón se desliza y se abre la galería
+   SOBRES — se rasga la tira, los cromos salen en abanico
+   y vuelan hasta el mazo de la galería
 ══════════════════════════════════════════════════ */
-const boxes = Array.from(document.querySelectorAll('.box'));
+const packs = Array.from(document.querySelectorAll('.pack'));
 const drawer = document.getElementById('drawer');
-const stageImg = document.getElementById('drawer-img');
-const stageError = document.getElementById('drawer-img-error');
-const thumbs = document.getElementById('thumbs');
+const deck = document.getElementById('deck');
+const flight = document.getElementById('flight');
 const counter = document.getElementById('counter');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 
-let current = null;   // { box, key, images }
-let index = 0;
-const OPEN_DELAY = 360; // ms: tiempo que tarda el cajón en salir antes de abrir la galería
-let pending = null;     // { box, timer }: apertura en curso, solo puede haber una
+// Tiempos y forma de la apertura (preajuste «Intermedio» del laboratorio)
+const OPEN = {
+  tear: 300,      // ms: la tira se dobla y sale despedida
+  fan: 550,       // ms: los cromos suben y se abren en abanico
+  hold: 230,      // ms: pausa con el abanico abierto
+  expand: 480,    // ms: vuelo del abanico al mazo
+  stagger: 45,    // ms: escalonado entre cromos
+  spread: 49,     // grados de apertura del abanico
+  rise: 66,       // % de la altura del cromo que sale del sobre
+  count: 5        // cromos en el abanico (y guardados en el sobre)
+};
+const DECK_MS = 390;     // ms: pasar un cromo; coincide con la transición de .deck .cromo
+const DECK_OFFSET = 6;   // px: escalonado visible de los tres primeros cromos del mazo
+const DECK_OUT = 'translate(-118%, 3%) rotate(-7deg)';
 
-function cancelPending() {
-  if (!pending) return;
-  window.clearTimeout(pending.timer);
-  pending.box.classList.remove('is-opening');
-  pending = null;
+let current = null;      // { pack, key, images }
+let index = 0;           // cromo de delante
+let cards = [];          // cromos del mazo, en el orden de las imágenes
+let aspects = [];        // proporción ancho/alto de cada imagen, cuando se conoce
+let opening = null;      // sobre en plena apertura: solo puede haber una
+let run = 0;             // identifica la apertura en curso para descartar las que se cierran antes
+let stepping = false;
+
+const wait = ms => new Promise(resolve => window.setTimeout(resolve, ms));
+const finished = animation => animation.finished.catch(() => {});
+
+function imagesOf(pack) {
+  return (pack.dataset.images || '').split('|').map(s => s.trim()).filter(Boolean);
 }
 
-boxes.forEach(box => {
-  box.addEventListener('click', () => {
-    if (drawer.open || (pending && pending.box === box)) return;
-    // Si se pulsa otra caja mientras la anterior aún se abre, gana la última
-    cancelPending();
-    if (reduceMotion.matches) {
-      openDrawer(box);
-      return;
-    }
-    box.classList.add('is-opening');
-    pending = {
-      box,
-      timer: window.setTimeout(() => {
-        pending = null;
-        openDrawer(box);
-      }, OPEN_DELAY)
-    };
+function buildCromo(src, i, total) {
+  const cromo = document.createElement('span');
+  cromo.className = 'cromo';
+  const frame = document.createElement('span');
+  frame.className = 'cromo-img';
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = '';
+  frame.appendChild(img);
+  const num = document.createElement('span');
+  num.className = 'cromo-num';
+  num.textContent = `${i + 1} / ${total}`;
+  cromo.append(frame, num);
+  return { cromo, img };
+}
+
+// Cada sobre guarda sus primeros cromos; el de delante va el último en el DOM para quedar encima
+packs.forEach(pack => {
+  const images = imagesOf(pack);
+  if (!images.length) console.warn('El proyecto no tiene imágenes asignadas:', pack.dataset.project);
+  const holder = pack.querySelector('.pack-cromos');
+  const stored = images.slice(0, OPEN.count).map((src, i) => {
+    const { cromo, img } = buildCromo(src, i, images.length);
+    img.loading = 'lazy';
+    if (i === 0) cromo.classList.add('is-front');
+    return cromo;
   });
+  holder.replaceChildren(...stored.reverse());
+  pack.addEventListener('click', () => openPack(pack));
 });
 
-function openDrawer(box) {
-  box.classList.add('is-opening');
-  const images = (box.dataset.images || '').split('|').map(s => s.trim()).filter(Boolean);
-  if (!images.length) {
-    console.warn('El proyecto no tiene imágenes asignadas:', box.dataset.project);
+// Cromos del sobre, del de delante (0) al de detrás
+function packCromos(pack) {
+  return Array.from(pack.querySelectorAll('.pack-cromos .cromo')).reverse();
+}
+// En el abanico el de delante queda a la derecha y encima, como en la mano
+function fanAngle(k, count) {
+  return count < 2 ? 0 : OPEN.spread / 2 - k * (OPEN.spread / (count - 1));
+}
+
+async function openPack(pack) {
+  if (drawer.open || opening) return;
+  if (reduceMotion.matches) {
+    openDrawer(pack, null);
+    return;
   }
-  current = { box, key: box.dataset.project, images };
+  opening = pack;
+  pack.classList.add('is-opening');
+  const strip = pack.querySelector('.pack-strip');
+  const cromos = packCromos(pack);
+  const count = cromos.length;
+
+  try {
+    // 1 · Rasgado: la tira se dobla sobre su extremo derecho y sale despedida
+    const from = getComputedStyle(strip).transform;
+    await finished(strip.animate([
+      { transform: from === 'none' ? 'rotate(0deg)' : from, opacity: 1 },
+      { transform: 'rotate(-9deg)', opacity: 1, offset: 0.4 },
+      { transform: 'translate(70px, -80px) rotate(18deg)', opacity: 0 }
+    ], { duration: OPEN.tear, easing: 'cubic-bezier(.4, 0, .7, 1)', fill: 'forwards' }));
+
+    // 2 · Abanico: los cromos suben y se abren desde la base
+    await Promise.all(cromos.map((cromo, k) => {
+      const start = getComputedStyle(cromo).transform;
+      return finished(cromo.animate([
+        { transform: start === 'none' ? 'translateY(0) rotate(0deg)' : start },
+        { transform: `translateY(-${OPEN.rise}%) rotate(${fanAngle(k, count)}deg)` }
+      ], {
+        duration: OPEN.fan,
+        delay: (count - 1 - k) * OPEN.stagger,
+        easing: 'cubic-bezier(.2, .8, .2, 1)',
+        fill: 'both'
+      }));
+    }));
+    await wait(OPEN.hold);
+
+    // 3 · Expansión: se abre la galería y los cromos vuelan hasta el mazo
+    await openDrawer(pack, cromos);
+  } catch (e) {
+    console.error('No se pudo abrir el sobre:', e);
+    if (!drawer.open) resetPack(pack);
+  } finally {
+    opening = null;
+  }
+}
+
+async function openDrawer(pack, flying) {
+  const images = imagesOf(pack);
+  current = { pack, key: pack.dataset.project, images };
   index = 0;
+  const myRun = ++run;
+  pack.classList.add('is-opening');
   renderInfo();
-  renderThumbs();
-  renderSlide();
+  renderDeck();
   drawer.showModal();
   root.classList.add('is-locked');
   drawer.scrollTop = 0;
+  // El abanico se mide con el scroll ya bloqueado: ocultar la barra de desplazamiento mueve la página
+  const base = flying ? pack.querySelector('.pack-cromos').getBoundingClientRect() : null;
+  if (flying && flying.length) await flyToDeck(flying, base, myRun);
+}
+
+// Copias de los cromos que animan su caja (no su escala) para pasar de recortados en el abanico
+// a enteros en el mazo sin deformar la imagen
+async function flyToDeck(cromos, base, myRun) {
+  const count = cromos.length;
+  deck.classList.add('is-landing');
+  await Promise.all(cromos.map((c, k) => loadAspect(k)));
+  if (myRun !== run || !drawer.open) return;
+  layoutDeck();
+
+  const animations = cromos.map((cromo, k) => {
+    const target = cards[k].getBoundingClientRect();
+    const { cromo: copy } = buildCromo(current.images[k], k, current.images.length);
+    copy.style.zIndex = String(count - k);
+    const from = {
+      left: base.left + 'px', top: base.top + 'px', width: base.width + 'px', height: base.height + 'px',
+      padding: '6px 6px 0px', borderWidth: '2px',
+      transform: `translateY(-${OPEN.rise}%) rotate(${fanAngle(k, count)}deg)`
+    };
+    // La copia nace ya colocada en el abanico: si no, durante su retraso se pintaría sin tamaño
+    // y la imagen saldría a tamaño real, a pantalla completa
+    Object.assign(copy.style, from);
+    flight.appendChild(copy);
+    cromo.style.visibility = 'hidden';
+    return finished(copy.animate([from, {
+      left: target.left + 'px', top: target.top + 'px', width: target.width + 'px', height: target.height + 'px',
+      padding: '10px 10px 0px', borderWidth: '3px',
+      transform: 'translateY(0%) rotate(0deg)'
+    }], {
+      duration: OPEN.expand,
+      delay: k * OPEN.stagger * 0.6,
+      easing: 'cubic-bezier(.16, 1, .3, 1)',
+      fill: 'both'
+    }));
+  });
+  await Promise.all(animations);
+  if (myRun !== run) return;
+  deck.classList.remove('is-landing');
+  flight.replaceChildren();
+}
+
+// Devuelve el sobre a su estado de reposo: tira en su sitio y cromos dentro
+function resetPack(pack) {
+  pack.classList.remove('is-opening');
+  const strip = pack.querySelector('.pack-strip');
+  const wasTorn = strip.getAnimations().length > 0;
+  strip.getAnimations().forEach(a => a.cancel());
+  pack.querySelectorAll('.pack-cromos .cromo').forEach(cromo => {
+    cromo.getAnimations().forEach(a => a.cancel());
+    cromo.style.visibility = '';
+  });
+  if (wasTorn && !reduceMotion.matches) {
+    strip.animate([{ opacity: 0, transform: 'translateY(-10px)' }, { opacity: 1, transform: 'none' }],
+      { duration: 260, easing: 'ease-out' });
+  }
 }
 
 // Restaura la página al cerrar. Es idempotente: se llama al cerrar con el botón o el fondo,
 // con Escape (cancel) y en el evento close, por si algún navegador no lo emite.
 function resetDrawerState() {
   root.classList.remove('is-locked');
-  if (current) current.box.classList.remove('is-opening');
+  run++;
+  flight.getAnimations({ subtree: true }).forEach(a => a.cancel());
+  flight.replaceChildren();
+  deck.classList.remove('is-landing');
+  if (current) resetPack(current.pack);
   current = null;
 }
 
@@ -160,7 +303,7 @@ function closeDrawer() {
 drawer.addEventListener('cancel', resetDrawerState);
 drawer.addEventListener('close', resetDrawerState);
 
-// Cerrar al pulsar fuera de la caja abierta (sobre el fondo del diálogo)
+// Cerrar al pulsar fuera del sobre abierto (sobre el fondo del diálogo)
 drawer.addEventListener('click', e => {
   if (e.target === drawer) closeDrawer();
 });
@@ -172,7 +315,7 @@ function renderInfo() {
     console.error('No hay textos para el proyecto:', current.key);
     return;
   }
-  const serial = current.box.querySelector('.serial');
+  const serial = current.pack.querySelector('.serial');
   document.getElementById('drawer-serial').textContent = serial ? serial.textContent : '';
   document.getElementById('drawer-disc').textContent = project.disc;
   document.getElementById('drawer-title').textContent = project.title;
@@ -199,79 +342,146 @@ function renderInfo() {
     return [dt, dd];
   }));
 
-  drawer.className = 'drawer ' + Array.from(current.box.classList).filter(c => c.startsWith('ink-')).join(' ');
+  drawer.className = 'drawer ' + Array.from(current.pack.classList).filter(c => c.startsWith('ink-')).join(' ');
 }
 
-function renderThumbs() {
-  thumbs.replaceChildren(...current.images.map((src, i) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'thumb';
-    btn.setAttribute('aria-label', `${t('g.thumb')} ${i + 1}`);
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = '';
-    img.loading = 'lazy';
-    btn.appendChild(img);
-    btn.addEventListener('click', () => goTo(i));
-    return btn;
-  }));
-  thumbs.hidden = current.images.length < 2;
-}
-
-function renderSlide() {
+/* ── Mazo de cromos ── */
+function renderDeck() {
   const total = current.images.length;
-  const project = I18N[lang].projects[current.key];
-  stageImg.hidden = false;
-  stageError.hidden = true;
-  if (total) {
-    stageImg.src = current.images[index];
-    stageImg.alt = `${project ? project.title : ''} — ${index + 1} / ${total}`;
-  }
-  counter.textContent = `${total ? index + 1 : 0} / ${total}`;
-  prevBtn.disabled = index === 0;
-  nextBtn.disabled = index >= total - 1;
-  thumbs.querySelectorAll('.thumb').forEach((th, i) => {
-    th.classList.toggle('active', i === index);
-    th.setAttribute('aria-current', i === index ? 'true' : 'false');
+  aspects = [];
+  cards = current.images.map((src, i) => {
+    const { cromo, img } = buildCromo(src, i, total);
+    // Si una imagen falla, el cromo muestra un aviso en lugar de un hueco vacío
+    img.addEventListener('error', () => {
+      console.error('No se pudo cargar la imagen:', img.src);
+      const msg = document.createElement('p');
+      msg.className = 'stage-error';
+      msg.textContent = t('g.imgError');
+      img.replaceWith(msg);
+    }, { once: true });
+    return cromo;
+  });
+  deck.replaceChildren(...cards);
+  // Cada cromo se recoloca cuando se conoce la proporción de su imagen
+  const deckCards = cards;
+  cards.forEach((card, i) => loadAspect(i).then(() => {
+    if (cards === deckCards && drawer.open) layoutDeck();
+  }));
+  layoutDeck();
+  renderDeckText();
+}
+
+function loadAspect(i) {
+  const list = aspects;
+  const img = cards[i] && cards[i].querySelector('img');
+  if (!img) return Promise.resolve();
+  return img.decode().catch(() => {}).then(() => {
+    if (img.naturalWidth) list[i] = img.naturalWidth / img.naturalHeight;
   });
 }
 
-function goTo(i) {
-  if (!current) return;
-  index = Math.max(0, Math.min(i, current.images.length - 1));
-  renderSlide();
+// Caja del cromo i: la imagen entera, lo más grande posible dentro del mazo
+function cardBox(i) {
+  const card = cards[i];
+  const cs = getComputedStyle(card);
+  const pad = parseFloat(cs.paddingLeft);
+  const border = parseFloat(cs.borderLeftWidth);
+  const numH = card.querySelector('.cromo-num').offsetHeight;
+  const frame = 3; // filete de 1,5 px alrededor de la imagen
+  const aspect = aspects[i] || 4 / 3;
+  const W = deck.clientWidth - 2 * DECK_OFFSET;
+  const H = deck.clientHeight - 2 * DECK_OFFSET;
+  const chromeW = 2 * (pad + border) + frame;
+  const chromeH = pad + 2 * border + numH + frame;
+  const imgW = Math.max(40, Math.min(W - chromeW, (H - chromeH) * aspect));
+  const width = imgW + chromeW;
+  const height = imgW / aspect + chromeH;
+  return { left: (W - width) / 2, top: (H - height) / 2, width, height };
 }
 
-prevBtn.addEventListener('click', () => goTo(index - 1));
-nextBtn.addEventListener('click', () => goTo(index + 1));
+// Profundidad de cada cromo respecto al de delante; los tres primeros se ven escalonados
+function layoutDeck() {
+  const n = cards.length;
+  cards.forEach((card, i) => {
+    const d = (i - index + n) % n;
+    const off = Math.min(d, 2) * DECK_OFFSET;
+    const box = cardBox(i);
+    card.style.left = box.left + 'px';
+    card.style.top = box.top + 'px';
+    card.style.width = box.width + 'px';
+    card.style.height = box.height + 'px';
+    card.style.zIndex = String(n - d);
+    card.style.transform = `translate(${off}px, ${off}px)`;
+  });
+  counter.textContent = `${n ? index + 1 : 0} / ${n}`;
+  prevBtn.disabled = nextBtn.disabled = n < 2;
+}
+
+// Solo el cromo de delante se anuncia; los de detrás quedan ocultos a los lectores de pantalla
+function renderDeckText() {
+  const project = I18N[lang].projects[current.key];
+  const total = cards.length;
+  cards.forEach((card, i) => {
+    const front = i === index;
+    card.setAttribute('aria-hidden', String(!front));
+    const img = card.querySelector('img');
+    if (img) img.alt = front ? `${project ? project.title : ''} — ${i + 1} / ${total}` : '';
+  });
+}
+
+// Pasar cromo: el de delante sale y vuelve al fondo, o el del fondo sale y entra delante
+async function step(dir) {
+  const n = cards.length;
+  // Mientras los cromos aterrizan en el mazo no se pasa: su destino ya está calculado
+  if (!current || n < 2 || stepping || deck.classList.contains('is-landing')) return;
+  if (reduceMotion.matches) {
+    index = (index + dir + n) % n;
+    layoutDeck();
+    renderDeckText();
+    return;
+  }
+  stepping = true;
+  const deckAtStart = cards;
+  const moving = dir > 0 ? cards[index] : cards[(index - 1 + n) % n];
+  moving.style.transform = DECK_OUT;
+  await wait(DECK_MS * 0.85);
+  // Si entretanto se cerró la galería o se abrió otro sobre, este paso ya no aplica
+  if (current && cards === deckAtStart) {
+    if (dir < 0) moving.style.zIndex = String(n + 1);
+    index = (index + dir + n) % n;
+    layoutDeck();
+    renderDeckText();
+  }
+  await wait(DECK_MS * 0.4);
+  stepping = false;
+}
+
+prevBtn.addEventListener('click', () => step(-1));
+nextBtn.addEventListener('click', () => step(1));
 
 drawer.addEventListener('keydown', e => {
-  if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index - 1); }
-  if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+  if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
 });
 
-// Si una imagen falla, se muestra un aviso en lugar de un hueco vacío
-stageImg.addEventListener('error', () => {
-  console.error('No se pudo cargar la imagen:', stageImg.src);
-  stageImg.hidden = true;
-  stageError.hidden = false;
+window.addEventListener('resize', () => {
+  if (drawer.open && current) layoutDeck();
 });
 
 /* ══════════════════════════════════════════════════
-   CURSOR «VER» — solo sobre las cajas y con ratón
+   CURSOR «VER» — solo sobre los sobres y con ratón
 ══════════════════════════════════════════════════ */
 const look = document.getElementById('look');
 
 if (look && finePointer.matches) {
-  boxes.forEach(box => {
-    box.addEventListener('pointerenter', e => {
+  packs.forEach(pack => {
+    pack.addEventListener('pointerenter', e => {
       // Se coloca antes de mostrarlo para que no aparezca en su posición anterior
       look.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       look.classList.add('on');
     });
-    box.addEventListener('pointerleave', () => look.classList.remove('on'));
-    box.addEventListener('pointermove', e => {
+    pack.addEventListener('pointerleave', () => look.classList.remove('on'));
+    pack.addEventListener('pointermove', e => {
       look.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
     });
   });
