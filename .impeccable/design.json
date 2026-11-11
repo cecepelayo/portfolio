@@ -110,36 +110,6 @@
           "#FFE4EE"
         ]
       },
-      "wood": {
-        "role": "tertiary",
-        "displayName": "Madera de bandeja",
-        "canonical": "oklch(89.1% 0.063 85.9)",
-        "tonalRamp": [
-          "#0D0B08",
-          "#29241A",
-          "#484132",
-          "#6A604A",
-          "#8E8165",
-          "#B3A381",
-          "#DAC79E",
-          "#F7EED9"
-        ]
-      },
-      "wood-grain": {
-        "role": "tertiary",
-        "displayName": "Veta de bandeja",
-        "canonical": "oklch(81.7% 0.083 83.4)",
-        "tonalRamp": [
-          "#0D0B06",
-          "#2C2412",
-          "#4D4027",
-          "#705F3E",
-          "#957F56",
-          "#BBA16F",
-          "#E3C58C",
-          "#FAEDD5"
-        ]
-      },
       "board": {
         "role": "neutral",
         "displayName": "Cartón del expositor",
@@ -213,17 +183,18 @@
           "#A7A59F",
           "#CCC9C2",
           "#F0EEEA"
-        ]
+        ],
+        "note": "Valor crudo #EEEAE2 en .drawer-gallery y .cromo-img, sin custom property."
       }
     },
     "typographyMeta": {
       "display-master": {
         "displayName": "Display maestro",
-        "purpose": "Solo el nombre en la etiqueta maestra, en cursiva y en dos tintas."
+        "purpose": "Solo el nombre en la portada del álbum, en cursiva y en dos tintas."
       },
       "display": {
         "displayName": "Display",
-        "purpose": "Títulos de pasaje, contacto y título del cajón abierto; siempre en cursiva."
+        "purpose": "Títulos de pasaje y título del sobre abierto; siempre en cursiva."
       },
       "headline": {
         "displayName": "Headline",
@@ -231,11 +202,11 @@
       },
       "claim": {
         "displayName": "Claim",
-        "purpose": "Frase de la etiqueta maestra, en redonda, máximo 22ch."
+        "purpose": "Frase de la portada del álbum, en redonda, máximo 22ch."
       },
       "title": {
-        "displayName": "Rótulo de caja",
-        "purpose": "Nombre del proyecto en la caja: grotesca 800 condensada en mayúsculas."
+        "displayName": "Rótulo de sobre",
+        "purpose": "Nombre del proyecto en el sobre y «¿Hablamos?»: grotesca 800 condensada en mayúsculas."
       },
       "body": {
         "displayName": "Texto",
@@ -243,7 +214,7 @@
       },
       "label": {
         "displayName": "Serie",
-        "purpose": "Numeración Nº 0X, cabeceras de caja, contador, ficha y colofón; mayúsculas y cifras tabulares."
+        "purpose": "Numeración Nº 0X, cabeceras de sobre, número de cromo 1 / N, contador, ficha y colofón; mayúsculas y cifras tabulares."
       }
     },
     "shadows": [
@@ -267,27 +238,52 @@
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "Curva de todo movimiento del objeto: cajón, botón, imagen, entrada."
+        "purpose": "Curva de todo movimiento del objeto: tira, cromos, mazo, botón, imagen, entrada."
       },
       {
-        "name": "tray-rest",
-        "value": "translateX(7px)",
-        "purpose": "El cajón asoma en reposo, también en táctil."
+        "name": "strip-lift",
+        "value": "translateY(-10px) rotate(-4deg) · origen 100% 100% · 0.36s",
+        "purpose": "Hover y foco del sobre (solo @media (hover: hover)): la tira de rasgado se levanta y se ladea."
       },
       {
-        "name": "tray-hover",
-        "value": "translateX(18px) · 0.36s",
-        "purpose": "Hover y foco de caja."
-      },
-      {
-        "name": "tray-open",
-        "value": "translateX(42%)",
-        "purpose": "El cajón sale al pulsar, antes de abrir la galería."
+        "name": "card-peek",
+        "value": "translateY(-20px) · 0.36s",
+        "purpose": "Hover y foco del sobre: asoma el primer cromo."
       },
       {
         "name": "single-focus",
-        "value": "filter: saturate(0.45) en la caja entera, opaca · 0.35s",
-        "purpose": "Las cajas no enfocadas bajan de tinta."
+        "value": "filter: saturate(0.45) en el sobre entero, opaco · 0.35s",
+        "purpose": "Los sobres no enfocados bajan de tinta."
+      },
+      {
+        "name": "pack-tear",
+        "value": "300ms · rotate(-9deg) → translate(70px, -80px) rotate(18deg), opacidad 0",
+        "purpose": "Apertura, paso 1: la tira se rasga y sale despedida (OPEN.tear)."
+      },
+      {
+        "name": "pack-fan",
+        "value": "550ms · translateY(-66%) · abanico de 49° · escalonado 45ms",
+        "purpose": "Apertura, paso 2: hasta 5 cromos suben y se abren en abanico (OPEN.fan, rise, spread, stagger)."
+      },
+      {
+        "name": "pack-hold",
+        "value": "230ms",
+        "purpose": "Apertura, paso 3: pausa con el abanico abierto (OPEN.hold)."
+      },
+      {
+        "name": "pack-expand",
+        "value": "480ms · escalonado 27ms",
+        "purpose": "Apertura, paso 4: copias de los cromos vuelan del abanico al mazo y se asientan a 0° (OPEN.expand)."
+      },
+      {
+        "name": "deck-step",
+        "value": "translate(-118%, 3%) rotate(-7deg) · 390ms",
+        "purpose": "Pasar cromo: el de delante sale a la izquierda y vuelve al fondo del mazo."
+      },
+      {
+        "name": "deck-offset",
+        "value": "6px",
+        "purpose": "Escalonado de los tres primeros cromos del mazo."
       },
       {
         "name": "deal",
@@ -295,14 +291,29 @@
         "purpose": "Entrada del tablero."
       },
       {
-        "name": "slide-open",
-        "value": "translateY(28px) scale(0.98) → 0 · 0.45s",
-        "purpose": "Apertura del cajón (diálogo)."
+        "name": "fade-in",
+        "value": "opacity 0 → 1 · 0.34s",
+        "purpose": "Apertura del diálogo y su fondo; solo opacidad para no descolocar la capa de vuelo."
+      },
+      {
+        "name": "progress",
+        "value": "trace (scaleX 0 → 1) · scroll(root)",
+        "purpose": "Línea turquesa de 3px bajo la barra: la colección se llena con el scroll."
+      },
+      {
+        "name": "stick",
+        "value": "translate(-60vw, -40px) rotate(-200deg) scale(1.3) → 0 · entry 25%–58%",
+        "purpose": "El cromo de Cecilia entra girando y se pega en el hueco Nº 07 de contacto."
+      },
+      {
+        "name": "trace",
+        "value": "scaleX(0) → 1 · entry 48%–78%",
+        "purpose": "Se traza el filete de la cabecera de contacto tras pegar el cromo."
       },
       {
         "name": "reduced-motion",
         "value": "duraciones a 0.01ms",
-        "purpose": "Con prefers-reduced-motion todo movimiento se anula."
+        "purpose": "Con prefers-reduced-motion todo movimiento se anula y el sobre abre la galería directamente."
       }
     ],
     "breakpoints": [
@@ -318,7 +329,7 @@
     "provisional": [
       {
         "name": "--ornament",
-        "purpose": "Adorno SVG dibujado de las cenefas y la banda maestra; provisional hasta recibir los recortes PNG de los motivos de Cecilia."
+        "purpose": "Adorno SVG dibujado de las cenefas y la portada del álbum; provisional hasta recibir los recortes PNG de los motivos de Cecilia."
       }
     ]
   },
@@ -335,7 +346,7 @@
       "name": "Botón de icono",
       "kind": "button",
       "refersTo": "button-icon",
-      "description": "Anterior, siguiente y cerrar en la galería.",
+      "description": "Anterior, siguiente y cerrar en el sobre abierto.",
       "html": "<button class=\"ds-btn-icon\" aria-label=\"Cerrar\"><svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><path d=\"M3 3l10 10M13 3L3 13\"/></svg></button>",
       "css": ".ds-btn-icon{width:44px;height:44px;display:grid;place-items:center;background:#FFFDF9;color:#141413;border:2px solid #141413;border-radius:0;cursor:pointer}.ds-btn-icon:hover{background:#5ECFC5}.ds-btn-icon:focus-visible{outline:3px solid #141413;outline-offset:3px}.ds-btn-icon:disabled{opacity:.3;cursor:default}.ds-btn-icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}"
     },
@@ -345,31 +356,39 @@
       "refersTo": "lang-toggle",
       "description": "Grupo ES/EN con borde común.",
       "html": "<div class=\"ds-lang\"><button class=\"ds-lang-btn\" aria-pressed=\"true\">ES</button><button class=\"ds-lang-btn\" aria-pressed=\"false\">EN</button></div>",
-      "css": ".ds-lang{display:inline-flex;border:2px solid #141413;background:#F7F4EF}.ds-lang-btn{background:transparent;border:0;min-width:44px;min-height:40px;font-family:'DM Mono',ui-monospace,monospace;font-size:.8rem;letter-spacing:.08em;color:#141413;cursor:pointer}.ds-lang-btn[aria-pressed=true]{background:#141413;color:#F7F4EF}.ds-lang-btn[aria-pressed=false]:hover{background:#FFFDF9}.ds-lang-btn:focus-visible{outline:3px solid #141413;outline-offset:3px}"
+      "css": ".ds-lang{display:inline-flex;border:2px solid #141413;background:#F7F4EF}.ds-lang-btn{background:transparent;border:0;min-width:44px;min-height:44px;font-family:'DM Mono',ui-monospace,monospace;font-size:.8rem;letter-spacing:.08em;color:#141413;cursor:pointer}.ds-lang-btn[aria-pressed=true]{background:#141413;color:#F7F4EF}.ds-lang-btn[aria-pressed=false]:hover{background:#FFFDF9}.ds-lang-btn:focus-visible{outline:3px solid #141413;outline-offset:3px}"
     },
     {
       "name": "Barra",
       "kind": "nav",
       "refersTo": "",
-      "description": "Barra fija de 64px: logo a la izquierda, idioma y acción a la derecha; filete inferior al hacer scroll.",
+      "description": "Barra fija de 64px: logo a la izquierda, idioma y acción a la derecha; filete inferior y línea de progreso turquesa al hacer scroll.",
       "html": "<header class=\"ds-bar\"><span class=\"ds-bar-logo\">CECE</span><a class=\"ds-bar-cta\" href=\"#\">Hablemos</a></header>",
-      "css": ".ds-bar{height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:#F7F4EF;border-bottom:2px solid #141413}.ds-bar-logo{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;color:#141413}.ds-bar-cta{display:inline-flex;align-items:center;min-height:44px;padding:.55rem 1.15rem;background:#5ECFC5;color:#141413;border:2px solid #141413;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;text-decoration:none}.ds-bar-cta:focus-visible{outline:3px solid #141413;outline-offset:3px}"
+      "css": ".ds-bar{position:relative;height:64px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:#F7F4EF;border-bottom:2px solid #141413}.ds-bar::after{content:'';position:absolute;inset:auto 0 -2px 0;height:3px;background:#5ECFC5;transform:scaleX(.4);transform-origin:left}.ds-bar-logo{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;color:#141413}.ds-bar-cta{display:inline-flex;align-items:center;min-height:44px;padding:.55rem 1.15rem;background:#5ECFC5;color:#141413;border:2px solid #141413;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;text-decoration:none}.ds-bar-cta:focus-visible{outline:3px solid #141413;outline-offset:3px}"
     },
     {
-      "name": "Caja de cerillas",
+      "name": "Sobre de cromos",
       "kind": "card",
-      "refersTo": "matchbox-sleeve",
-      "description": "Proyecto como etiqueta numerada: manga en la tinta de la disciplina sobre un cajón que asoma.",
-      "html": "<button class=\"ds-box\"><span class=\"ds-box-tray\"></span><span class=\"ds-box-sleeve\"><span class=\"ds-box-head\"><span>Nº 03</span><span>Packaging</span></span><span class=\"ds-box-frame\"></span><span class=\"ds-box-title\">Buna Coffee</span><span class=\"ds-box-ctx\">Proyecto académico · UDIT</span></span></button>",
-      "css": ".ds-box{position:relative;display:block;width:260px;height:300px;padding:0;border:0;background:none;text-align:left;cursor:pointer;isolation:isolate;color:#141413}.ds-box-tray{position:absolute;inset:12px 0;z-index:0;border:3px solid #141413;background:linear-gradient(to left,transparent 0 26px,#E8553A 26px 40px,#141413 40px 43px,transparent 43px),repeating-linear-gradient(to bottom,#EED9AC 0 9px,#DDBF85 9px 11px);transform:translateX(7px);transition:transform .36s cubic-bezier(.16,1,.3,1)}.ds-box-sleeve{position:relative;z-index:1;display:flex;flex-direction:column;gap:8px;height:100%;padding:14px;background:#5BAA52;border:3px solid #141413}.ds-box-sleeve::before{content:'';position:absolute;inset:5px;border:1.5px solid #141413;pointer-events:none}.ds-box-head{display:flex;justify-content:space-between;font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}.ds-box-frame{flex:1;border:2px solid #141413;background:#FFFDF9}.ds-box-title{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 75;font-size:1.4rem;line-height:.95;text-transform:uppercase}.ds-box-ctx{font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.04em}.ds-box:hover .ds-box-tray,.ds-box:focus-visible .ds-box-tray{transform:translateX(18px)}.ds-box:focus-visible{outline:none}.ds-box:focus-visible .ds-box-sleeve{outline:3px solid #141413;outline-offset:4px}"
+      "refersTo": "card-pack",
+      "description": "Proyecto como sobre cerrado: papel en la tinta de la disciplina, soldaduras dentadas, tira de rasgado que se levanta y primer cromo que asoma en hover.",
+      "html": "<button class=\"ds-pack\"><span class=\"ds-pack-cromo\"></span><span class=\"ds-pack-body\"><span class=\"ds-pack-face\"><span class=\"ds-pack-head\"><span>Nº 03</span><span>Packaging</span></span><span class=\"ds-pack-frame\"></span><span class=\"ds-pack-title\">Buna Coffee</span><span class=\"ds-pack-ctx\">Académico · UDIT</span></span></span><span class=\"ds-pack-strip\"><span>Abrir por aquí</span></span></button>",
+      "css": ".ds-pack{position:relative;display:flex;flex-direction:column;width:260px;height:340px;padding:34px 0 0;border:0;background:none;text-align:left;cursor:pointer;isolation:isolate;color:#141413}.ds-pack-strip,.ds-pack-strip::before{-webkit-mask:conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) var(--mx,0px) 0/12px 7px repeat-x,linear-gradient(#000 0 0) 0 6.5px/100% 100% no-repeat;mask:conic-gradient(from 135deg at 50% 0,#000 90deg,#0000 0) var(--mx,0px) 0/12px 7px repeat-x,linear-gradient(#000 0 0) 0 6.5px/100% 100% no-repeat}.ds-pack-body,.ds-pack-face{-webkit-mask:conic-gradient(from -45deg at 50% 100%,#000 90deg,#0000 0) var(--mx,0px) 100%/12px 7px repeat-x,linear-gradient(#000 0 0) 0 0/100% calc(100% - 6.5px) no-repeat;mask:conic-gradient(from -45deg at 50% 100%,#000 90deg,#0000 0) var(--mx,0px) 100%/12px 7px repeat-x,linear-gradient(#000 0 0) 0 0/100% calc(100% - 6.5px) no-repeat}.ds-pack-body{position:relative;z-index:2;flex:1;display:flex;padding:2px 3px 3px;background:#141413}.ds-pack-face{--mx:-3px;position:relative;flex:1;display:flex;flex-direction:column;gap:8px;padding:12px 14px 31px;background:#5BAA52}.ds-pack-face::before{content:'';position:absolute;inset:5px 5px 23px;border:1.5px solid #141413;pointer-events:none}.ds-pack-face::after{content:'';position:absolute;inset:auto 0 0 0;height:18px;background:repeating-linear-gradient(90deg,rgba(20,20,19,.2) 0 1px,transparent 1px 4px);border-top:1.5px solid #141413}.ds-pack-head{display:flex;justify-content:space-between;font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}.ds-pack-frame{flex:1;border:2px solid #141413;background:#FFFDF9}.ds-pack-title{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 75;font-size:1.4rem;line-height:.95;text-transform:uppercase}.ds-pack-ctx{font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.04em}.ds-pack-strip{position:absolute;inset:0 0 auto 0;z-index:3;height:35px;background:#141413;transform-origin:100% 100%;transition:transform .36s cubic-bezier(.16,1,.3,1)}.ds-pack-strip::before{--mx:-3px;content:'';position:absolute;inset:3px 3px 0;background:repeating-linear-gradient(90deg,rgba(20,20,19,.2) 0 1px,transparent 1px 4px) 0 0/100% 15px no-repeat,#5BAA52}.ds-pack-strip::after{content:'';position:absolute;inset:auto 0 0 0;height:2px;background:repeating-linear-gradient(90deg,#141413 0 6px,transparent 6px 10px)}.ds-pack-strip span{position:absolute;left:12px;bottom:5px;font-family:'DM Mono',ui-monospace,monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}.ds-pack-cromo{position:absolute;top:40px;bottom:14px;left:50%;z-index:1;aspect-ratio:5/7;transform:translateX(-50%);background:#FFFDF9;border:2px solid #141413;transition:transform .36s cubic-bezier(.16,1,.3,1)}.ds-pack:hover .ds-pack-strip,.ds-pack:focus-visible .ds-pack-strip{transform:translateY(-10px) rotate(-4deg)}.ds-pack:hover .ds-pack-cromo,.ds-pack:focus-visible .ds-pack-cromo{transform:translateX(-50%) translateY(-20px)}.ds-pack:focus-visible{outline:3px solid #141413;outline-offset:4px}"
     },
     {
-      "name": "Etiqueta maestra",
+      "name": "Cromo",
       "kind": "custom",
-      "refersTo": "master-label",
+      "refersTo": "cromo",
+      "description": "Imagen del proyecto en cartoncillo con canto negro, filete alrededor de la imagen y número mono; en el mazo de la galería toma la proporción de su imagen.",
+      "html": "<span class=\"ds-cromo\"><span class=\"ds-cromo-img\"></span><span class=\"ds-cromo-num\">1 / 6</span></span>",
+      "css": ".ds-cromo{display:flex;flex-direction:column;width:200px;height:170px;padding:10px 10px 0;background:#FFFDF9;border:3px solid #141413;color:#141413;transition:transform .39s cubic-bezier(.16,1,.3,1)}.ds-cromo:hover{transform:translate(-12px,1px) rotate(-2deg)}.ds-cromo-img{flex:1;border:1.5px solid #141413;background:#EEEAE2}.ds-cromo-num{padding:6px 2px 8px;font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.06em;font-variant-numeric:tabular-nums}"
+    },
+    {
+      "name": "Portada del álbum",
+      "kind": "custom",
+      "refersTo": "album-cover",
       "description": "Nombre en dos tintas dentro de marco con banda ornamental (adorno provisional).",
-      "html": "<div class=\"ds-master\"><div class=\"ds-master-band\"><div class=\"ds-master-inner\"><h1 class=\"ds-master-name\"><span class=\"ds-red\">Cecilia</span><span>Pelayo</span></h1><p class=\"ds-master-claim\">Dibujo yo. Y lo convierto en producto.</p></div></div></div>",
-      "css": ".ds-master{background:#FFFDF9;border:3px solid #141413;padding:8px;display:flex;width:420px}.ds-master-band{flex:1;display:flex;padding:22px;border:1.5px solid #141413;background:#FFFDF9 var(--ornament) repeat 0 -1px/44px 22px}.ds-master-inner{flex:1;text-align:center;padding:28px;background:#FFFDF9;border:1.5px solid #141413;color:#141413}.ds-master-name{font-family:'Bodoni Moda','Didot',serif;font-style:italic;font-weight:600;font-size:4rem;line-height:.88;letter-spacing:-.03em}.ds-master-name span{display:block}.ds-red{color:#C63A20}.ds-master-claim{margin-top:1.2rem;font-family:'Bodoni Moda','Didot',serif;font-size:1.3rem;line-height:1.25}"
+      "html": "<div class=\"ds-cover\"><div class=\"ds-cover-band\"><div class=\"ds-cover-inner\"><h1 class=\"ds-cover-name\"><span class=\"ds-red\">Cecilia</span><span>Pelayo</span></h1><p class=\"ds-cover-claim\">Dibujo yo. Y lo convierto en producto.</p></div></div></div>",
+      "css": ".ds-cover{background:#FFFDF9;border:3px solid #141413;padding:8px;display:flex;width:420px}.ds-cover-band{flex:1;display:flex;padding:22px;border:1.5px solid #141413;background:#FFFDF9 var(--ornament) repeat 0 -1px/44px 22px}.ds-cover-inner{flex:1;text-align:center;padding:28px;background:#FFFDF9;border:1.5px solid #141413;color:#141413}.ds-cover-name{font-family:'Bodoni Moda','Didot',serif;font-style:italic;font-weight:600;font-size:4rem;line-height:.88;letter-spacing:-.03em}.ds-cover-name span{display:block}.ds-red{color:#C63A20}.ds-cover-claim{margin-top:1.2rem;font-family:'Bodoni Moda','Didot',serif;font-size:1.3rem;line-height:1.25}"
     },
     {
       "name": "Cenefa",
@@ -390,36 +409,36 @@
     {
       "name": "Banda de contacto",
       "kind": "custom",
-      "refersTo": "contact-label",
-      "description": "Cierre de contacto: banda turquesa a sangre con borde superior y el filete interior de las cajas, sin cajón, cabecera mono y rotulación condensada.",
-      "html": "<section class=\"ds-contact\"><p class=\"ds-contact-head\"><span>Contacto</span><span>Madrid</span></p><h2>¿Hablamos?</h2><a href=\"#\">cecilia.pelayorodriguez@gmail.com</a></section>",
-      "css": ".ds-contact{position:relative;padding:30px;background:#5ECFC5;color:#141413;border-top:3px solid #141413}.ds-contact::before{content:'';position:absolute;inset:16px;border:1.5px solid #141413;pointer-events:none}.ds-contact-head{display:flex;justify-content:space-between;margin:0 0 2.5rem;padding-bottom:12px;border-bottom:1.5px solid #141413;font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}.ds-contact h2{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 75;font-size:4rem;line-height:.9;text-transform:uppercase;margin:0 0 1.5rem}.ds-contact a{color:inherit;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 80;font-size:1.8rem;text-underline-offset:.2em;text-decoration-thickness:2px}.ds-contact a:hover{text-decoration-thickness:4px}.ds-contact a:focus-visible{outline:3px solid #141413;outline-offset:3px}"
+      "refersTo": "contact-band",
+      "description": "Cierre de contacto: banda turquesa a sangre con borde superior y el filete interior de los sobres, cabecera mono con el hueco Nº 07 donde se pega el cromo de Cecilia, y rotulación condensada.",
+      "html": "<section class=\"ds-contact\"><p class=\"ds-contact-head\"><span>Contacto</span><span class=\"ds-contact-end\"><span class=\"ds-slot\"><span>Nº 07</span><span class=\"ds-slot-cromo\">CECE</span></span><span>Madrid</span></span></p><h2>¿Hablamos?</h2><a href=\"#\">cecilia.pelayorodriguez@gmail.com</a></section>",
+      "css": ".ds-contact{position:relative;padding:30px;background:#5ECFC5;color:#141413;border-top:3px solid #141413}.ds-contact::before{content:'';position:absolute;inset:16px;border:1.5px solid #141413;pointer-events:none}.ds-contact-head{display:flex;justify-content:space-between;align-items:flex-end;margin:0 0 2.5rem;padding-bottom:12px;border-bottom:1.5px solid #141413;font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase}.ds-contact h2{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 75;font-size:4rem;line-height:.9;text-transform:uppercase;margin:0 0 1.5rem}.ds-contact a{color:inherit;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-variation-settings:'wdth' 80;font-size:1.8rem;text-underline-offset:.2em;text-decoration-thickness:2px}.ds-contact a:hover{text-decoration-thickness:4px}.ds-contact a:focus-visible{outline:3px solid #141413;outline-offset:3px}.ds-contact-end{display:flex;align-items:flex-end;gap:14px}.ds-slot{position:relative;display:grid;place-items:center;width:54px;aspect-ratio:5/7;border:1.5px dashed #141413;font-size:.6rem}.ds-slot-cromo{position:absolute;inset:3px;display:grid;place-items:center;background:#FFFDF9;border:2px solid #141413;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:.7rem;letter-spacing:0;transition:transform .5s cubic-bezier(.16,1,.3,1)}.ds-contact:hover .ds-slot-cromo{transform:rotate(4deg) scale(1.06)}"
     }
   ],
   "narrative": {
-    "northStar": "La Fosforera",
-    "overview": "El sitio es el expositor de un coleccionista de cajas de cerillas: cada proyecto es una etiqueta numerada de una serie, y el nombre de Cecilia es la etiqueta maestra en el centro. Fondo claro de cartón, tintas planas y vivas sobre negro de imprenta, filetes gruesos, numeración en mono. La impresión manda: nada brilla, nada flota, todo está impreso y enmarcado.\n\nLa densidad es alta en la primera pantalla (el tablero de cajas ocupa el viewport y deja asomar la tercera fila) y se relaja después en pasajes separados por cenefas ornamentales. La composición es ortogonal (solo 0/90°); el movimiento imita el objeto físico: el cajón de la caja asoma, sale al abrir y las demás cajas pierden tinta cuando una tiene el foco.\n\nDecisiones fijadas por la propietaria: fondo claro, display en serif italiana de alto contraste (Bodoni Moda) y cenefas ornamentales. El adorno actual de las cenefas es **provisional**: un SVG dibujado a la espera de los recortes PNG de los motivos de Cecilia.",
+    "northStar": "El Álbum",
+    "overview": "El sitio es un álbum de cromos: el nombre de Cecilia es la portada del álbum, en el centro del tablero, y cada proyecto es un sobre de cromos cerrado y numerado de la colección. Fondo claro de cartón, papel impreso en tintas planas y vivas sobre negro de imprenta, filetes gruesos, numeración en mono. La impresión manda: nada brilla, nada flota, no hay degradados ni sombras en los sobres; todo está impreso y enmarcado.\n\nLa densidad es alta en la primera pantalla (el tablero de sobres ocupa el viewport y deja asomar la tercera fila) y se relaja después en pasajes separados por cenefas ornamentales. La composición en reposo es ortogonal (0/90°); el movimiento imita el objeto físico: la tira de rasgado se levanta, asoma el primer cromo y los demás sobres pierden tinta cuando uno tiene el foco; al abrir, la tira se rasga, los cromos salen en abanico y vuelan a la mano (el mazo de la galería). Lo que gira en tránsito se asienta siempre a 0°. La colección se va llenando: la línea de progreso turquesa de la barra avanza con el scroll y el último cromo, el de Cecilia, se pega en su hueco en el cierre de contacto.\n\nDecisiones fijadas por la propietaria: fondo claro, display en serif italiana de alto contraste (Bodoni Moda) y cenefas ornamentales. El adorno actual de las cenefas es **provisional**: un SVG dibujado a la espera de los recortes PNG de los motivos de Cecilia.",
     "keyCharacteristics": [
-      "Expositor de cajas de cerillas: etiquetas numeradas (Nº 0X) con filete negro grueso y filete interior.",
-      "Una tinta plana por disciplina; turquesa del logo reservado a las acciones y a su destino, la banda de contacto.",
+      "Álbum de cromos: sobres numerados (Nº 0X) de papel plano en la tinta de su disciplina, con soldaduras dentadas, filete negro exterior de 3px y filete interior de 1.5px.",
+      "Una tinta plana por disciplina; turquesa del logo reservado a las acciones, a la línea de progreso de la colección y a su destino, la banda de contacto.",
       "Display en Bodoni Moda italic; rotulación en grotesca condensada; numeración en DM Mono.",
-      "Esquinas rectas, composición a 0/90°, profundidad por capas físicas (cajón, manga), no por sombras.",
+      "Esquinas rectas, composición en reposo a 0/90°, profundidad por capas físicas (tira, cromos dentro del sobre, mazo), no por sombras.",
       "Cenefas ornamentales entre pasajes (adorno provisional)."
     ],
     "rules": [
       {
         "name": "The Turquoise-Is-Action Rule",
-        "body": "El turquesa del logo solo pinta lo que se pulsa o señala que se puede pulsar, y la banda de contacto a la que lleva «Hablemos». Nunca es fondo de otra sección, tinta de disciplina ni decoración. Sobre la banda de contacto, las acciones pasan a cartoncillo con borde negro y la selección a tinta negra.",
+        "body": "El turquesa del logo solo pinta lo que se pulsa o señala que se puede pulsar, la línea de progreso de la colección bajo la barra y la banda de contacto a la que lleva «Hablemos». Nunca es fondo de otra sección, tinta de disciplina ni decoración. Sobre la banda de contacto, las acciones pasan a cartoncillo con borde negro y la selección a tinta negra.",
         "section": "colors"
       },
       {
         "name": "The One Ink Per Discipline Rule",
-        "body": "Cada disciplina tiene una única tinta (ilustración bermellón, editorial aciano, packaging verde hoja, identidad amarillo, 3D rosa), aplicada mediante `--field` en la caja, la muestra de servicios y la base del cajón abierto. Dos proyectos de la misma disciplina comparten tinta.",
+        "body": "Cada disciplina tiene una única tinta (ilustración bermellón, editorial aciano, packaging verde hoja, identidad amarillo, 3D rosa), aplicada mediante `--field` en el papel del sobre y su tira, la muestra de servicios y la base del sobre abierto. Dos proyectos de la misma disciplina comparten tinta.",
         "section": "colors"
       },
       {
         "name": "The Turquoise Close Rule",
-        "body": "El bloque de contacto es una banda turquesa a sangre con el filete interior de las etiquetas (sin cajón, porque no se abre), nunca una tinta de disciplina. En la web no hay marrones: la paleta es la de las tintas, el cartón y la madera clara del cajón.",
+        "body": "El bloque de contacto es una banda turquesa a sangre con el filete interior de los sobres (sin tira ni soldaduras, porque no se abre), nunca una tinta de disciplina. En la web no hay marrones ni maderas: la paleta es la de las tintas, el cartón y el cartoncillo.",
         "section": "colors"
       },
       {
@@ -433,25 +452,28 @@
         "section": "typography"
       },
       {
-        "name": "The Tray Not Shadow Rule",
-        "body": "Una caja se destaca sacando su cajón y apagando a las demás, nunca levantándola con una sombra.",
+        "name": "The Tear Not Shadow Rule",
+        "body": "Un sobre se destaca levantando su tira, asomando su primer cromo y apagando a los demás, nunca levantándolo con una sombra. Los sobres no llevan brillo, degradado ni sombra.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** reservar el turquesa del logo para acciones (botones, cursor «Ver», hover de controles, selección) y para la banda de contacto.",
+      "**Do** reservar el turquesa del logo para acciones (botones, cursor «Ver», hover de controles, selección), la línea de progreso de la barra y la banda de contacto.",
       "**Do** asignar a cada disciplina su única tinta mediante `--field` (ink-ilustracion, ink-editorial, ink-packaging, ink-identidad, ink-3d).",
       "**Do** usar el bermellón de texto, y no el bermellón de fondo, cuando el bermellón sea texto sobre cartoncillo.",
-      "**Do** enmarcar etiquetas con borde de 3px en tinta negra y filete interior de 1.5px, con esquinas rectas.",
-      "**Do** numerar en DM Mono mayúsculas con cifras tabulares (Nº 0X, s/n).",
+      "**Do** enmarcar sobres y portada con 3px en tinta negra y filete interior de 1.5px, con esquinas rectas.",
+      "**Do** numerar en DM Mono mayúsculas con cifras tabulares (Nº 0X, s/n, 1 / N).",
+      "**Do** mostrar las imágenes de la galería enteras: el cromo toma la proporción de su imagen.",
       "**Do** separar pasajes con cenefas ornamentales, sustituyendo el adorno provisional por los recortes de Cecilia cuando lleguen.",
-      "**Do** etiquetar el contexto de cada proyecto con honestidad (académico, concurso, propuesta no encargada) en la cara de la caja."
+      "**Do** etiquetar el contexto de cada proyecto con honestidad (académico, concurso, propuesta no encargada) en la cara del sobre.",
+      "**Do** dejar que los giros vivan solo en tránsito (tira, abanico, vuelo, entradas) y asentar todo a 0°."
     ],
     "donts": [
       "**Don't** usar el turquesa como fondo de otra sección que no sea contacto, como tinta de disciplina o como decoración.",
-      "**Don't** pintar el bloque de contacto con una tinta de disciplina ni introducir marrones en la paleta.",
-      "**Don't** redondear esquinas de contenedores ni girar elementos fuera de 0/90°.",
-      "**Don't** destacar una caja con sombra o elevación; se destaca sacando el cajón y apagando a las demás.",
+      "**Don't** pintar el bloque de contacto con una tinta de disciplina ni introducir marrones o maderas en la paleta.",
+      "**Don't** redondear esquinas de contenedores ni dejar elementos girados en reposo fuera de 0/90°.",
+      "**Don't** destacar un sobre con sombra, brillo, degradado o elevación; se destaca levantando la tira y apagando a los demás.",
+      "**Don't** aplicar los estados de hover del sobre fuera de `@media (hover: hover)`: en táctil se quedarían pegados.",
       "**Don't** poner titulares de Bodoni Moda en redonda ni en un peso distinto de 600.",
       "**Don't** tratar el adorno SVG actual como motivo definitivo de la marca."
     ]
