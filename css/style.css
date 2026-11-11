@@ -763,16 +763,19 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
     }
     .piece--wide { --tilt: 3deg; animation-range: entry 10% entry 90%; }
 
-    /* Servicios: la muestra de color se estampa y el texto entra detrás, fila a fila */
+    /* Servicios: la muestra de color se estampa y el texto entra detrás, fila a fila.
+       Se mide sobre la fila entera para que todo vaya acompasado, y ocurre en el tercio
+       inferior de la pantalla: con «entry» la muestra (40 px) se estampaba al asomar por el borde */
+    .svc { view-timeline: --svc-row block; }
     .svc-swatch {
       animation: stamp linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 90%;
+      animation-timeline: --svc-row;
+      animation-range: cover 10% cover 35%;
     }
     .svc > :not(.svc-swatch) {
       animation: slide-in linear both;
-      animation-timeline: view();
-      animation-range: entry 20% entry 100%;
+      animation-timeline: --svc-row;
+      animation-range: cover 15% cover 35%;
     }
   }
 }
