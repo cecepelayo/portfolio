@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "css/style.css"
+        ],
+        "createdAt": "2026-11-11T12:24:41.194Z",
+        "reason": "agent: the stripes are the matchbox tray's wood grain, a material of the chosen Fosforera world, not decoration"
+      },
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-11T12:24:46.355Z",
+        "reason": "user confirmed: the owner pinned an italic display serif from her VIMY reference"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-11T12:24:46.377Z",
+        "reason": "user confirmed: the owner chose a light ground from her VIMY reference"
+      }
+    ]
+  }
+}
