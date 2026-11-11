@@ -34,18 +34,18 @@ She draws her own illustration (Procreate) and turns it into real, finished prod
 - One page, bilingual Spanish/English with an ES/EN toggle on the same page (texts held in a single translations source; browser language detected; choice remembered). Spanish is the primary language.
 - Projects open in a modal gallery with description and a fact sheet (year, role, tools, context).
 - Contact is direct: public email `cecilia.pelayorodriguez@gmail.com` (mailto + copy) plus Instagram, Behance and LinkedIn. No contact form.
-- Original images in `img/` are heavy (421 MB total) and stay untouched; the site serves optimised copies.
+- Original images in `source-images/<project>/` are heavy (427 MB total), stay untouched and are excluded from the deploy (`.vercelignore`); the site serves optimised WebP copies from `assets/img/<project>/` with matching names.
 - `portfolio.html`, `personal.html`, `contacto.html` and `css/masonry.css` are retired.
 
 ## Brand Commitments
 
-- Logo: `img/logo_portfolio.png`, a turquoise bubble-graffiti "CECE" with petrol-blue shadow and black outline. Used as is; it is binding.
+- Logo: `source-images/brand/logo.png` (web copy `assets/img/brand/logo.webp`), a turquoise bubble-graffiti "CECE" with petrol-blue shadow and black outline. Used as is; it is binding.
 - Name presented as the CECE logo plus "Cecilia Pelayo — Diseñadora gráfica"; page title "Cecilia Pelayo · Diseño gráfico".
 - Honesty in project labelling: a "Context" field replaces "Client" (e.g. "Proyecto académico · UDIT", "Concurso Cata la Lata", "Propuesta para Black Sheep (no encargo)").
 
 ## Evidence on Hand
 
-Six projects (current content in the retired `portfolio.html`, images in `img/`):
+Six projects (images in `source-images/<project>/`):
 
 1. Cata la Lata 2026 · 8ª edición: illustrated packaging for three tins (tuna, sardines, mussels). Competition. Featured piece.
 2. Colores: three-volume book collection (blue, red, yellow), covers, interiors, promo and merchandising. Academic, UDIT, 2025.
@@ -54,7 +54,7 @@ Six projects (current content in the retired `portfolio.html`, images in `img/`)
 5. En el ojo del artista: Neil Leifer exhibition (signage, catalogue, tickets, spaces). Academic, UDIT, 2024.
 6. Black Sheep Iced Coffee: 3D packaging in Cinema 4D. Speculative proposal, not a commission. 2026.
 
-Personal pieces: `img/jazz.png`, `img/feelit.png`.
+Personal pieces: `source-images/personal/jazz.png`, `source-images/personal/feelit.png`.
 
 Tools: Illustrator, InDesign, Photoshop, Figma, Procreate, After Effects, Premiere, Cinema 4D.
 
