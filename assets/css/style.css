@@ -46,13 +46,18 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--bar-h) + 12px);
+  /* Sin el recuadro gris de iOS al tocar: los botones ya tienen su propio estado */
+  -webkit-tap-highlight-color: transparent;
   scrollbar-color: var(--ink) var(--board);
   -webkit-text-size-adjust: 100%;
 }
 html.is-locked { overflow: hidden; }
 
 body {
-  background: var(--board);
+  /* El fondo del body es el rascador y el cartón lo pone main: Safari de iPhone pinta con el
+     fondo del body la franja que queda bajo su barra al final de la página, y así continúa
+     la banda de contacto en lugar de verse crema */
+  background: var(--striker);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1rem;
@@ -62,12 +67,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+main { background: var(--board); }
 img { display: block; max-width: 100%; }
 [hidden] { display: none !important; }
 
 /* Mientras se aplica el idioma inglés no se pinta el texto en español */
-.i18n-pending .bar,
-.i18n-pending main { visibility: hidden; }
+/* Se ocultan los hijos y no los contenedores, para que sus fondos crema sigan tapando el del body */
+.i18n-pending .bar > *,
+.i18n-pending main > * { visibility: hidden; }
 button { font: inherit; color: inherit; }
 a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px; }
 
@@ -126,6 +133,13 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 .bar.scrolled { border-bottom-color: var(--ink); }
 
+.bar-logo {
+  /* Zona de toque de al menos 44 px aunque el logo mida menos */
+  display: flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+}
 .bar-logo img { height: 40px; width: auto; }
 
 .bar-actions { display: flex; align-items: center; gap: 12px; }
@@ -531,6 +545,9 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   font-size: clamp(1.35rem, 3.6vw, 2.8rem);
   line-height: 1.1;
   overflow-wrap: anywhere;
+  /* Zona de toque de 44 px sin mover el resto: el relleno se compensa con margen negativo */
+  padding-block: 10px;
+  margin-block: -10px;
 }
 .mail-link:hover { text-decoration-thickness: 4px; }
 .copy-status { font-family: var(--mono); font-size: 0.85rem; min-height: 1.2em; }
