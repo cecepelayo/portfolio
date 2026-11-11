@@ -777,6 +777,59 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
       animation-timeline: --svc-row;
       animation-range: cover 15% cover 35%;
     }
+
+    /* Contacto: una cerilla rasca la banda, el titular se descubre tras ella y el resto sube.
+       Es la última sección, así que «entry 100%» coincide con el final del scroll: los rangos
+       terminan antes para que todo se complete, y arrancan con un tercio de banda a la vista */
+    .contact {
+      position: relative;
+      overflow: clip;
+      view-timeline: --contact block;
+    }
+    .contact::before,
+    .contact::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      animation-timeline: --contact;
+      animation-range: entry 30% entry 75%;
+    }
+    /* La cerilla: palo color bandeja con cabeza bermellón */
+    .contact::before {
+      top: 22px;
+      width: 72px;
+      height: 7px;
+      border-radius: 0 4px 4px 0;
+      background: linear-gradient(to right, var(--wood) 78%, var(--red) 78%);
+      animation-name: strike;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+    }
+    /* El rastro que deja al rascar */
+    .contact::after {
+      top: 25px;
+      right: 0;
+      height: 2px;
+      background: rgba(255, 253, 249, 0.35);
+      transform-origin: left;
+      animation-name: burn;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+    }
+    .contact-title {
+      animation: uncover linear both;
+      animation-timeline: --contact;
+      animation-range: entry 38% entry 78%;
+    }
+    .contact-text,
+    .contact-mail,
+    .social {
+      animation: rise linear both;
+      animation-timeline: --contact;
+    }
+    .contact-text { animation-range: entry 55% entry 85%; }
+    .contact-mail { animation-range: entry 60% entry 88%; }
+    .social       { animation-range: entry 65% entry 90%; }
   }
 }
 @keyframes burn {
@@ -794,6 +847,20 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 @keyframes slide-in {
   from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes strike {
+  from { opacity: 1; transform: translateX(-90px) rotate(-8deg); }
+  85%  { opacity: 1; }
+  to   { opacity: 0; transform: translateX(calc(100vw + 20px)) rotate(0deg); }
+}
+/* Insets negativos: la cursiva con line-height 1 sobresale de su caja y no debe quedar recortada */
+@keyframes uncover {
+  from { clip-path: inset(-0.2em 100% -0.3em -0.2em); }
+  to   { clip-path: inset(-0.2em -0.2em -0.3em -0.2em); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(40px); }
   to   { opacity: 1; transform: none; }
 }
 
