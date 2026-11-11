@@ -274,6 +274,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   text-align: left;
   cursor: pointer;
   isolation: isolate;
+  transition: filter 0.35s ease;
 }
 
 /* Bandeja interior: asoma al pasar el ratón y sale al abrir */
@@ -301,7 +302,6 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   padding: 14px;
   background: var(--field);
   border: 3px solid var(--ink);
-  transition: filter 0.35s ease, opacity 0.35s ease;
 }
 .box-sleeve::before {
   content: '';
@@ -387,11 +387,9 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .box:focus-visible { outline: none; }
 .box:focus-visible .box-sleeve { outline: 3px solid var(--ink); outline-offset: 4px; }
 
-/* Un solo foco: al pasar sobre una caja, las demás bajan de tinta */
-.board:has(.box:hover) .box:not(:hover) .box-sleeve {
-  filter: saturate(0.2);
-  opacity: 0.55;
-}
+/* Un solo foco: al pasar sobre una caja, las demás bajan de tinta. Se desatura la caja entera
+   y sin transparencia, para que el cajón con las cerillas no se vea a través de la manga */
+.board:has(.box:hover) .box:not(:hover) { filter: saturate(0.45); }
 
 /* Cursor «Ver» */
 @media (hover: hover) and (pointer: fine) {
