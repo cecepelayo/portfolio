@@ -53,6 +53,7 @@ const I18N = {
     'svc.3d.p': 'Renders de producto en Cinema 4D para enseñar un envase antes de fabricarlo.',
     'svc.tools': 'Trabajo con',
 
+    'ct.head': 'Contacto',
     'ct.title': '¿Hablamos?',
     'ct.text': 'Cuéntame qué quieres sacar al mundo. Respondo en 24–48 horas.',
     'ct.copy': 'Copiar email',
@@ -196,6 +197,7 @@ const I18N = {
     'svc.3d.p': 'Product renders in Cinema 4D to show a pack before it is manufactured.',
     'svc.tools': 'I work with',
 
+    'ct.head': 'Contact',
     'ct.title': "Shall we talk?",
     'ct.text': 'Tell me what you want to put out into the world. I reply within 24–48 hours.',
     'ct.copy': 'Copy email',
