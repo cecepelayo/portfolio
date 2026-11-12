@@ -232,7 +232,7 @@ Rotulados e impresos, con borde negro.
 - **Internal Padding:** 12px 14px (10px en móvil), separación interna 8px.
 - **Tira de rasgado:** soldadura superior de 34px en la tinta del sobre, con estrías, línea troquelada y la leyenda mono «Abrir por aquí».
 - **Contenido:** cabecera en mono (Nº y disciplina), portada del proyecto, título condensado en mayúsculas, contexto honesto en mono. Dentro guarda hasta 5 cromos (proporción 5/7).
-- **Apertura:** al pulsar, la tira se rasga (300ms), los cromos suben un 66% y se abren en abanico de 49° (30° en móvil) (550ms, escalonado 45ms), pausa de 230ms y sus copias vuelan al mazo de la galería (480ms). El sobre que se abre pasa por encima de la barra, y el abanico nunca se sale de la pantalla: queda a 12px de sus bordes, cerrándose lo justo si se saldría por los lados y subiendo menos si se saldría por arriba. Con movimiento reducido se abre la galería directamente.
+- **Apertura:** al pulsar, la tira se rasga (300ms), los cromos suben un 66% y se abren en abanico de 49° (30° en móvil) (550ms, escalonado 45ms), pausa de 230ms y sus copias vuelan al mazo de la galería (480ms). El sobre que se abre pasa por encima de la barra (también con el puntero encima) y el cursor «Ver» se oculta hasta que el puntero vuelve a entrar en un sobre; el abanico nunca se sale de la pantalla: queda a 12px de sus bordes, cerrándose lo justo si se saldría por los lados y subiendo menos si se saldría por arriba. Con movimiento reducido se abre la galería directamente.
 
 ### Cromo
 Imagen en cartoncillo con canto negro (2px en el sobre, 3px en el mazo), relleno 6px 6px 0 (10px en el mazo), filete de 1.5px alrededor de la imagen sobre el fondo de galería y número «1 / N» en mono debajo.
