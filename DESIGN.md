@@ -8,19 +8,12 @@ colors:
   ink-soft: "#45433E"
   turq: "#5ECFC5"
   red: "#E8553A"
-  red-text: "#C63A20"
   blue: "#7393E8"
   green: "#5BAA52"
   yellow: "#F2B705"
   pink: "#F2A3BC"
   gallery-well: "#EEEAE2"
 typography:
-  display-master:
-    fontFamily: "'Bodoni Moda', 'Didot', serif"
-    fontSize: "clamp(3rem, min(6.2vw, 9.5svh), 6rem)"
-    fontWeight: 600
-    lineHeight: 0.88
-    letterSpacing: "-0.03em"
   display:
     fontFamily: "'Bodoni Moda', 'Didot', serif"
     fontSize: "clamp(2.4rem, 5vw, 4.5rem)"
@@ -145,7 +138,6 @@ Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi pur
 
 ### Secondary (tintas de disciplina)
 - **Bermellón** (red): Ilustración. Papel del sobre y base de la galería.
-- **Bermellón de texto** (red-text): versión oscurecida del bermellón solo para texto sobre cartoncillo («Cecilia» en la portada del álbum), para alcanzar contraste AA.
 - **Azul aciano** (blue): Editorial.
 - **Verde hoja** (green): Packaging.
 - **Amarillo** (yellow): Identidad.
@@ -174,10 +166,9 @@ Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi pur
 **Character:** Una italiana de alto contraste, siempre en cursiva para los titulares, frente a una grotesca de anchura variable que se condensa para rotular los sobres como un impreso de colección; la mono numera la serie y los cromos.
 
 ### Hierarchy
-- **Display maestro** (600 italic, display-master): solo el nombre en la portada del álbum, en dos tintas («Cecilia» en bermellón de texto, «Pelayo» en tinta negra).
 - **Display** (600 italic, display): títulos de pasaje («Fuera de serie», servicios, título del sobre abierto). `text-wrap: balance`.
 - **Headline** (600 italic, headline): nombre de cada servicio.
-- **Claim** (400 roman, claim): la frase de la portada, máximo 22ch.
+- **Claim** (400 roman, claim): «Cecilia Pelayo» bajo el rotulado de la portada; es el h1 de la página y no se traduce.
 - **Title** (800, condensada a wdth 75, mayúsculas): nombre del proyecto en el sobre; en el sobre grande sube a clamp(2rem, min(3.4vw, 6svh), 3.4rem). «¿Hablamos?» usa esta rotulación a clamp(3rem, 9vw, 6.5rem); el email de contacto, la misma grotesca a 800 y wdth 80.
 - **Body** (400, body): texto corrido, 36–60ch según contexto.
 - **Label** (DM Mono, mayúsculas, cifras tabulares): números de serie «Nº 0X», cabecera del sobre, número del cromo «1 / N», contador de galería, términos de ficha, colofón. La leyenda de la tira «Abrir por aquí» y el número del cromo en el sobre bajan a 0.6rem.
@@ -199,7 +190,7 @@ Sistema plano. La profundidad es física, no atmosférica: la tira de rasgado es
 
 ### Shadow Vocabulary
 - **Lift de acción** (`box-shadow: 0 6px 14px -6px rgba(20, 20, 19, 0.45)`): solo en hover del botón de acción, junto a `translateY(-2px)`.
-- **Logo recortado** (`filter: drop-shadow(0 8px 10px rgba(20, 20, 19, 0.18))`): el logo CECE que monta sobre el nombre.
+- **Rotulado recortado** (`filter: drop-shadow(0 8px 10px rgba(20, 20, 19, 0.18))`): el rotulado «CECE ME LLAMAN» del centro de la portada.
 - **Doble filete de muestra** (`box-shadow: inset 0 0 0 3px card, inset 0 0 0 4.5px ink`): filete interior impreso de la muestra de servicios; es un filete, no una elevación.
 
 ### Named Rules
@@ -239,7 +230,7 @@ Imagen en cartoncillo con canto negro (2px en el sobre, 3px en el mazo), relleno
 Barra fija de 64px sobre el cartón: logo a la izquierda, selector de idioma y botón «Hablemos» a la derecha. Al hacer scroll aparece un filete inferior negro de 2px y, donde hay `animation-timeline`, una línea turquesa de 3px que se llena de izquierda a derecha con el progreso de la página. No hay navegación por secciones.
 
 ### Portada del álbum
-Sin bordes ni fondo: el contenido flota sobre el cartón de la página, rodeado por un marco de motivos de 48px (36px en móvil) que recorre los cuatro lados en sentido horario desde la esquina superior izquierda, con los motivos de pie y apilados en los laterales y uno en diagonal (±45°, alineado con la diagonal de su esquina) en cada esquina. Contiene el logo CECE montado sobre el nombre, el display maestro en dos tintas, el claim y el rol en mono.
+Sin bordes ni fondo: el contenido flota sobre el cartón de la página, rodeado por un marco de motivos de 48px (36px en móvil) que recorre los cuatro lados en sentido horario desde la esquina superior izquierda, con los motivos de pie y apilados en los laterales y uno en diagonal (±45°, alineado con la diagonal de su esquina) en cada esquina. Contiene «Colección» en mono, el rotulado de grafiti de burbujas «CECE ME LLAMAN» de Cecilia (turquesa, morado y rosa; el mismo en los dos idiomas, con texto alternativo traducido), «Cecilia Pelayo» y el rol en mono. El rotulado ocupa el alto que ocupaban antes el logo y el nombre (`clamp(165px, min(18.5vw, 29.5svh), 300px)` de ancho), conserva la sombra suave y la inclinación 3D al pasar el ratón. Debajo, «Cecilia Pelayo» en Bodoni redonda es el título principal de la página (h1).
 
 ### Cenefa
 Tira de motivos sueltos sobre el cartón de la página, sin filetes, sin fondo y sin separadores. Alto de referencia de los motivos 80px (56px en móvil); la tira mide 1.25 veces ese alto y no recorta, así que los inclinados pueden asomar. Secuencia fija de once motivos (la lista vive en `main.js`), repetida en bucle y empezando siempre por el primero. Solo entran motivos enteros, con 8px de aire mínimo entre las cajas que ocupan ya inclinados; el hueco sobrante se reparte entre ellos para llegar de borde a borde. Cada motivo tiene escala (80–100%), desplazamiento vertical e inclinación fijos: estrellas −12°, anillos +10°, cóctel −14°, labios +8° y cubiertos −10°; el resto, rectos. Las mismas reglas valen para el marco de la portada.

@@ -8,10 +8,10 @@ const I18N = {
   es: {
     skip: 'Saltar a los proyectos',
     cta: 'Hablemos',
-    claim: 'Dibujo yo. Y lo convierto en producto.',
     role: 'Diseñadora gráfica e ilustradora',
     look: 'Ver',
     album: 'Colección',
+    nameAlt: 'Cece me llaman',
     'pk.tear': 'Abrir por aquí',
 
     'd.ilustracion': 'Ilustración',
@@ -153,10 +153,10 @@ const I18N = {
   en: {
     skip: 'Skip to the projects',
     cta: "Let's talk",
-    claim: 'I draw it. Then I turn it into product.',
     role: 'Graphic designer and illustrator',
     look: 'View',
     album: 'Collection',
+    nameAlt: 'They call me Cece',
     'pk.tear': 'Tear here',
 
     'd.ilustracion': 'Illustration',

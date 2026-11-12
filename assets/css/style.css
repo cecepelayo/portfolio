@@ -36,8 +36,6 @@
 .ink-packaging   { --field: var(--green); }
 .ink-identidad   { --field: var(--yellow); }
 .ink-3d          { --field: var(--pink); }
-/* Bermellón oscurecido para texto sobre cartoncillo (contraste AA) */
-.ink-red { color: #C63A20; }
 
 /* ── Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -234,27 +232,19 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   text-transform: uppercase;
 }
 .master-logo {
-  width: clamp(150px, min(15vw, 24svh), 240px);
+  /* Rotulado «CECE ME LLAMAN»: ocupa el alto que ocupaban el logo y el nombre juntos */
+  width: clamp(165px, min(18.5vw, 29.5svh), 300px);
   height: auto;
-  margin-bottom: clamp(-2.6rem, -2.4vw, -1.4rem);
   position: relative;
   z-index: 2;
   filter: drop-shadow(0 8px 10px rgba(20, 20, 19, 0.18));
   transition: transform 0.4s var(--ease-out);
   will-change: transform;
 }
-.master-name {
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(3rem, min(6.2vw, 9.5svh), 6rem);
-  line-height: 0.88;
-  letter-spacing: -0.03em;
-}
-.master-name span { display: block; }
 .master-claim {
   margin-top: clamp(1rem, 1.8vw, 1.6rem);
   font-family: var(--display);
+  font-weight: 400; /* es el h1: sin la negrita del navegador */
   font-size: clamp(1.15rem, 1.7vw, 1.6rem);
   line-height: 1.25;
   max-width: 22ch;
