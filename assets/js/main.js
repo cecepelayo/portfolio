@@ -4,6 +4,7 @@
 const root = document.documentElement;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+const narrowScreen = window.matchMedia('(max-width: 720px)');
 
 // Activa las animaciones de entrada solo si hay JS y el usuario no pide movimiento reducido
 if (!reduceMotion.matches) root.classList.add('motion');
@@ -103,7 +104,9 @@ const OPEN = {
   expand: 480,    // ms: vuelo del abanico al mazo
   stagger: 45,    // ms: escalonado entre cromos
   spread: 49,     // grados de apertura del abanico
+  spreadNarrow: 30, // grados de apertura en móvil, donde los sobres llegan al borde
   rise: 66,       // % de la altura del cromo que sale del sobre
+  margin: 12,     // px: distancia mínima del abanico a los bordes de la pantalla
   count: 5        // cromos en el abanico (y guardados en el sobre)
 };
 const DECK_MS = 390;     // ms: pasar un cromo; coincide con la transición de .deck .cromo
@@ -161,8 +164,44 @@ function packCromos(pack) {
   return Array.from(pack.querySelectorAll('.pack-cromos .cromo')).reverse();
 }
 // En el abanico el de delante queda a la derecha y encima, como en la mano
-function fanAngle(k, count) {
-  return count < 2 ? 0 : OPEN.spread / 2 - k * (OPEN.spread / (count - 1));
+function fanAngle(k, count, spread) {
+  return count < 2 ? 0 : spread / 2 - k * (spread / (count - 1));
+}
+
+// Abanico que cabe en la pantalla. En móvil parte de una apertura menor; si aun así se sale por
+// los lados, se cierra lo justo, y si se saldría por arriba, los cromos suben menos.
+// Cada cromo gira sobre el centro de su base y después sube (translateY(-rise%) rotate(θ))
+function fitFan(pack, count) {
+  const box = pack.querySelector('.pack-cromos').getBoundingClientRect();
+  const w = box.width;
+  const h = box.height;
+  const ox = box.left + w / 2;
+  const oy = box.bottom;
+  const vw = document.documentElement.clientWidth;
+  const corners = [[-w / 2, 0], [w / 2, 0], [-w / 2, -h], [w / 2, -h]];
+  // Contorno del abanico respecto al centro de la base, antes de subir
+  const extent = spread => {
+    let minX = Infinity, maxX = -Infinity, minY = Infinity;
+    for (let k = 0; k < count; k++) {
+      const a = fanAngle(k, count, spread) * Math.PI / 180;
+      const cos = Math.cos(a), sin = Math.sin(a);
+      for (const [x, y] of corners) {
+        const px = x * cos - y * sin;
+        minX = Math.min(minX, px);
+        maxX = Math.max(maxX, px);
+        minY = Math.min(minY, x * sin + y * cos);
+      }
+    }
+    return { minX, maxX, minY };
+  };
+  const fits = e => ox + e.minX >= OPEN.margin && ox + e.maxX <= vw - OPEN.margin;
+
+  let spread = narrowScreen.matches ? OPEN.spreadNarrow : OPEN.spread;
+  while (spread > 0 && !fits(extent(spread))) spread = Math.max(0, spread - 1);
+  // Lo que pueden subir los cromos sin salir por arriba, en % de su altura
+  const room = oy + extent(spread).minY - OPEN.margin;
+  const rise = h > 0 ? Math.max(0, Math.min(OPEN.rise, room / h * 100)) : OPEN.rise;
+  return { spread, rise };
 }
 
 async function openPack(pack) {
@@ -176,6 +215,7 @@ async function openPack(pack) {
   const strip = pack.querySelector('.pack-strip');
   const cromos = packCromos(pack);
   const count = cromos.length;
+  const fan = fitFan(pack, count);
 
   try {
     // 1 · Rasgado: la tira se dobla sobre su extremo derecho y sale despedida
@@ -191,7 +231,7 @@ async function openPack(pack) {
       const start = getComputedStyle(cromo).transform;
       return finished(cromo.animate([
         { transform: start === 'none' ? 'translateY(0) rotate(0deg)' : start },
-        { transform: `translateY(-${OPEN.rise}%) rotate(${fanAngle(k, count)}deg)` }
+        { transform: `translateY(-${fan.rise}%) rotate(${fanAngle(k, count, fan.spread)}deg)` }
       ], {
         duration: OPEN.fan,
         delay: (count - 1 - k) * OPEN.stagger,
@@ -202,7 +242,7 @@ async function openPack(pack) {
     await wait(OPEN.hold);
 
     // 3 · Expansión: se abre la galería y los cromos vuelan hasta el mazo
-    await openDrawer(pack, cromos);
+    await openDrawer(pack, cromos, fan);
   } catch (e) {
     console.error('No se pudo abrir el sobre:', e);
     if (!drawer.open) resetPack(pack);
@@ -211,7 +251,7 @@ async function openPack(pack) {
   }
 }
 
-async function openDrawer(pack, flying) {
+async function openDrawer(pack, flying, fan) {
   const images = imagesOf(pack);
   current = { pack, key: pack.dataset.project, images };
   index = 0;
@@ -224,12 +264,12 @@ async function openDrawer(pack, flying) {
   drawer.scrollTop = 0;
   // El abanico se mide con el scroll ya bloqueado: ocultar la barra de desplazamiento mueve la página
   const base = flying ? pack.querySelector('.pack-cromos').getBoundingClientRect() : null;
-  if (flying && flying.length) await flyToDeck(flying, base, myRun);
+  if (flying && flying.length) await flyToDeck(flying, base, myRun, fan);
 }
 
 // Copias de los cromos que animan su caja (no su escala) para pasar de recortados en el abanico
 // a enteros en el mazo sin deformar la imagen
-async function flyToDeck(cromos, base, myRun) {
+async function flyToDeck(cromos, base, myRun, fan) {
   const count = cromos.length;
   deck.classList.add('is-landing');
   await Promise.all(cromos.map((c, k) => loadAspect(k)));
@@ -243,7 +283,7 @@ async function flyToDeck(cromos, base, myRun) {
     const from = {
       left: base.left + 'px', top: base.top + 'px', width: base.width + 'px', height: base.height + 'px',
       padding: '6px 6px 0px', borderWidth: '2px',
-      transform: `translateY(-${OPEN.rise}%) rotate(${fanAngle(k, count)}deg)`
+      transform: `translateY(-${fan.rise}%) rotate(${fanAngle(k, count, fan.spread)}deg)`
     };
     // La copia nace ya colocada en el abanico: si no, durante su retraso se pintaría sin tamaño
     // y la imagen saldría a tamaño real, a pantalla completa
