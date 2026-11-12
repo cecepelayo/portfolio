@@ -218,7 +218,7 @@ Rotulados e impresos, con borde negro.
 - **Shape:** esquinas rectas (0px), borde de 2px en tinta negra, altura mínima 44px.
 - **Acción:** fondo turquesa, texto en tinta negra, Bricolage 700 condensada (wdth 85), relleno 0.55rem 1.15rem.
 - **Hover / Focus:** sube 2px con el lift de acción (0.25s, `ease-out`); en `:active` vuelve a 0 sin sombra. Foco global: contorno de 3px en tinta negra con 3px de separación (también sobre la banda turquesa de contacto).
-- **Icono (galería, cerrar):** cuadrado de 44px en cartoncillo con borde de 2px e icono SVG de trazo 1.8; hover a turquesa; deshabilitado a opacidad 0.3.
+- **Icono (galería, cerrar):** cuadrado de 44px en cartoncillo con borde de 2px e icono SVG de trazo 1.8; hover a turquesa (solo con `@media (hover: hover)`) y `:active` a turquesa mientras se pulsa, para dar respuesta en táctil; deshabilitado a opacidad 0.3. En móvil (≤720px) el de cerrar se ve de 32px y conserva 44px de zona táctil.
 
 ### Chips (selector de idioma)
 - **Style:** grupo ES/EN con un borde negro común de 2px, botones de 44×44px en DM Mono.
@@ -247,7 +247,7 @@ Cartoncillo con borde de 3px, relleno de 8px, banda ornamental con el adorno en 
 Banda de 48px en cartoncillo entre filetes de 2px arriba y abajo, con el adorno repetido en horizontal a 30px de alto. El adorno (`--ornament`) es **provisional**.
 
 ### Sobre abierto (galería)
-Diálogo de hasta 1240px con borde de 3px que aparece solo con opacidad (0.34s). A la izquierda, sobre el fondo de galería, el mazo de cromos en la mano: cada cromo toma la proporción de su imagen para mostrarla entera; al pasar, el de delante sale hacia la izquierda (`translate(-118%, 3%) rotate(-7deg)`, 390ms) y vuelve al fondo del mazo, en ciclo. Debajo, anterior, contador «1 / N» y siguiente; sin miniaturas. A la derecha, texto y ficha, cerrado por una base en la tinta de la disciplina con número de serie en mono. Fondo de página al 72% de tinta negra.
+Diálogo de hasta 1240px con borde de 3px que aparece solo con opacidad (0.34s). A la izquierda, sobre el fondo de galería, el mazo de cromos en la mano: cada cromo toma la proporción de su imagen para mostrarla entera; al pasar, el de delante sale hacia la izquierda (`translate(-118%, 3%) rotate(-7deg)`, 390ms) y vuelve al fondo del mazo, en ciclo. Debajo, anterior, contador «1 / N» y siguiente; sin miniaturas. A la derecha, texto y ficha, cerrado por una base en la tinta de la disciplina con número de serie en mono. Fondo de página al 72% de tinta negra. En tablet y móvil (≤1100px) la galería ocupa toda la pantalla y el botón cerrar flota fijo arriba a la derecha; sobre el mazo queda una franja libre de su altura más 8px de aire (64px en tablet, 52px en móvil) y el escenario crece lo mismo, para que ningún cromo pase bajo el botón sin perder tamaño.
 
 ### Contacto (banda turquesa)
 Banda turquesa a sangre, de borde a borde de la pantalla, con borde superior de 3px en tinta negra y, al margen del tablero, el filete interior de 1.5px de los sobres con relleno de 14px; sin tira. Cabecera en mono mayúsculas («Contacto» a la izquierda; a la derecha, el hueco numerado «Nº 07» con borde discontinuo de 1.5px y proporción 5/7, y «Madrid») separada por un filete de 1.5px que llega al filete interior. Al hacer scroll, el último cromo de la colección, el de Cecilia (logo CECE en cartoncillo con borde de 2px), entra girando y se pega en el hueco; después se traza el filete. Titular «¿Hablamos?» en la rotulación de los sobres (Bricolage 800, wdth 75, mayúsculas), email en grotesca 800 condensada, botón de copiar en cartoncillo con borde negro e iconos sociales SVG de trazo. El colofón («Colección completa: 6 sobres · 2 fuera de serie») va bajo el filete, en mono sobre el turquesa: la página termina en la banda, y el fondo del body es turquesa para que Safari de iPhone la continúe bajo su barra.
@@ -270,6 +270,6 @@ Banda turquesa a sangre, de borde a borde de la pantalla, con borde superior de 
 - **Don't** pintar el bloque de contacto con una tinta de disciplina ni introducir marrones o maderas en la paleta.
 - **Don't** redondear esquinas de contenedores ni dejar elementos girados en reposo fuera de 0/90°.
 - **Don't** destacar un sobre con sombra, brillo, degradado o elevación; se destaca levantando la tira y apagando a los demás.
-- **Don't** aplicar los estados de hover del sobre fuera de `@media (hover: hover)`: en táctil se quedarían pegados.
+- **Don't** aplicar los estados de hover del sobre ni de los botones de icono fuera de `@media (hover: hover)`: en táctil se quedarían pegados; la respuesta al toque es `:active`.
 - **Don't** poner titulares de Bodoni Moda en redonda ni en un peso distinto de 600.
 - **Don't** tratar el adorno SVG actual como motivo definitivo de la marca.
