@@ -35,7 +35,7 @@ PRODUCT.md, DESIGN.md     Contexto de producto y sistema de diseño (Impeccable)
 
 - **Textos:** en `assets/js/i18n.js`. Cada clave existe en `es` y en `en`.
 - **Añadir un proyecto:** duplicar un `<button class="box">` en `index.html` con su `data-project` e imágenes, añadir su ficha en `projects` de ambos idiomas en `assets/js/i18n.js` y colocarlo en la rejilla de `.board` en `assets/css/style.css`.
-- **Cenefas:** las cenefas y el marco de la portada se construyen en `assets/js/main.js` a partir de la lista `MOTIFS` (secuencia fija). Para añadir un motivo: guarda el original con fondo transparente en `source-images/motifs/` con prefijo de orden (`12-nombre.png`), genera su WebP con el script de abajo y añade una línea a `MOTIFS` con su ancho y alto (y, si quieres, escala, inclinación y desplazamiento).
+- **Cenefas:** las cenefas y el marco de la portada se construyen en `assets/js/main.js` a partir de la lista `MOTIFS` (secuencia fija). Para añadir un motivo: guarda el original con fondo transparente en `source-images/motifs/` con prefijo de orden (`12-nombre.png`), genera su WebP con el script de abajo y añade una línea a `MOTIFS` con su ancho y alto (y, si quieres, escala, inclinación y desplazamiento). La velocidad y la separación de las cenefas en carrusel se ajustan en `CAROUSEL_SPEED` y `CAROUSEL_GAP`, en el mismo fichero; si cambias `CAROUSEL_GAP`, cambia también el `gap` de `.band--moving .motif-run` en `assets/css/style.css`, o el bucle dará un salto en cada vuelta.
 
 ## Imágenes
 

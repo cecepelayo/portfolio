@@ -576,7 +576,9 @@ const MOTIFS = [
   ['11-cutlery',    115, 160, { scale: 0.9,  tilt: -10 }],
 ];
 const MOTIF_DIR = 'assets/img/motifs/';
-const MOTIF_GAP = 8; // px: aire mínimo entre motivos
+const MOTIF_GAP = 8;        // px: aire mínimo entre motivos en las tiras quietas
+const CAROUSEL_GAP = 24;   // px: separación fija en las cenefas que se mueven
+const CAROUSEL_SPEED = 30; // px por segundo
 // Esquinas del marco: cada motivo se alinea con la diagonal que pasa por su esquina
 const CORNER_TILT = { 'corner-tl': -45, 'corner-tr': 45, 'corner-br': -45, 'corner-bl': 45 };
 
@@ -615,9 +617,34 @@ function motifImg([name, w, h], { width, height, tilt = 0, shiftX = 0, shiftY = 
   return img;
 }
 
-// Llena una tira con los motivos enteros que caben en `length`, desde la posición `start`
-// de la secuencia. Cada motivo reserva la caja que ocupa ya inclinado, para que no se pisen.
-// Devuelve cuántos ha puesto.
+// Medidas de un motivo en una tira: su caja y la que ocupa ya inclinado.
+// En horizontal todos parten del mismo alto; en vertical cada uno cabe en un cuadrado.
+function measureMotif(motif, size, vertical) {
+  const [, w, h, { scale = 1, tilt = 0 }] = motif;
+  const base = vertical ? size * scale / Math.max(w, h) : size * scale / h;
+  const box = { w: w * base, h: h * base };
+  return { motif, box, turned: rotatedBox(box.w, box.h, tilt) };
+}
+
+// Imagen de un motivo cuyo hueco en la tira (margen incluido) es su caja inclinada,
+// para que los inclinados no se pisen con los vecinos
+function placeMotif({ motif, box, turned }, size, vertical, eager) {
+  const [, , , { tilt = 0, shift = 0 }] = motif;
+  const img = motifImg(motif, {
+    width: box.w,
+    height: box.h,
+    tilt,
+    shiftX: vertical ? shift * size : 0,
+    shiftY: vertical ? 0 : shift * size,
+    eager,
+  });
+  if (vertical) img.style.marginBlock = `${(turned.h - box.h) / 2}px`;
+  else img.style.marginInline = `${(turned.w - box.w) / 2}px`;
+  return img;
+}
+
+// Llena una tira quieta con los motivos enteros que caben en `length`, desde la posición
+// `start` de la secuencia; el hueco sobrante lo reparte el CSS. Devuelve cuántos ha puesto.
 function fillRun(run, length, { start = 0, vertical = false, eager = false } = {}) {
   const size = motifSize(run);
   if (!(length > 0) || !(size > 0)) return 0; // tira oculta, sin sitio o sin medida
@@ -625,47 +652,52 @@ function fillRun(run, length, { start = 0, vertical = false, eager = false } = {
   const fit = [];
   let used = 0;
   while (fit.length < MOTIFS.length * 20) {
-    const motif = MOTIFS[(start + fit.length) % MOTIFS.length];
-    const [, w, h, { scale = 1, tilt = 0 }] = motif;
-    // En horizontal todos parten del mismo alto; en vertical cada uno cabe en un cuadrado
-    const base = vertical ? size * scale / Math.max(w, h) : size * scale / h;
-    const box = { w: w * base, h: h * base };
-    const turned = rotatedBox(box.w, box.h, tilt);
-    const cost = (vertical ? turned.h : turned.w) + (fit.length ? MOTIF_GAP : 0);
+    const m = measureMotif(MOTIFS[(start + fit.length) % MOTIFS.length], size, vertical);
+    const cost = (vertical ? m.turned.h : m.turned.w) + (fit.length ? MOTIF_GAP : 0);
     if (used + cost > length) break;
     used += cost;
-    fit.push({ motif, box, turned });
+    fit.push(m);
   }
-
-  const frag = document.createDocumentFragment();
-  fit.forEach(({ motif, box, turned }) => {
-    const [, , , { tilt = 0, shift = 0 }] = motif;
-    const img = motifImg(motif, {
-      width: box.w,
-      height: box.h,
-      tilt,
-      shiftX: vertical ? shift * size : 0,
-      shiftY: vertical ? 0 : shift * size,
-      eager,
-    });
-    // El margen hace que el hueco de cada motivo sea su caja inclinada
-    if (vertical) img.style.marginBlock = `${(turned.h - box.h) / 2}px`;
-    else img.style.marginInline = `${(turned.w - box.w) / 2}px`;
-    frag.append(img);
-  });
-  run.replaceChildren(frag);
+  run.replaceChildren(...fit.map(m => placeMotif(m, size, vertical, eager)));
   return fit.length;
 }
 
-// Cenefas entre pasajes: una tira que empieza siempre por el primer motivo
+// Llena una tira en movimiento: la secuencia completa repetida hasta cubrir `length` más
+// una vuelta, para que al desplazarse una vuelta entera (--cycle) el bucle no tenga costura
+function fillTrack(run, length) {
+  const size = motifSize(run);
+  if (!(length > 0) || !(size > 0)) return;
+  const cycle = MOTIFS.map(motif => measureMotif(motif, size, false));
+  const cycleW = cycle.reduce((sum, m) => sum + m.turned.w + CAROUSEL_GAP, 0);
+  const copies = Math.ceil(length / cycleW) + 1;
+  const imgs = [];
+  for (let i = 0; i < copies; i++) cycle.forEach(m => imgs.push(placeMotif(m, size, false, true)));
+  run.replaceChildren(...imgs);
+  run.style.setProperty('--cycle', `${cycleW}px`);
+  run.style.animationDuration = `${cycleW / CAROUSEL_SPEED}s`;
+}
+
+// Cenefas entre pasajes. Con movimiento, carrusel en bucle: las impares van hacia la
+// izquierda y las pares hacia la derecha. Con movimiento reducido, quietas, y cada una
+// arranca en otro punto de la secuencia para que no se vean iguales.
 function layoutBand(band) {
+  const index = bands.indexOf(band);
   let run = band.querySelector('.motif-run');
   if (!run) {
     run = document.createElement('div');
     run.className = 'motif-run';
     band.append(run);
   }
-  fillRun(run, run.clientWidth);
+  const moving = !reduceMotion.matches;
+  band.classList.toggle('band--moving', moving);
+  band.classList.toggle('band--reverse', moving && index % 2 === 1);
+  if (moving) {
+    fillTrack(run, band.clientWidth);
+  } else {
+    run.style.removeProperty('--cycle');
+    run.style.animationDuration = '';
+    fillRun(run, run.clientWidth, { start: index * Math.ceil(MOTIFS.length / 2) });
+  }
 }
 
 // Esquina del marco: el siguiente motivo de la secuencia, en diagonal y encajado en el cuadrado
@@ -721,6 +753,8 @@ const motifObserver = new ResizeObserver(entries => {
 });
 bands.forEach(band => motifObserver.observe(band));
 if (masterFrame) motifObserver.observe(masterFrame);
+// Si cambia la preferencia de movimiento, las cenefas pasan de carrusel a quietas o al revés
+reduceMotion.addEventListener('change', () => bands.forEach(layoutBand));
 
 /* ══════════════════════════════════════════════════
    COPIAR EMAIL

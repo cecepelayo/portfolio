@@ -555,6 +555,29 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   min-width: 0;
 }
 .motif-run--v { flex-direction: column; }
+
+/* Cenefa en carrusel (main.js solo la activa sin movimiento reducido): de lado a lado
+   de la pantalla, separación fija y una vuelta completa de la secuencia por ciclo */
+.band--moving {
+  padding-inline: 0;
+  overflow-x: clip;
+}
+.band--moving .motif-run {
+  flex: none;
+  width: max-content;
+  justify-content: flex-start;
+  gap: 24px; /* = CAROUSEL_GAP en main.js */
+}
+@media (prefers-reduced-motion: no-preference) {
+  .band--moving .motif-run { animation: band-run linear infinite; }
+  .band--reverse .motif-run { animation-direction: reverse; }
+}
+@media (hover: hover) {
+  .band--moving:hover .motif-run { animation-play-state: paused; }
+}
+@keyframes band-run {
+  to { transform: translateX(calc(-1 * var(--cycle))); }
+}
 /* Tamaño, márgenes, inclinación y desplazamiento los fija main.js para cada motivo */
 .motif {
   display: block;
