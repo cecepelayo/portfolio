@@ -25,8 +25,9 @@
   --gap: clamp(10px, 1.1vw, 18px);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Adorno provisional de cenefa (dibujado): sustituir por los motivos de Cecilia */
-  --ornament: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='32' viewBox='0 0 64 32'%3E%3Cpath d='M16 5l9 11-9 11-9-11z' fill='%23E8553A'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23FFFDF9'/%3E%3Cg fill='%235BAA52'%3E%3Ccircle cx='48' cy='10.5' r='4.5'/%3E%3Ccircle cx='48' cy='21.5' r='4.5'/%3E%3Ccircle cx='42.5' cy='16' r='4.5'/%3E%3Ccircle cx='53.5' cy='16' r='4.5'/%3E%3C/g%3E%3Ccircle cx='48' cy='16' r='3' fill='%23F2B705'/%3E%3Ccircle cx='32' cy='16' r='2' fill='%237393E8'/%3E%3Ccircle cx='0' cy='16' r='2' fill='%237393E8'/%3E%3Ccircle cx='64' cy='16' r='2' fill='%237393E8'/%3E%3C/svg%3E");
+  /* Cenefas: motivos de Cecilia (lista en main.js) */
+  --band-motif: 80px;   /* alto de referencia de los motivos de la cenefa */
+  --frame-motif: 48px;  /* alto de referencia de los motivos del marco de la portada */
 }
 
 /* Una tinta por disciplina */
@@ -205,18 +206,16 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 
 /* ── Portada del álbum ── */
 .master {
-  background: var(--card);
-  border: 3px solid var(--ink);
-  padding: 8px;
   display: flex;
   min-height: 0;
 }
+/* Sin bordes ni fondo: el marco de motivos rodea el nombre sobre el cartón de la página */
 .master-band {
+  --frame: calc(var(--frame-motif) + 8px);
   flex: 1;
   display: flex;
-  padding: 22px;
-  border: 1.5px solid var(--ink);
-  background: var(--card) var(--ornament) repeat 0 -1px / 44px 22px;
+  position: relative;
+  padding: var(--frame);
 }
 .master-inner {
   flex: 1;
@@ -226,8 +225,6 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   justify-content: center;
   text-align: center;
   padding: clamp(16px, 2.5vw, 40px);
-  background: var(--card);
-  border: 1.5px solid var(--ink);
 }
 .master-kicker {
   margin-bottom: 0.75rem;
@@ -551,11 +548,57 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
    CENEFA
 ══════════════════════════════════════════════════ */
 .band {
-  height: 48px;
+  --motif-h: var(--band-motif);
+  display: flex;
+  height: calc(var(--band-motif) * 1.25);
   margin: clamp(40px, 6vw, 88px) 0;
-  border-block: 2px solid var(--ink);
-  background: var(--card) var(--ornament) repeat-x center / auto 30px;
+  padding-inline: var(--pad);
 }
+
+/* Tira de motivos: solo motivos enteros, el aire sobrante se reparte entre ellos.
+   Sin recorte: los motivos inclinados pueden asomar un poco por arriba y por abajo. */
+.motif-run {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+.motif-run--v { flex-direction: column; }
+/* Tamaño, márgenes, inclinación y desplazamiento los fija main.js para cada motivo */
+.motif {
+  display: block;
+  flex: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Marco de la portada: cuatro tiras en sentido horario y un motivo en diagonal en cada esquina */
+.master-frame {
+  --motif-h: var(--frame-motif);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.master-frame > * { position: absolute; }
+.master-frame .side-top,
+.master-frame .side-bottom { left: var(--frame); right: var(--frame); height: var(--frame); }
+.master-frame .side-top    { top: 0; }
+.master-frame .side-bottom { bottom: 0; flex-direction: row-reverse; }
+.master-frame .side-left,
+.master-frame .side-right  { top: var(--frame); bottom: var(--frame); width: var(--frame); align-items: center; }
+.master-frame .side-right  { right: 0; }
+.master-frame .side-left   { left: 0; flex-direction: column-reverse; }
+.master-frame .corner {
+  width: var(--frame);
+  height: var(--frame);
+  display: grid;
+  place-items: center;
+}
+.master-frame .corner-tl { top: 0; left: 0; }
+.master-frame .corner-tr { top: 0; right: 0; }
+.master-frame .corner-br { bottom: 0; right: 0; }
+.master-frame .corner-bl { bottom: 0; left: 0; }
 
 /* ══════════════════════════════════════════════════
    FUERA DE SERIE
@@ -1099,13 +1142,12 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 }
 
 @media (max-width: 720px) {
-  :root { --bar-h: 60px; }
+  :root { --bar-h: 60px; --band-motif: 56px; --frame-motif: 36px; }
   .bar-logo img { height: 32px; }
   .bar-actions { gap: 8px; }
 
   .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .master { min-height: 0; }
-  .master-band { padding: 10px; }
   .pack[data-project] { grid-column: span 1; }
   .pack[data-project="buna"],
   .pack[data-project="blacksheep"] { grid-column: 1 / -1; }

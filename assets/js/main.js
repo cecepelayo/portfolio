@@ -556,6 +556,173 @@ if (masterLogo && finePointer.matches && !reduceMotion.matches) {
 }
 
 /* ══════════════════════════════════════════════════
+   CENEFAS Y MARCO DE LA PORTADA — motivos de Cecilia
+   Secuencia fija. Para añadir un motivo: su WebP en assets/img/motifs/
+   (original en source-images/motifs/) y una línea aquí con su ancho, su alto y,
+   si se quiere, escala (0.8–1), inclinación en grados y desplazamiento
+   (fracción del alto, perpendicular a la tira).
+══════════════════════════════════════════════════ */
+const MOTIFS = [
+  ['01-stars',      285, 160, { scale: 0.9,  tilt: -12, shift: -0.06 }],
+  ['02-rings',      150, 160, { scale: 0.85, tilt: 10,  shift: 0.05 }],
+  ['03-eye',        249, 160, { scale: 0.8,  shift: -0.05 }],
+  ['04-cocktail',   139, 160, { scale: 0.95, tilt: -14 }],
+  ['05-table',      155, 160, { scale: 0.9,  shift: 0.04 }],
+  ['06-lips',       212, 160, { scale: 0.8,  tilt: 8,   shift: -0.04 }],
+  ['07-cake',       137, 160, {}],
+  ['08-me',          48, 160, {}],
+  ['09-disco-ball', 145, 160, { scale: 0.9,  shift: -0.05 }],
+  ['10-pink-eye',   243, 160, { scale: 0.8,  shift: 0.05 }],
+  ['11-cutlery',    115, 160, { scale: 0.9,  tilt: -10 }],
+];
+const MOTIF_DIR = 'assets/img/motifs/';
+const MOTIF_GAP = 8; // px: aire mínimo entre motivos
+// Esquinas del marco: cada motivo se alinea con la diagonal que pasa por su esquina
+const CORNER_TILT = { 'corner-tl': -45, 'corner-tr': 45, 'corner-br': -45, 'corner-bl': 45 };
+
+// Caja que ocupa un rectángulo w×h girado `deg` grados
+function rotatedBox(w, h, deg) {
+  const r = Math.abs(deg) * Math.PI / 180;
+  return { w: w * Math.cos(r) + h * Math.sin(r), h: w * Math.sin(r) + h * Math.cos(r) };
+}
+
+// Alto de referencia de los motivos de una tira (--motif-h), medido con una pieza de prueba
+function motifSize(el) {
+  const probe = document.createElement('span');
+  probe.style.cssText = 'display:block;flex:none;width:1px;height:var(--motif-h)';
+  el.replaceChildren(probe);
+  const size = probe.offsetHeight;
+  probe.remove();
+  if (!(size > 0)) console.error('Cenefa: no se puede medir el alto de los motivos', el);
+  return size;
+}
+
+function motifImg([name, w, h], { width, height, tilt = 0, shiftX = 0, shiftY = 0, eager }) {
+  const img = document.createElement('img');
+  img.className = 'motif';
+  img.src = `${MOTIF_DIR}${name}.webp`;
+  img.alt = '';
+  img.width = w;
+  img.height = h;
+  img.style.width = `${width}px`;
+  img.style.height = `${height}px`;
+  if (tilt || shiftX || shiftY) {
+    img.style.transform = `translate(${shiftX}px, ${shiftY}px) rotate(${tilt}deg)`;
+  }
+  img.decoding = 'async';
+  img.draggable = false;
+  if (!eager) img.loading = 'lazy';
+  return img;
+}
+
+// Llena una tira con los motivos enteros que caben en `length`, desde la posición `start`
+// de la secuencia. Cada motivo reserva la caja que ocupa ya inclinado, para que no se pisen.
+// Devuelve cuántos ha puesto.
+function fillRun(run, length, { start = 0, vertical = false, eager = false } = {}) {
+  const size = motifSize(run);
+  if (!(length > 0) || !(size > 0)) return 0; // tira oculta, sin sitio o sin medida
+
+  const fit = [];
+  let used = 0;
+  while (fit.length < MOTIFS.length * 20) {
+    const motif = MOTIFS[(start + fit.length) % MOTIFS.length];
+    const [, w, h, { scale = 1, tilt = 0 }] = motif;
+    // En horizontal todos parten del mismo alto; en vertical cada uno cabe en un cuadrado
+    const base = vertical ? size * scale / Math.max(w, h) : size * scale / h;
+    const box = { w: w * base, h: h * base };
+    const turned = rotatedBox(box.w, box.h, tilt);
+    const cost = (vertical ? turned.h : turned.w) + (fit.length ? MOTIF_GAP : 0);
+    if (used + cost > length) break;
+    used += cost;
+    fit.push({ motif, box, turned });
+  }
+
+  const frag = document.createDocumentFragment();
+  fit.forEach(({ motif, box, turned }) => {
+    const [, , , { tilt = 0, shift = 0 }] = motif;
+    const img = motifImg(motif, {
+      width: box.w,
+      height: box.h,
+      tilt,
+      shiftX: vertical ? shift * size : 0,
+      shiftY: vertical ? 0 : shift * size,
+      eager,
+    });
+    // El margen hace que el hueco de cada motivo sea su caja inclinada
+    if (vertical) img.style.marginBlock = `${(turned.h - box.h) / 2}px`;
+    else img.style.marginInline = `${(turned.w - box.w) / 2}px`;
+    frag.append(img);
+  });
+  run.replaceChildren(frag);
+  return fit.length;
+}
+
+// Cenefas entre pasajes: una tira que empieza siempre por el primer motivo
+function layoutBand(band) {
+  let run = band.querySelector('.motif-run');
+  if (!run) {
+    run = document.createElement('div');
+    run.className = 'motif-run';
+    band.append(run);
+  }
+  fillRun(run, run.clientWidth);
+}
+
+// Esquina del marco: el siguiente motivo de la secuencia, en diagonal y encajado en el cuadrado
+function fillCorner(corner, motif) {
+  const size = motifSize(corner);
+  const room = corner.clientWidth;
+  if (!(size > 0) || !(room > 0)) return;
+  const [, w, h, { scale = 1 }] = motif;
+  const tilt = CORNER_TILT[Array.from(corner.classList).find(c => c in CORNER_TILT)] || 0;
+  let base = size * scale / h;
+  const turned = rotatedBox(w * base, h * base, tilt);
+  base *= Math.min(1, room / Math.max(turned.w, turned.h));
+  corner.replaceChildren(motifImg(motif, { width: w * base, height: h * base, tilt, eager: true }));
+}
+
+// Marco de la portada: en sentido horario desde la esquina superior izquierda,
+// la secuencia sigue de una pieza a la siguiente, esquinas incluidas
+const FRAME_PARTS = ['corner-tl', 'side-top', 'corner-tr', 'side-right', 'corner-br', 'side-bottom', 'corner-bl', 'side-left'];
+
+function layoutFrame(frame) {
+  if (!frame.childElementCount) {
+    FRAME_PARTS.forEach(part => {
+      const el = document.createElement('div');
+      el.className = part.startsWith('side')
+        ? `motif-run ${part}${/left|right/.test(part) ? ' motif-run--v' : ''}`
+        : `corner ${part}`;
+      frame.append(el);
+    });
+  }
+  let next = 0;
+  Array.from(frame.children).forEach(el => {
+    if (el.classList.contains('corner')) {
+      fillCorner(el, MOTIFS[next++ % MOTIFS.length]);
+      return;
+    }
+    const vertical = el.classList.contains('motif-run--v');
+    next += fillRun(el, vertical ? el.clientHeight : el.clientWidth, { start: next, vertical, eager: true });
+  });
+}
+
+const bands = Array.from(document.querySelectorAll('.band'));
+const masterFrame = document.querySelector('.master-frame');
+const motifSizes = new WeakMap(); // último tamaño maquetado, para no rehacer si no cambia
+
+const motifObserver = new ResizeObserver(entries => {
+  entries.forEach(({ target, contentRect }) => {
+    const key = `${Math.round(contentRect.width)}x${Math.round(contentRect.height)}`;
+    if (motifSizes.get(target) === key) return;
+    motifSizes.set(target, key);
+    if (target === masterFrame) layoutFrame(target);
+    else layoutBand(target);
+  });
+});
+bands.forEach(band => motifObserver.observe(band));
+if (masterFrame) motifObserver.observe(masterFrame);
+
+/* ══════════════════════════════════════════════════
    COPIAR EMAIL
 ══════════════════════════════════════════════════ */
 const copyBtn = document.getElementById('copy-mail');

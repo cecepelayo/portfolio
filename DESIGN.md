@@ -100,13 +100,11 @@ components:
     rounded: "{rounded.none}"
     padding: "6px 6px 0"
   album-cover:
-    backgroundColor: "{colors.card}"
     textColor: "{colors.ink}"
     rounded: "{rounded.none}"
-    padding: "8px"
+    padding: "56px"
   ornament-band:
-    backgroundColor: "{colors.card}"
-    height: "48px"
+    height: "100px"
   contact-band:
     backgroundColor: "{colors.turq}"
     textColor: "{colors.ink}"
@@ -127,16 +125,16 @@ components:
 
 El sitio es un álbum de cromos: el nombre de Cecilia es la portada del álbum, en el centro del tablero, y cada proyecto es un sobre de cromos cerrado y numerado de la colección. Fondo claro de cartón, papel impreso en tintas planas y vivas sobre negro de imprenta, filetes gruesos, numeración en mono. La impresión manda: nada brilla, nada flota, no hay degradados ni sombras en los sobres; todo está impreso y enmarcado.
 
-La densidad es alta en la primera pantalla (el tablero de sobres ocupa el viewport y deja asomar la tercera fila) y se relaja después en pasajes separados por cenefas ornamentales. La composición en reposo es ortogonal (0/90°); el movimiento imita el objeto físico: la tira de rasgado se levanta, asoma el primer cromo y los demás sobres pierden tinta cuando uno tiene el foco; al abrir, la tira se rasga, los cromos salen en abanico y vuelan a la mano (el mazo de la galería). Lo que gira en tránsito se asienta siempre a 0°. La colección se va llenando: la línea de progreso turquesa de la barra avanza con el scroll y el último cromo, el de Cecilia, se pega en su hueco en el cierre de contacto.
+La densidad es alta en la primera pantalla (el tablero de sobres ocupa el viewport y deja asomar la tercera fila) y se relaja después en pasajes separados por cenefas ornamentales. La composición en reposo es ortogonal (0/90°), salvo algunos motivos de las cenefas; el movimiento imita el objeto físico: la tira de rasgado se levanta, asoma el primer cromo y los demás sobres pierden tinta cuando uno tiene el foco; al abrir, la tira se rasga, los cromos salen en abanico y vuelan a la mano (el mazo de la galería). Lo que gira en tránsito se asienta siempre a 0°. La colección se va llenando: la línea de progreso turquesa de la barra avanza con el scroll y el último cromo, el de Cecilia, se pega en su hueco en el cierre de contacto.
 
-Decisiones fijadas por la propietaria: fondo claro, display en serif italiana de alto contraste (Bodoni Moda) y cenefas ornamentales. El adorno actual de las cenefas es **provisional**: un SVG dibujado a la espera de los recortes PNG de los motivos de Cecilia.
+Decisiones fijadas por la propietaria: fondo claro, display en serif italiana de alto contraste (Bodoni Moda) y cenefas hechas con sus propias ilustraciones: once motivos recortados (estrellas, anillos, ojo, cóctel, mesa, labios, tarta, autorretrato, bola de discoteca, ojo rosa y cubiertos) que se mezclan sueltos, sin bordes ni fondo, y algunos inclinados.
 
 **Key Characteristics:**
 - Álbum de cromos: sobres numerados (Nº 0X) de papel plano en la tinta de su disciplina, con soldaduras dentadas, filete negro exterior de 3px y filete interior de 1.5px.
 - Una tinta plana por disciplina; turquesa del logo reservado a las acciones, a la línea de progreso de la colección y a su destino, la banda de contacto.
 - Display en Bodoni Moda italic; rotulación en grotesca condensada; numeración en DM Mono.
 - Esquinas rectas, composición en reposo a 0/90°, profundidad por capas físicas (tira, cromos dentro del sobre, mazo), no por sombras.
-- Cenefas ornamentales entre pasajes (adorno provisional).
+- Cenefas de motivos ilustrados por Cecilia entre pasajes y alrededor del nombre en la portada, sin bordes ni fondo.
 
 ## Colors
 
@@ -146,7 +144,7 @@ Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi pur
 - **Turquesa del logo** (turq): el color de lo que se pulsa y de la colección que se completa. Botón «Hablemos», enlace de salto, cursor «Ver» sobre los sobres, hover de los botones de la galería, la selección de texto y la línea de progreso de 3px bajo la barra, que se llena con el scroll. Es también el fondo de la banda de contacto, el destino de «Hablemos».
 
 ### Secondary (tintas de disciplina)
-- **Bermellón** (red): Ilustración. Papel del sobre, base de la galería y adorno.
+- **Bermellón** (red): Ilustración. Papel del sobre y base de la galería.
 - **Bermellón de texto** (red-text): versión oscurecida del bermellón solo para texto sobre cartoncillo («Cecilia» en la portada del álbum), para alcanzar contraste AA.
 - **Azul aciano** (blue): Editorial.
 - **Verde hoja** (green): Packaging.
@@ -155,7 +153,7 @@ Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi pur
 
 ### Neutral
 - **Cartón del expositor** (board): fondo de página y de la barra.
-- **Cartoncillo** (card): canto de los cromos, portada del álbum, marcos de imagen, cenefas, diálogo, botón de copiar sobre la banda de contacto.
+- **Cartoncillo** (card): canto de los cromos, marcos de imagen, diálogo, botón de copiar sobre la banda de contacto.
 - **Tinta negra** (ink): texto, filetes y bordes, capa exterior del sobre, estado activo del selector de idioma, contorno de foco. Al 20% traza las estrías de las soldaduras del sobre.
 - **Tinta suave** (ink-soft): texto secundario (rol, descripciones, herramientas, términos de ficha).
 - **Fondo de galería** (gallery-well): pozo gris cálido bajo el mazo de cromos y fondo de la imagen dentro de cada cromo.
@@ -209,7 +207,7 @@ Sistema plano. La profundidad es física, no atmosférica: la tira de rasgado es
 
 ## Shapes
 
-Esquinas rectas en todo el sistema (0px). La forma se construye con filetes: capa exterior negra de 3px y filete interior de 1.5px en sobres y portada; 2px en controles, marcos de imagen, canto de los cromos del sobre y separadores (3px en los cromos del mazo). El sobre tiene la única silueta no rectangular: soldaduras con dientes en zigzag arriba y abajo (7px de alto, 12px de paso), recortadas con `mask` de `conic-gradient`, con estrías verticales del sellado (1px cada 4px) y una línea troquelada discontinua (6px trazo, 4px hueco) bajo la tira. La única forma redonda es el cursor «Ver» (disco de 76px); los círculos y rombos del adorno pertenecen al motivo, no a los contenedores. En reposo nada está girado: composición a 0/90°; los giros solo existen en tránsito (tira, abanico, vuelo, entradas) y terminan a 0°.
+Esquinas rectas en todo el sistema (0px). La forma se construye con filetes: capa exterior negra de 3px y filete interior de 1.5px en sobres; 2px en controles, marcos de imagen, canto de los cromos del sobre y separadores (3px en los cromos del mazo). El sobre tiene la única silueta no rectangular: soldaduras con dientes en zigzag arriba y abajo (7px de alto, 12px de paso), recortadas con `mask` de `conic-gradient`, con estrías verticales del sellado (1px cada 4px) y una línea troquelada discontinua (6px trazo, 4px hueco) bajo la tira. La única forma redonda es el cursor «Ver» (disco de 76px); las formas de los motivos de las cenefas pertenecen a sus dibujos, no a los contenedores. En reposo nada está girado: composición a 0/90°; los giros solo existen en tránsito (tira, abanico, vuelo, entradas) y terminan a 0°. **Excepción:** los motivos de las cenefas, que son ilustraciones sueltas y no contenedores, pueden ir inclinados en reposo con un ángulo fijo por motivo (entre 8° y 15°) y a 45° en las esquinas del marco de la portada.
 
 ## Components
 
@@ -241,10 +239,10 @@ Imagen en cartoncillo con canto negro (2px en el sobre, 3px en el mazo), relleno
 Barra fija de 64px sobre el cartón: logo a la izquierda, selector de idioma y botón «Hablemos» a la derecha. Al hacer scroll aparece un filete inferior negro de 2px y, donde hay `animation-timeline`, una línea turquesa de 3px que se llena de izquierda a derecha con el progreso de la página. No hay navegación por secciones.
 
 ### Portada del álbum
-Cartoncillo con borde de 3px, relleno de 8px, banda ornamental con el adorno en mosaico y panel interior con filete de 1.5px. Contiene el logo CECE montado sobre el nombre, el display maestro en dos tintas, el claim y el rol en mono.
+Sin bordes ni fondo: el contenido flota sobre el cartón de la página, rodeado por un marco de motivos de 48px (36px en móvil) que recorre los cuatro lados en sentido horario desde la esquina superior izquierda, con los motivos de pie y apilados en los laterales y uno en diagonal (±45°, alineado con la diagonal de su esquina) en cada esquina. Contiene el logo CECE montado sobre el nombre, el display maestro en dos tintas, el claim y el rol en mono.
 
 ### Cenefa
-Banda de 48px en cartoncillo entre filetes de 2px arriba y abajo, con el adorno repetido en horizontal a 30px de alto. El adorno (`--ornament`) es **provisional**.
+Tira de motivos sueltos sobre el cartón de la página, sin filetes, sin fondo y sin separadores. Alto de referencia de los motivos 80px (56px en móvil); la tira mide 1.25 veces ese alto y no recorta, así que los inclinados pueden asomar. Secuencia fija de once motivos (la lista vive en `main.js`), repetida en bucle y empezando siempre por el primero. Solo entran motivos enteros, con 8px de aire mínimo entre las cajas que ocupan ya inclinados; el hueco sobrante se reparte entre ellos para llegar de borde a borde. Cada motivo tiene escala (80–100%), desplazamiento vertical e inclinación fijos: estrellas −12°, anillos +10°, cóctel −14°, labios +8° y cubiertos −10°; el resto, rectos. Las mismas reglas valen para el marco de la portada.
 
 ### Sobre abierto (galería)
 Diálogo de hasta 1240px con borde de 3px que aparece solo con opacidad (0.34s). A la izquierda, sobre el fondo de galería, el mazo de cromos en la mano: cada cromo toma la proporción de su imagen para mostrarla entera; al pasar, el de delante sale hacia la izquierda (`translate(-118%, 3%) rotate(-7deg)`, 390ms) y vuelve al fondo del mazo, en ciclo. Debajo, anterior, contador «1 / N» y siguiente; sin miniaturas. A la derecha, texto y ficha, cerrado por una base en la tinta de la disciplina con número de serie en mono. Fondo de página al 72% de tinta negra. En tablet y móvil (≤1100px) la galería ocupa toda la pantalla y el botón cerrar flota fijo arriba a la derecha; sobre el mazo queda una franja libre de su altura más 8px de aire (64px en tablet, 52px en móvil) y el escenario crece lo mismo, para que ningún cromo pase bajo el botón sin perder tamaño.
@@ -261,7 +259,7 @@ Banda turquesa a sangre, de borde a borde de la pantalla, con borde superior de 
 - **Do** enmarcar sobres y portada con 3px en tinta negra y filete interior de 1.5px, con esquinas rectas.
 - **Do** numerar en DM Mono mayúsculas con cifras tabulares (Nº 0X, s/n, 1 / N).
 - **Do** mostrar las imágenes de la galería enteras: el cromo toma la proporción de su imagen.
-- **Do** separar pasajes con cenefas ornamentales, sustituyendo el adorno provisional por los recortes de Cecilia cuando lleguen.
+- **Do** separar pasajes con cenefas de motivos de Cecilia en su color original, recortados de sus propias ilustraciones.
 - **Do** etiquetar el contexto de cada proyecto con honestidad (académico, concurso, propuesta no encargada) en la cara del sobre.
 - **Do** dejar que los giros vivan solo en tránsito (tira, abanico, vuelo, entradas) y asentar todo a 0°.
 
@@ -272,4 +270,4 @@ Banda turquesa a sangre, de borde a borde de la pantalla, con borde superior de 
 - **Don't** destacar un sobre con sombra, brillo, degradado o elevación; se destaca levantando la tira y apagando a los demás.
 - **Don't** aplicar los estados de hover del sobre ni de los botones de icono fuera de `@media (hover: hover)`: en táctil se quedarían pegados; la respuesta al toque es `:active`.
 - **Don't** poner titulares de Bodoni Moda en redonda ni en un peso distinto de 600.
-- **Don't** tratar el adorno SVG actual como motivo definitivo de la marca.
+- **Don't** poner filetes, fondos ni separadores (puntos, rombos) en las cenefas ni en el marco de la portada: los motivos van sueltos.
