@@ -855,7 +855,12 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   border: 2px solid var(--ink);
   cursor: pointer;
 }
-.nav-btn:hover:not(:disabled), .close-btn:hover { background: var(--turq); }
+/* El hover solo con ratón: en táctil se queda pegado al último toque y el botón parece pisado.
+   En táctil, :active da la respuesta mientras el dedo está apoyado. */
+@media (hover: hover) {
+  .nav-btn:hover:not(:disabled), .close-btn:hover { background: var(--turq); }
+}
+.nav-btn:active:not(:disabled), .close-btn:active { background: var(--turq); }
 .nav-btn:disabled { opacity: 0.3; cursor: default; }
 .nav-btn svg, .close-btn svg {
   width: 16px;
