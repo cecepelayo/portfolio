@@ -50,12 +50,13 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 html.is-locked { overflow: hidden; }
+/* Fondo del lienzo, el que pinta el navegador al estirar la página (rebote) y bajo la barra de
+   Safari de iPhone: cartón en la mitad superior, como la barra, y turquesa en la inferior, como la
+   banda de contacto. El script marca .past-half al pasar la mitad; sin script se queda en cartón */
+html { background: var(--board); }
+html.past-half { background: var(--turq); }
 
 body {
-  /* El fondo del body es el turquesa de contacto y el cartón lo pone main: Safari de iPhone pinta
-     con el fondo del body la franja que queda bajo su barra al final de la página, y así continúa
-     la banda de contacto en lugar de verse crema */
-  background: var(--turq);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1rem;

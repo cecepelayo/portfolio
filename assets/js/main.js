@@ -80,7 +80,13 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
    CABECERA — línea inferior al hacer scroll
 ══════════════════════════════════════════════════ */
 const bar = document.getElementById('bar');
-const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 8);
+const onScroll = () => {
+  bar.classList.toggle('scrolled', window.scrollY > 8);
+  // Fondo del lienzo: cartón en la mitad superior y turquesa en la inferior, para que el rebote
+  // de arriba continúe la barra y el de abajo, la banda de contacto
+  const half = (root.scrollHeight - window.innerHeight) / 2;
+  root.classList.toggle('past-half', window.scrollY > half);
+};
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
