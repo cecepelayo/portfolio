@@ -472,8 +472,12 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   transition: transform 0.36s var(--ease-out);
 }
 /* El sobre que se abre nunca baja de tinta, aunque el puntero pase a otro sobre durante la apertura,
-   y queda por encima de la barra fija (100) para que la tira y el abanico no se corten bajo ella */
-.pack.is-opening { z-index: 101; filter: none !important; }
+   y queda por encima de la barra fija (100) para que la tira y el abanico no se corten bajo ella.
+   Con ratón el sobre sigue en hover al pulsarlo: el selector con :hover/:focus-visible gana al
+   z-index 3 del hover, que va después */
+.pack.is-opening,
+.pack.is-opening:hover,
+.pack.is-opening:focus-visible { z-index: 101; filter: none !important; }
 .pack.is-opening .pack-strip,
 .pack.is-opening .cromo { transition: none; }
 
