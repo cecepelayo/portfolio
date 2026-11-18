@@ -260,7 +260,8 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .master-role .place::before { content: '· '; }
 
 /* ── Sobre de cromos ── */
-.pack {
+.pack,
+.about-pack {
   --strip-h: 34px;
   --tooth: 7px;
   --tooth-w: 12px;
@@ -612,6 +613,69 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .master-frame .corner-tr { top: 0; right: 0; }
 .master-frame .corner-br { bottom: 0; right: 0; }
 .master-frame .corner-bl { bottom: 0; left: 0; }
+
+/* ══════════════════════════════════════════════════
+   SOBRE MÍ
+   Retrato de la autora en un sobre de la serie sobre un degradado a sangre: franjas de bermellón y rosa
+   rebajados hacia el cartón que aparecen desde él bajo la cenefa y se funden con él justo
+   antes de «Fuera de serie».
+   Va en espejo de «Fuera de serie» (imagen a la izquierda) porque las dos secciones van seguidas.
+   Excepción a DESIGN.md propia de esta sección: el degradado.
+══════════════════════════════════════════════════ */
+/* El degradado arranca en cartón 24px bajo la cenefa, sin corte visible */
+.band:has(+ .about) { margin-bottom: 24px; }
+.about {
+  --about-top: color-mix(in srgb, var(--red) 42%, var(--board));
+  --about-mid: color-mix(in srgb, var(--pink) 60%, var(--board));
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+  align-items: center;
+  /* El degradado empieza y termina en cartón: los rellenos dejan aire para las dos transiciones */
+  padding: clamp(64px, 8vw, 120px) var(--pad) clamp(72px, 10vw, 150px);
+  background: linear-gradient(to bottom, var(--board), var(--about-top) 22%, var(--about-mid) 55%, var(--board));
+  /* Las pegatinas del sobre asoman por sus lados: que no ensanchen la página */
+  overflow-x: clip;
+}
+/* Sobre de la autora: reutiliza tira, cuerpo, cara y marco de los sobres de proyectos (la base
+   la comparte con .pack), pero no es un botón: sin hover, sin cursor «Ver» y no se abre */
+.about-pack {
+  --field: #378787; /* verde azulado de la sudadera de la ilustración: no es tinta de disciplina */
+  grid-column: 1 / 6;
+  justify-self: center;
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 4;
+  cursor: auto;
+}
+/* El marco llena el sobre en todos los tamaños (en tablet los sobres lo fijan a 4/3) y deja
+   aire sobre el moño; si el marco es más apaisado que la ilustración, se recorta por abajo */
+.about-pack .pack-frame {
+  flex: 1;
+  aspect-ratio: auto;
+  padding-top: 5%;
+}
+.about-pack .pack-frame img { object-position: 50% 0%; }
+
+/* Pegatinas: dos motivos de las cenefas que montan las esquinas del sobre, con su inclinación
+   de la cenefa. La inclinación va en «rotate» para no chocar con la transformación de la entrada */
+.sticker {
+  position: absolute;
+  z-index: 4;
+  width: auto;
+  max-width: none;
+  height: var(--h);
+  rotate: var(--tilt, 0deg);
+  pointer-events: none;
+}
+.sticker--stars    { --h: 110px; --tilt: -12deg; top: -84px; right: -96px; }
+.sticker--cocktail { --h: 120px; --tilt: -14deg; bottom: -28px; left: -46px; }
+.about-text { grid-column: 7 / 13; }
+.about-text p {
+  margin-top: 1.25rem;
+  max-width: 52ch;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+}
 
 /* ══════════════════════════════════════════════════
    FUERA DE SERIE
@@ -1025,6 +1089,20 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
     }
     .piece--wide { --tilt: 3deg; animation-range: entry 10% entry 90%; }
 
+    /* Sobre mí: el sobre de la autora se posa igual que las láminas */
+    .about-pack {
+      animation: lay-down linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+    /* Las pegatinas se estampan como las muestras de Servicios; cada una según su altura en la
+       pantalla, así que entran escalonadas de arriba abajo */
+    .sticker {
+      animation: stamp linear both;
+      animation-timeline: view();
+      animation-range: cover 15% cover 35%;
+    }
+
     /* Servicios: la muestra de color se estampa y el texto entra detrás, fila a fila.
        Se mide sobre la fila entera para que todo vaya acompasado, y ocurre en el tercio
        inferior de la pantalla: con «entry» la muestra (40 px) se estampaba al asomar por el borde */
@@ -1133,6 +1211,9 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   .pack-stack > .pack-frame { height: auto; aspect-ratio: 6 / 5; }
   .pack-minis .pack-frame { aspect-ratio: 4 / 3; height: auto; }
 
+  /* Pegatina del cóctel de «Sobre mí»: el sobre llega al margen y no puede asomar tanto */
+  .sticker--cocktail { left: -14px; }
+
   .offseries-text { grid-column: 1 / -1; }
   .piece { grid-column: 1 / 6; }
   .piece--wide { grid-column: 6 / 13; }
@@ -1173,6 +1254,17 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   /* El filete estrecha el contenido: sin relleno lateral extra y email algo menor para que quepa en una línea */
   .contact-inner { padding-inline: 0; }
   .mail-link { font-size: 1.2rem; }
+
+  /* Sobre mí en una columna: el retrato arriba, centrado y a 260px como mucho */
+  .band:has(+ .about) { margin-bottom: 16px; }
+  .about { grid-template-columns: 1fr; gap: 1.5rem; }
+  .about-pack { grid-column: 1; width: min(72%, 260px); --strip-h: 30px; }
+  /* Este sobre es más ancho que los del expositor en móvil: la cabecera cabe en una línea */
+  .about-pack .pack-head { flex-direction: row; }
+  /* Las dos pegatinas del sobre, a la escala del sobre de móvil */
+  .sticker--stars    { --h: 70px; top: -58px; right: -44px; }
+  .sticker--cocktail { --h: 76px; bottom: -4px; left: -28px; }
+  .about-text { grid-column: 1; }
 
   .offseries { grid-template-columns: 1fr; }
   .offseries-text, .piece, .piece--wide { grid-column: 1; }
