@@ -14,6 +14,7 @@
   --green:   #5BAA52;   /* verde hoja · packaging */
   --yellow:  #F2B705;   /* amarillo · identidad */
   --pink:    #F2A3BC;   /* rosa · 3D */
+  --lilac:   #A98BE0;   /* lila · diseño web */
   --turq:    #5ECFC5;   /* turquesa del logo: acciones, progreso de la barra y banda de contacto */
 
   --display: 'Bodoni Moda', 'Didot', serif;
@@ -36,6 +37,7 @@
 .ink-packaging   { --field: var(--green); }
 .ink-identidad   { --field: var(--yellow); }
 .ink-3d          { --field: var(--pink); }
+.ink-web         { --field: var(--lilac); }
 
 /* ── Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }

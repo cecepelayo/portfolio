@@ -19,6 +19,7 @@ const I18N = {
     'd.packaging': 'Packaging',
     'd.identidad': 'Identidad',
     'd.3d': '3D',
+    'd.web': 'Diseño web',
 
     'p.cata.short': 'Cata la Lata 2026',
     'p.cata.ctx': 'Concurso · 8ª edición',
@@ -68,6 +69,8 @@ const I18N = {
     'svc.identidad.p': 'Marcas con carácter: logotipo, sistema gráfico y sus aplicaciones.',
     'svc.3d.t': '3D y dirección de arte',
     'svc.3d.p': 'Renders de producto en Cinema 4D para enseñar un envase antes de fabricarlo.',
+    'svc.web.t': 'Diseño web',
+    'svc.web.p': 'Webs responsive pensadas para cada pantalla, del ordenador al móvil, con la misma identidad que el resto de piezas.',
     'svc.tools': 'Trabajo con',
 
     'ct.head': 'Contacto',
@@ -229,6 +232,7 @@ const I18N = {
     'd.packaging': 'Packaging',
     'd.identidad': 'Identity',
     'd.3d': '3D',
+    'd.web': 'Web design',
 
     'p.cata.short': 'Cata la Lata 2026',
     'p.cata.ctx': 'Competition · 8th edition',
@@ -278,6 +282,8 @@ const I18N = {
     'svc.identidad.p': 'Brands with character: logo, graphic system and its applications.',
     'svc.3d.t': '3D and art direction',
     'svc.3d.p': 'Product renders in Cinema 4D to show a pack before it is manufactured.',
+    'svc.web.t': 'Web design',
+    'svc.web.p': 'Responsive websites designed for every screen, from desktop to mobile, with the same identity as every other piece.',
     'svc.tools': 'I work with',
 
     'ct.head': 'Contact',
