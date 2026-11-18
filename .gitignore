@@ -80,3 +80,7 @@ tmbootpicker.efi
 
 # Originales demasiado pesados para el historial: la web usa su versión comprimida en assets/img/
 source-images/axon/video.mp4
+# Museo: solo se suben los originales que usa la web (portada y 1-9); el resto y los PSD se quedan en local
+source-images/museo-artes-decorativas/*
+!source-images/museo-artes-decorativas/cover.png
+!source-images/museo-artes-decorativas/[1-9].png

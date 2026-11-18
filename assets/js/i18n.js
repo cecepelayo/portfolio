@@ -43,6 +43,8 @@ const I18N = {
     'p.fireball.ctx': 'Académico · no encargo',
     'p.olatuak.short': 'Olatuak',
     'p.olatuak.ctx': 'Encargo · TFM',
+    'p.museo.short': 'MNAD',
+    'p.museo.ctx': 'Académico · UDIT',
 
     'about.title': 'Sobre mí',
     'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora, me he formado en UDIT y trabajo desde Madrid.',
@@ -79,7 +81,7 @@ const I18N = {
     'ct.copy': 'Copiar email',
     'ct.copied': 'Email copiado',
     'ct.copyFail': 'No se pudo copiar; selecciona el email a mano',
-    'ct.colophon': 'Colección completa: 10 sobres · 2 fuera de serie',
+    'ct.colophon': 'Colección completa: 11 sobres · 2 fuera de serie',
 
     'g.prev': 'Imagen anterior',
     'g.next': 'Imagen siguiente',
@@ -214,6 +216,18 @@ const I18N = {
         role: 'Logotipo, cartelería, merch y web',
         tools: 'Illustrator, Photoshop',
         context: 'Encargo para un TFM (festival ficticio)'
+      },
+      museo: {
+        title: 'MNAD — Rediseño web',
+        disc: 'Diseño web',
+        desc: [
+          'Rediseño académico de la web del Museo Nacional de Artes Decorativas para modernizarla y hacerla más accesible: exposiciones, catálogo, visitas, actividades y compra de entradas.',
+          'Primero diseñé la interfaz en Figma y después la llevé a código con HTML, CSS y algo de JavaScript, adaptada a ordenador, tableta y móvil.'
+        ],
+        year: '2025',
+        role: 'Diseño UI/UX',
+        tools: 'Figma, Photoshop, HTML, CSS, JavaScript',
+        context: 'Proyecto académico · UDIT (rediseño no encargado por el museo)'
       }
     }
   },
@@ -256,6 +270,8 @@ const I18N = {
     'p.fireball.ctx': 'Academic · not commissioned',
     'p.olatuak.short': 'Olatuak',
     'p.olatuak.ctx': 'Commission · MA thesis',
+    'p.museo.short': 'MNAD',
+    'p.museo.ctx': 'Academic · UDIT',
 
     'about.title': 'About me',
     'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator, trained at UDIT and based in Madrid.',
@@ -292,7 +308,7 @@ const I18N = {
     'ct.copy': 'Copy email',
     'ct.copied': 'Email copied',
     'ct.copyFail': 'Could not copy; please select the email by hand',
-    'ct.colophon': 'Full collection: 10 packs · 2 off the series',
+    'ct.colophon': 'Full collection: 11 packs · 2 off the series',
 
     'g.prev': 'Previous image',
     'g.next': 'Next image',
@@ -427,6 +443,18 @@ const I18N = {
         role: 'Logo, posters, merch and web',
         tools: 'Illustrator, Photoshop',
         context: 'Commissioned for a master’s thesis (fictional festival)'
+      },
+      museo: {
+        title: 'MNAD — Website redesign',
+        disc: 'Web design',
+        desc: [
+          'An academic redesign of the Museo Nacional de Artes Decorativas website to modernise it and make it more accessible: exhibitions, catalogue, visits, activities and ticket booking.',
+          'I first designed the interface in Figma and then built it with HTML, CSS and a little JavaScript, adapted to desktop, tablet and mobile.'
+        ],
+        year: '2025',
+        role: 'UI/UX design',
+        tools: 'Figma, Photoshop, HTML, CSS, JavaScript',
+        context: 'Academic project · UDIT (redesign not commissioned by the museum)'
       }
     }
   }
