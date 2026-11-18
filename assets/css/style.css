@@ -753,7 +753,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .svc-list { list-style: none; border-bottom: 2px solid var(--ink); }
 .svc {
   display: grid;
-  grid-template-columns: 56px minmax(0, 1.1fr) minmax(0, 2fr) 9.5rem;
+  grid-template-columns: 56px minmax(0, 1.1fr) minmax(0, 2fr) 11rem;
   align-items: center;
   gap: clamp(12px, 2vw, 32px);
   padding: 1.25rem 0;
@@ -774,7 +774,8 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   line-height: 1.05;
 }
 .svc p { max-width: 52ch; color: var(--ink-soft); }
-.svc-refs { white-space: nowrap; text-align: right; }
+/* Los Nº crecen con la colección: si no caben en una línea, pasan a dos en vez de desbordar */
+.svc-refs { text-align: right; text-wrap: balance; }
 
 .tools {
   margin-top: 1.75rem;
