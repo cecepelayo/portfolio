@@ -57,6 +57,7 @@ Projects (images in `source-images/<project>/`):
 8. Bear: craft beer naming, identity and packaging; three varieties (Cantábrica Lager, Kodiak IPA, Tibetana Porter). Academic, 2026.
 9. Fireball: academic redesign of the real cinnamon whisky liqueur as "conscious luxury" (eco-friendly premium packaging, Gen Z campaign: label, box, shop window, billboard, social). Academic, UDIT, 2025; not commissioned by the brand.
 10. Olatuak: identity for a fictional women-artists music festival in San Sebastián (2027): logo, posters, merch and website. Commissioned for someone else's master's thesis (TFM); Cecilia did the design. 2026.
+11. MNAD: academic UI/UX redesign of the Museo Nacional de Artes Decorativas website (Figma, then HTML/CSS/JS), responsive for desktop, tablet and mobile. Academic, UDIT, 2025; not commissioned by the museum. First project in the new "Diseño web" discipline (lilac ink).
 
 Personal pieces: `source-images/personal/jazz.png`, `source-images/personal/feelit.png`.
 
