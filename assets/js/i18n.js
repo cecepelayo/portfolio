@@ -21,6 +21,7 @@ const I18N = {
     'd.3d': '3D',
     'd.web': 'Diseño web',
     'd.motion': 'Motion',
+    'd.foto': 'Fotografía',
 
     'p.cata.short': 'Cata la Lata 2026',
     'p.cata.ctx': 'Concurso · 8ª edición',
@@ -48,6 +49,8 @@ const I18N = {
     'p.museo.ctx': 'Académico · UDIT',
     'p.lyric.short': 'What’s My Name?',
     'p.lyric.ctx': 'Académico · UDIT',
+    'p.viaje.short': 'Un viaje de ida y vuelta',
+    'p.viaje.ctx': 'Proyecto personal',
 
     'about.title': 'Sobre mí',
     'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora, me estoy formando en UDIT y trabajo desde Madrid.',
@@ -78,6 +81,8 @@ const I18N = {
     'svc.web.p': 'Webs responsive pensadas para cada pantalla, del ordenador al móvil, con la misma identidad que el resto de piezas.',
     'svc.motion.t': 'Motion',
     'svc.motion.p': 'Animación de tipografía e ilustración para vídeo y redes, con el mismo carácter gráfico que el resto de piezas.',
+    'svc.foto.t': 'Fotografía',
+    'svc.foto.p': 'Series fotográficas con mirada documental, de la calle al paisaje, editadas para contar una historia.',
     'svc.tools': 'Trabajo con',
 
     'ct.head': 'Contacto',
@@ -86,7 +91,7 @@ const I18N = {
     'ct.copy': 'Copiar email',
     'ct.copied': 'Email copiado',
     'ct.copyFail': 'No se pudo copiar; selecciona el email a mano',
-    'ct.colophon': 'Colección completa: 12 sobres · 2 fuera de serie',
+    'ct.colophon': 'Colección completa: 13 sobres · 2 fuera de serie',
 
     'g.prev': 'Imagen anterior',
     'g.next': 'Imagen siguiente',
@@ -245,6 +250,18 @@ const I18N = {
         role: 'Animación tipográfica y dirección de arte',
         tools: 'After Effects, Premiere Pro',
         context: 'Proyecto académico · UDIT. Canción: «What’s My Name?», de Rihanna'
+      },
+      viaje: {
+        title: 'Un viaje de ida y vuelta',
+        disc: 'Fotografía',
+        desc: [
+          'Serie fotográfica sobre volver a casa: de la gran ciudad, con sus calles llenas de gente y de ruido, a la calma del hogar, la naturaleza y las raíces.',
+          'Doce imágenes que arrancan en las aceras y los escaparates de la ciudad y acaban entre la niebla, los prados y los animales del campo, hasta cerrar con un retrato en blanco y negro.'
+        ],
+        year: '2024',
+        role: 'Fotografía y edición',
+        tools: 'Canon EOS 750D, Photoshop',
+        context: 'Proyecto personal'
       }
     }
   },
@@ -265,6 +282,7 @@ const I18N = {
     'd.3d': '3D',
     'd.web': 'Web design',
     'd.motion': 'Motion',
+    'd.foto': 'Photography',
 
     'p.cata.short': 'Cata la Lata 2026',
     'p.cata.ctx': 'Competition · 8th edition',
@@ -292,6 +310,8 @@ const I18N = {
     'p.museo.ctx': 'Academic · UDIT',
     'p.lyric.short': 'What’s My Name?',
     'p.lyric.ctx': 'Academic · UDIT',
+    'p.viaje.short': 'A round trip',
+    'p.viaje.ctx': 'Personal project',
 
     'about.title': 'About me',
     'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator, studying at UDIT and based in Madrid.',
@@ -322,6 +342,8 @@ const I18N = {
     'svc.web.p': 'Responsive websites designed for every screen, from desktop to mobile, with the same identity as every other piece.',
     'svc.motion.t': 'Motion',
     'svc.motion.p': 'Type and illustration animation for video and social media, with the same graphic character as every other piece.',
+    'svc.foto.t': 'Photography',
+    'svc.foto.p': 'Photo series with a documentary eye, from street to landscape, edited to tell a story.',
     'svc.tools': 'I work with',
 
     'ct.head': 'Contact',
@@ -330,7 +352,7 @@ const I18N = {
     'ct.copy': 'Copy email',
     'ct.copied': 'Email copied',
     'ct.copyFail': 'Could not copy; please select the email by hand',
-    'ct.colophon': 'Full collection: 12 packs · 2 off the series',
+    'ct.colophon': 'Full collection: 13 packs · 2 off the series',
 
     'g.prev': 'Previous image',
     'g.next': 'Next image',
@@ -489,6 +511,18 @@ const I18N = {
         role: 'Type animation and art direction',
         tools: 'After Effects, Premiere Pro',
         context: 'Academic project · UDIT. Song: “What’s My Name?” by Rihanna'
+      },
+      viaje: {
+        title: 'A round trip',
+        disc: 'Photography',
+        desc: [
+          'A photo series about coming home: from the big city, its streets full of people and noise, to the calm of home, nature and one’s roots.',
+          'Twelve images that start on city pavements and shop windows and end among the fog, meadows and animals of the countryside, closing on a black-and-white portrait.'
+        ],
+        year: '2024',
+        role: 'Photography and editing',
+        tools: 'Canon EOS 750D, Photoshop',
+        context: 'Personal project'
       }
     }
   }

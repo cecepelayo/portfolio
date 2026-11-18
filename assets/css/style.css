@@ -16,6 +16,7 @@
   --pink:    #F2A3BC;   /* rosa · 3D */
   --lilac:   #A98BE0;   /* lila · diseño web */
   --tangerine: #F59A3B; /* naranja mandarina · motion */
+  --silver:  #A9B0B5;   /* gris plata · fotografía */
   --turq:    #5ECFC5;   /* turquesa del logo: acciones, progreso de la barra y banda de contacto */
 
   --display: 'Bodoni Moda', 'Didot', serif;
@@ -40,6 +41,7 @@
 .ink-3d          { --field: var(--pink); }
 .ink-web         { --field: var(--lilac); }
 .ink-motion      { --field: var(--tangerine); }
+.ink-foto        { --field: var(--silver); }
 
 /* ── Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -213,6 +215,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .pack[data-project="olatuak"]   { grid-column: 1 / 5;   grid-row: 5; }
 .pack[data-project="museo"]     { grid-column: 5 / 9;   grid-row: 5; }
 .pack[data-project="lyric"]     { grid-column: 9 / 13;  grid-row: 5; }
+.pack[data-project="viaje"]     { grid-column: 1 / 5;   grid-row: 6; }
 
 /* ── Portada del álbum ── */
 .master {
@@ -1114,6 +1117,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .motion .pack[data-project="olatuak"]    { animation-delay: 0.72s; }
 .motion .pack[data-project="museo"]      { animation-delay: 0.78s; }
 .motion .pack[data-project="lyric"]      { animation-delay: 0.84s; }
+.motion .pack[data-project="viaje"]      { animation-delay: 0.9s; }
 .motion .drawer[open],
 .motion .drawer[open]::backdrop { animation: fade-in 0.34s ease-out; }
 

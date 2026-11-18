@@ -87,3 +87,8 @@ source-images/lyric-video/video.mp4
 source-images/museo-artes-decorativas/*
 !source-images/museo-artes-decorativas/cover.png
 !source-images/museo-artes-decorativas/[1-9].png
+# Un viaje de ida y vuelta: solo se suben la portada y las 12 fotos de la galería; el resto de la serie se queda en local
+source-images/un-viaje-de-ida-y-vuelta/*
+!source-images/un-viaje-de-ida-y-vuelta/cover.jpg
+!source-images/un-viaje-de-ida-y-vuelta/[1-9].jpg
+!source-images/un-viaje-de-ida-y-vuelta/1[0-2].jpg

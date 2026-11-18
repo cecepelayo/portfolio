@@ -59,6 +59,7 @@ Projects (images in `source-images/<project>/`):
 10. Olatuak: identity for a fictional women-artists music festival in San Sebastián (2027): logo, posters, merch and website. Commissioned for someone else's master's thesis (TFM); Cecilia did the design. 2026.
 11. MNAD: academic UI/UX redesign of the Museo Nacional de Artes Decorativas website (Figma, then HTML/CSS/JS), responsive for desktop, tablet and mobile. Academic, UDIT, 2025; not commissioned by the museum. First project in the new "Diseño web" discipline (lilac ink).
 12. What's My Name?: lyric video (~49 s) for Rihanna's song; kinetic type and art direction in After Effects and Premiere Pro. Academic, UDIT, 2026. The song is credited in the fact sheet. First project in the new "Motion" discipline (tangerine ink).
+13. Un viaje de ida y vuelta: personal photo series about coming home, from the big city to the calm of home, nature and one's roots; twelve images (city, coast, foggy village, animals) closing on a black-and-white portrait. Canon EOS 750D and Photoshop. Personal project, 2024. First project in the new "Fotografía" discipline (silver ink); the cover (the waves) only appears on the pack, not in the gallery.
 
 Personal pieces: `source-images/personal/jazz.png`, `source-images/personal/feelit.png`.
 
