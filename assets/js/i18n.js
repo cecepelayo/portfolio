@@ -75,6 +75,8 @@ const I18N = {
     'g.close': 'Cerrar',
     'g.imgError': 'Esta imagen no se ha podido cargar.',
     'g.open': 'Abrir proyecto',
+    'g.play': 'Reproducir vídeo',
+    'g.videoError': 'Este vídeo no se ha podido cargar.',
 
     'm.year': 'Año',
     'm.role': 'Rol',
@@ -227,6 +229,8 @@ const I18N = {
     'g.close': 'Close',
     'g.imgError': 'This image could not be loaded.',
     'g.open': 'Open project',
+    'g.play': 'Play video',
+    'g.videoError': 'This video could not be loaded.',
 
     'm.year': 'Year',
     'm.role': 'Role',

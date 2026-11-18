@@ -134,15 +134,61 @@ function imagesOf(pack) {
   return (pack.dataset.images || '').split('|').map(s => s.trim()).filter(Boolean);
 }
 
-function buildCromo(src, i, total) {
+// Cromo de vídeo: en data-images va el .mp4 y su cartel es el .webp del mismo nombre.
+// En el sobre, el abanico y el vuelo solo se ve el cartel; en el mazo lleva el botón de reproducir
+const VIDEO_RE = /\.(mp4|webm)$/i;
+const isVideo = src => VIDEO_RE.test(src);
+const posterOf = src => src.replace(VIDEO_RE, '.webp');
+
+function buildPlay(src, frame) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'nav-btn cromo-play';
+  btn.dataset.i18nAria = 'g.play';
+  btn.setAttribute('aria-label', t('g.play'));
+  btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5l7 4.5-7 4.5z"/></svg>';
+  btn.addEventListener('click', () => {
+    // El vídeo se crea al pulsar: hasta entonces no se descarga nada. El cartel se queda debajo
+    // para que el cromo conserve su proporción
+    const video = document.createElement('video');
+    video.src = src;
+    video.poster = posterOf(src);
+    video.controls = true;
+    video.playsInline = true;
+    // Si el vídeo falla, el cromo muestra un aviso, como con una imagen rota, en lugar de un vídeo negro
+    video.addEventListener('error', () => {
+      console.error('No se pudo cargar el vídeo:', src);
+      const msg = document.createElement('p');
+      msg.className = 'stage-error';
+      msg.textContent = t('g.videoError');
+      video.replaceWith(msg);
+    }, { once: true });
+    frame.appendChild(video);
+    btn.remove();
+    video.focus();
+    video.play().catch(err => console.error('No se pudo reproducir el vídeo:', err));
+  });
+  return btn;
+}
+
+// Ningún vídeo sigue sonando al pasar de cromo o al cerrar la galería
+function pauseVideos() {
+  deck.querySelectorAll('video').forEach(video => video.pause());
+}
+
+function buildCromo(src, i, total, playable = false) {
   const cromo = document.createElement('span');
   cromo.className = 'cromo';
   const frame = document.createElement('span');
   frame.className = 'cromo-img';
   const img = document.createElement('img');
-  img.src = src;
+  img.src = isVideo(src) ? posterOf(src) : src;
   img.alt = '';
   frame.appendChild(img);
+  if (isVideo(src)) {
+    cromo.classList.add('cromo--video');
+    if (playable) frame.appendChild(buildPlay(src, frame));
+  }
   const num = document.createElement('span');
   num.className = 'cromo-num';
   num.textContent = `${i + 1} / ${total}`;
@@ -332,6 +378,7 @@ function resetPack(pack) {
 // Restaura la página al cerrar. Es idempotente: se llama al cerrar con el botón o el fondo,
 // con Escape (cancel) y en el evento close, por si algún navegador no lo emite.
 function resetDrawerState() {
+  pauseVideos();
   root.classList.remove('is-locked');
   run++;
   flight.getAnimations({ subtree: true }).forEach(a => a.cancel());
@@ -396,7 +443,7 @@ function renderDeck() {
   const total = current.images.length;
   aspects = [];
   cards = current.images.map((src, i) => {
-    const { cromo, img } = buildCromo(src, i, total);
+    const { cromo, img } = buildCromo(src, i, total, true);
     // Si una imagen falla, el cromo muestra un aviso en lugar de un hueco vacío
     img.addEventListener('error', () => {
       console.error('No se pudo cargar la imagen:', img.src);
@@ -470,6 +517,11 @@ function renderDeckText() {
   cards.forEach((card, i) => {
     const front = i === index;
     card.setAttribute('aria-hidden', String(!front));
+    // Los controles de los cromos de detrás no reciben el foco con el tabulador
+    card.querySelectorAll('button, video').forEach(control => {
+      if (front) control.removeAttribute('tabindex');
+      else control.tabIndex = -1;
+    });
     const img = card.querySelector('img');
     if (img) img.alt = front ? `${project ? project.title : ''} — ${i + 1} / ${total}` : '';
   });
@@ -481,12 +533,14 @@ async function step(dir) {
   // Mientras los cromos aterrizan en el mazo no se pasa: su destino ya está calculado
   if (!current || n < 2 || stepping || deck.classList.contains('is-landing')) return;
   if (reduceMotion.matches) {
+    pauseVideos();
     index = (index + dir + n) % n;
     layoutDeck();
     renderDeckText();
     return;
   }
   stepping = true;
+  pauseVideos();
   const deckAtStart = cards;
   const moving = dir > 0 ? cards[index] : cards[(index - 1 + n) % n];
   moving.style.transform = DECK_OUT;
@@ -506,6 +560,8 @@ prevBtn.addEventListener('click', () => step(-1));
 nextBtn.addEventListener('click', () => step(1));
 
 drawer.addEventListener('keydown', e => {
+  // Con el foco en un vídeo, las flechas avanzan o retroceden el vídeo, no el mazo
+  if (e.target instanceof HTMLVideoElement) return;
   if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
   if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
 });
