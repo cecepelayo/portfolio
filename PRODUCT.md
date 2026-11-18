@@ -55,6 +55,7 @@ Projects (images in `source-images/<project>/`):
 6. Black Sheep Iced Coffee: 3D packaging in Cinema 4D. Speculative proposal, not a commission. 2026.
 7. Axon — Core Collection: 3D eyewear collection for a conceptual optics brand, with renders, campaign, magazine and an animated sequence (video). Academic, UDIT, 2026.
 8. Bear: craft beer naming, identity and packaging; three varieties (Cantábrica Lager, Kodiak IPA, Tibetana Porter). Academic, 2026.
+9. Fireball: academic redesign of the real cinnamon whisky liqueur as "conscious luxury" (eco-friendly premium packaging, Gen Z campaign: label, box, shop window, billboard, social). Academic, UDIT, 2025; not commissioned by the brand.
 
 Personal pieces: `source-images/personal/jazz.png`, `source-images/personal/feelit.png`.
 
