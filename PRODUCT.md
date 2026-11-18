@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Static HTML/CSS/JS, no build step and no dependencies (decided by the owner). Deployed on Vercel (https://portfolioweb-roan-two.vercel.app/). The old Tailwind CDN include is dropped.
+Static HTML/CSS/JS, no build step and no dependencies (decided by the owner). Deployed on Vercel (https://cecemellaman.vercel.app/). The old Tailwind CDN include is dropped.
 
 ## Users
 

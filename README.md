@@ -2,7 +2,7 @@
 
 Portfolio de una sola página de Cecilia Pelayo (CECE), diseñadora gráfica e ilustradora. Concepto: un expositor de coleccionista en el que cada proyecto es una caja de cerillas de una serie numerada.
 
-🌐 **[Ver la web](https://portfolioweb-roan-two.vercel.app/)**
+🌐 **[Ver la web](https://cecemellaman.vercel.app/)**
 
 ## Características
 
