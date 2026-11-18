@@ -13,6 +13,7 @@ colors:
   yellow: "#F2B705"
   pink: "#F2A3BC"
   lilac: "#A98BE0"
+  tangerine: "#F59A3B"
   gallery-well: "#EEEAE2"
 typography:
   display:
@@ -144,6 +145,7 @@ Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi pur
 - **Amarillo** (yellow): Identidad.
 - **Rosa** (pink): 3D.
 - **Lila** (lilac): Diseño web.
+- **Naranja mandarina** (tangerine): Motion.
 
 ### Neutral
 - **Cartón del expositor** (board): fondo de página y de la barra.
@@ -155,7 +157,7 @@ Tintas de imprenta planas y saturadas sobre un cartón claro, con negro casi pur
 ### Named Rules
 **The Turquoise-Is-Action Rule.** El turquesa del logo solo pinta lo que se pulsa o señala que se puede pulsar, la línea de progreso de la colección bajo la barra y la banda de contacto a la que lleva «Hablemos». Nunca es fondo de otra sección, tinta de disciplina ni decoración. Sobre la banda de contacto, las acciones pasan a cartoncillo con borde negro y la selección a tinta negra.
 
-**The One Ink Per Discipline Rule.** Cada disciplina tiene una única tinta (ilustración bermellón, editorial aciano, packaging verde hoja, identidad amarillo, 3D rosa, diseño web lila), aplicada mediante `--field` en el papel del sobre y su tira, la muestra de servicios y la base del sobre abierto. Dos proyectos de la misma disciplina comparten tinta.
+**The One Ink Per Discipline Rule.** Cada disciplina tiene una única tinta (ilustración bermellón, editorial aciano, packaging verde hoja, identidad amarillo, 3D rosa, diseño web lila, motion naranja mandarina), aplicada mediante `--field` en el papel del sobre y su tira, la muestra de servicios y la base del sobre abierto. Dos proyectos de la misma disciplina comparten tinta.
 
 **The Turquoise Close Rule.** El bloque de contacto es una banda turquesa a sangre con el filete interior de los sobres (sin tira ni soldaduras, porque no se abre), nunca una tinta de disciplina. En la web no hay marrones ni maderas: la paleta es la de las tintas, el cartón y el cartoncillo.
 
@@ -226,7 +228,7 @@ Rotulados e impresos, con borde negro.
 - **Apertura:** al pulsar, la tira se rasga (300ms), los cromos suben un 66% y se abren en abanico de 49° (30° en móvil) (550ms, escalonado 45ms), pausa de 230ms y sus copias vuelan al mazo de la galería (480ms). El sobre que se abre pasa por encima de la barra (también con el puntero encima) y el cursor «Ver» se oculta hasta que el puntero vuelve a entrar en un sobre; el abanico nunca se sale de la pantalla: queda a 12px de sus bordes, cerrándose lo justo si se saldría por los lados y subiendo menos si se saldría por arriba. Con movimiento reducido se abre la galería directamente.
 
 ### Cromo
-Imagen en cartoncillo con canto negro (2px en el sobre, 3px en el mazo), relleno 6px 6px 0 (10px en el mazo), filete de 1.5px alrededor de la imagen sobre el fondo de galería y número «1 / N» en mono debajo. **Cromo de vídeo:** muestra el fotograma de cartel con un botón de reproducir turquesa de 56px centrado; al pulsarlo, el vídeo con sus controles nativos y sonido cubre el cartel. Se pausa al pasar de cromo y al cerrar la galería. En el sobre, el abanico y el vuelo solo se ve el cartel.
+Imagen en cartoncillo con canto negro (2px en el sobre, 3px en el mazo), relleno 6px 6px 0 (10px en el mazo), filete de 1.5px alrededor de la imagen sobre el fondo de galería y número «1 / N» en mono debajo. **Cromo de vídeo:** muestra el fotograma de cartel con un botón de reproducir turquesa de 56px centrado; al pulsarlo, el vídeo con sus controles nativos y sonido cubre el cartel. Se pausa al pasar de cromo y al cerrar la galería. En el sobre, el abanico y el vuelo solo se ve el cartel. Si el proyecto es un vídeo (el lyric video), el cromo de vídeo va el primero y su cartel hace también de portada del sobre.
 
 ### Navigation
 Barra fija de 64px sobre el cartón: logo a la izquierda, selector de idioma y botón «Hablemos» a la derecha. Al hacer scroll aparece un filete inferior negro de 2px y, donde hay `animation-timeline`, una línea turquesa de 3px que se llena de izquierda a derecha con el progreso de la página. No hay navegación por secciones.
@@ -248,13 +250,13 @@ Pasaje entre la primera cenefa y «Fuera de serie», sin cenefa entre ambos. Fon
 Diálogo de hasta 1240px con borde de 3px que aparece solo con opacidad (0.34s). A la izquierda, sobre el fondo de galería, el mazo de cromos en la mano: cada cromo toma la proporción de su imagen para mostrarla entera; al pasar, el de delante sale hacia la izquierda (`translate(-118%, 3%) rotate(-7deg)`, 390ms) y vuelve al fondo del mazo, en ciclo. Debajo, anterior, contador «1 / N» y siguiente; sin miniaturas. A la derecha, texto y ficha, cerrado por una base en la tinta de la disciplina con número de serie en mono. Fondo de página al 72% de tinta negra. En tablet y móvil (≤1100px) la galería ocupa toda la pantalla y el botón cerrar flota fijo arriba a la derecha; sobre el mazo queda una franja libre de su altura más 8px de aire (64px en tablet, 52px en móvil) y el escenario crece lo mismo, para que ningún cromo pase bajo el botón sin perder tamaño.
 
 ### Contacto (banda turquesa)
-Banda turquesa a sangre, de borde a borde de la pantalla, con borde superior de 3px en tinta negra y, al margen del tablero, el filete interior de 1.5px de los sobres con relleno de 14px; sin tira. Cabecera en mono mayúsculas («Contacto» a la izquierda; a la derecha, el hueco numerado con el número siguiente al último sobre (ahora «Nº 12») con borde discontinuo de 1.5px y proporción 5/7, y «Madrid») separada por un filete de 1.5px que llega al filete interior. Al hacer scroll, el último cromo de la colección, el de Cecilia (logo CECE en cartoncillo con borde de 2px), entra girando y se pega en el hueco; después se traza el filete. Titular «¿Hablamos?» en la rotulación de los sobres (Bricolage 800, wdth 75, mayúsculas), email en grotesca 800 condensada, botón de copiar en cartoncillo con borde negro e iconos sociales SVG de trazo. El colofón («Colección completa: 11 sobres · 2 fuera de serie», que se actualiza al añadir proyectos) va bajo el filete, en mono sobre el turquesa: la página termina en la banda. El fondo del lienzo (el que se ve al estirar la página y bajo la barra de Safari de iPhone) es cartón en la mitad superior, continuando la barra, y turquesa en la inferior, continuando la banda; sin script queda en cartón.
+Banda turquesa a sangre, de borde a borde de la pantalla, con borde superior de 3px en tinta negra y, al margen del tablero, el filete interior de 1.5px de los sobres con relleno de 14px; sin tira. Cabecera en mono mayúsculas («Contacto» a la izquierda; a la derecha, el hueco numerado con el número siguiente al último sobre (ahora «Nº 13») con borde discontinuo de 1.5px y proporción 5/7, y «Madrid») separada por un filete de 1.5px que llega al filete interior. Al hacer scroll, el último cromo de la colección, el de Cecilia (logo CECE en cartoncillo con borde de 2px), entra girando y se pega en el hueco; después se traza el filete. Titular «¿Hablamos?» en la rotulación de los sobres (Bricolage 800, wdth 75, mayúsculas), email en grotesca 800 condensada, botón de copiar en cartoncillo con borde negro e iconos sociales SVG de trazo. El colofón («Colección completa: 12 sobres · 2 fuera de serie», que se actualiza al añadir proyectos) va bajo el filete, en mono sobre el turquesa: la página termina en la banda. El fondo del lienzo (el que se ve al estirar la página y bajo la barra de Safari de iPhone) es cartón en la mitad superior, continuando la barra, y turquesa en la inferior, continuando la banda; sin script queda en cartón.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** reservar el turquesa del logo para acciones (botones, cursor «Ver», hover de controles, selección), la línea de progreso de la barra y la banda de contacto.
-- **Do** asignar a cada disciplina su única tinta mediante `--field` (ink-ilustracion, ink-editorial, ink-packaging, ink-identidad, ink-3d, ink-web).
+- **Do** asignar a cada disciplina su única tinta mediante `--field` (ink-ilustracion, ink-editorial, ink-packaging, ink-identidad, ink-3d, ink-web, ink-motion).
 - **Do** usar el bermellón de texto, y no el bermellón de fondo, cuando el bermellón sea texto sobre cartoncillo.
 - **Do** enmarcar sobres y portada con 3px en tinta negra y filete interior de 1.5px, con esquinas rectas.
 - **Do** numerar en DM Mono mayúsculas con cifras tabulares (Nº 0X, s/n, 1 / N).
