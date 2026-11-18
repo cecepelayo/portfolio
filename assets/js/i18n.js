@@ -38,6 +38,8 @@ const I18N = {
     'p.axon.ctx': 'Académico · UDIT',
     'p.bear.short': 'Bear',
     'p.bear.ctx': 'Académico',
+    'p.fireball.short': 'Fireball',
+    'p.fireball.ctx': 'Académico · no encargo',
 
     'about.title': 'Sobre mí',
     'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora, me he formado en UDIT y trabajo desde Madrid.',
@@ -72,7 +74,7 @@ const I18N = {
     'ct.copy': 'Copiar email',
     'ct.copied': 'Email copiado',
     'ct.copyFail': 'No se pudo copiar; selecciona el email a mano',
-    'ct.colophon': 'Colección completa: 8 sobres · 2 fuera de serie',
+    'ct.colophon': 'Colección completa: 9 sobres · 2 fuera de serie',
 
     'g.prev': 'Imagen anterior',
     'g.next': 'Imagen siguiente',
@@ -183,6 +185,18 @@ const I18N = {
         role: 'Branding y packaging',
         tools: 'Illustrator, Photoshop',
         context: 'Proyecto académico'
+      },
+      fireball: {
+        title: 'Fireball — Rediseño de licor de canela',
+        disc: 'Packaging',
+        desc: [
+          'Rediseño académico que reposiciona Fireball como un «lujo consciente»: un packaging de alta gama con materiales eco-friendly que eleva el valor percibido sin renunciar a la sostenibilidad.',
+          'La comunicación adopta un tono urbano y desenfadado, pensado para la Generación Z, y conserva la irreverencia de la marca en todas las piezas: etiqueta, caja, escaparate, valla y redes sociales.'
+        ],
+        year: '2025',
+        role: 'Rediseño de packaging y campaña',
+        tools: 'Procreate, Illustrator, Photoshop',
+        context: 'Proyecto académico · UDIT (rediseño no encargado por la marca)'
       }
     }
   },
@@ -220,6 +234,8 @@ const I18N = {
     'p.axon.ctx': 'Academic · UDIT',
     'p.bear.short': 'Bear',
     'p.bear.ctx': 'Academic',
+    'p.fireball.short': 'Fireball',
+    'p.fireball.ctx': 'Academic · not commissioned',
 
     'about.title': 'About me',
     'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator, trained at UDIT and based in Madrid.',
@@ -254,7 +270,7 @@ const I18N = {
     'ct.copy': 'Copy email',
     'ct.copied': 'Email copied',
     'ct.copyFail': 'Could not copy; please select the email by hand',
-    'ct.colophon': 'Full collection: 8 packs · 2 off the series',
+    'ct.colophon': 'Full collection: 9 packs · 2 off the series',
 
     'g.prev': 'Previous image',
     'g.next': 'Next image',
@@ -365,6 +381,18 @@ const I18N = {
         role: 'Branding and packaging',
         tools: 'Illustrator, Photoshop',
         context: 'Academic project'
+      },
+      fireball: {
+        title: 'Fireball — Cinnamon liqueur redesign',
+        disc: 'Packaging',
+        desc: [
+          'An academic redesign that repositions Fireball as “conscious luxury”: high-end packaging in eco-friendly materials that raises perceived value without giving up on sustainability.',
+          'The communication takes an urban, easy-going tone aimed at Gen Z, and keeps the brand’s irreverence across every piece: label, box, shop window, billboard and social media.'
+        ],
+        year: '2025',
+        role: 'Packaging and campaign redesign',
+        tools: 'Procreate, Illustrator, Photoshop',
+        context: 'Academic project · UDIT (redesign not commissioned by the brand)'
       }
     }
   }
