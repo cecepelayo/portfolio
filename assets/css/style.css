@@ -15,6 +15,7 @@
   --yellow:  #F2B705;   /* amarillo · identidad */
   --pink:    #F2A3BC;   /* rosa · 3D */
   --lilac:   #A98BE0;   /* lila · diseño web */
+  --tangerine: #F59A3B; /* naranja mandarina · motion */
   --turq:    #5ECFC5;   /* turquesa del logo: acciones, progreso de la barra y banda de contacto */
 
   --display: 'Bodoni Moda', 'Didot', serif;
@@ -38,6 +39,7 @@
 .ink-identidad   { --field: var(--yellow); }
 .ink-3d          { --field: var(--pink); }
 .ink-web         { --field: var(--lilac); }
+.ink-motion      { --field: var(--tangerine); }
 
 /* ── Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
