@@ -36,6 +36,8 @@ const I18N = {
     'p.blacksheep.ctx': 'Propuesta · no encargo',
     'p.axon.short': 'Axon',
     'p.axon.ctx': 'Académico · UDIT',
+    'p.bear.short': 'Bear',
+    'p.bear.ctx': 'Académico',
 
     'about.title': 'Sobre mí',
     'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora, me he formado en UDIT y trabajo desde Madrid.',
@@ -70,7 +72,7 @@ const I18N = {
     'ct.copy': 'Copiar email',
     'ct.copied': 'Email copiado',
     'ct.copyFail': 'No se pudo copiar; selecciona el email a mano',
-    'ct.colophon': 'Colección completa: 7 sobres · 2 fuera de serie',
+    'ct.colophon': 'Colección completa: 8 sobres · 2 fuera de serie',
 
     'g.prev': 'Imagen anterior',
     'g.next': 'Imagen siguiente',
@@ -169,6 +171,18 @@ const I18N = {
         role: 'Modelado 3D, dirección de arte y campaña',
         tools: 'Cinema 4D, After Effects',
         context: 'Proyecto académico · UDIT'
+      },
+      bear: {
+        title: 'Bear — Cerveza artesana',
+        disc: 'Packaging',
+        desc: [
+          'Naming, identidad y packaging para Bear, una cerveza artesana. El nombre juega con su parecido fonético con «beer», y el oso se construye por síntesis geométrica para transmitir modernidad y un acabado técnico.',
+          'La gama se ordena por origen y especie: Cantábrica (Lager) en amarillo, Kodiak (IPA) en naranja y Tibetana (Porter) en rojo. Una etiqueta envolvente en azul oscuro une las tres variedades en una familia coherente y premium.'
+        ],
+        year: '2026',
+        role: 'Branding y packaging',
+        tools: 'Illustrator, Photoshop',
+        context: 'Proyecto académico'
       }
     }
   },
@@ -204,6 +218,8 @@ const I18N = {
     'p.blacksheep.ctx': 'Proposal · not commissioned',
     'p.axon.short': 'Axon',
     'p.axon.ctx': 'Academic · UDIT',
+    'p.bear.short': 'Bear',
+    'p.bear.ctx': 'Academic',
 
     'about.title': 'About me',
     'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator, trained at UDIT and based in Madrid.',
@@ -238,7 +254,7 @@ const I18N = {
     'ct.copy': 'Copy email',
     'ct.copied': 'Email copied',
     'ct.copyFail': 'Could not copy; please select the email by hand',
-    'ct.colophon': 'Full collection: 7 packs · 2 off the series',
+    'ct.colophon': 'Full collection: 8 packs · 2 off the series',
 
     'g.prev': 'Previous image',
     'g.next': 'Next image',
@@ -337,6 +353,18 @@ const I18N = {
         role: '3D modelling, art direction and campaign',
         tools: 'Cinema 4D, After Effects',
         context: 'Academic project · UDIT'
+      },
+      bear: {
+        title: 'Bear — Craft beer',
+        disc: 'Packaging',
+        desc: [
+          'Naming, identity and packaging for Bear, a craft beer. The name plays on its sound-alike with “beer”, and the bear is built through geometric synthesis to convey modernity and a precise, technical finish.',
+          'The range is organised by origin and species: Cantábrica (Lager) in yellow, Kodiak (IPA) in orange and Tibetana (Porter) in red. A wrap-around label in dark blue ties the three varieties into one coherent, premium family.'
+        ],
+        year: '2026',
+        role: 'Branding and packaging',
+        tools: 'Illustrator, Photoshop',
+        context: 'Academic project'
       }
     }
   }
