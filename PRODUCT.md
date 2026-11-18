@@ -12,7 +12,7 @@ Static HTML/CSS/JS, no build step and no dependencies (decided by the owner). De
 
 ## Users
 
-People who might hire Cecilia Pelayo ("Cece"), a graphic designer and illustrator trained at UDIT (Madrid):
+People who might hire Cecilia Pelayo ("Cece"), a graphic designer and illustrator studying at UDIT (Madrid):
 
 - Small product brands (wine, tinned food, coffee, drinks) needing packaging, labels or identity.
 - Publishers and cultural institutions (museums, festivals) needing books, catalogues, signage, posters.
