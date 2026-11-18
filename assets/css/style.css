@@ -728,6 +728,8 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   gap: var(--gap);
   align-items: end;
   padding: 0 var(--pad);
+  /* Las láminas entran giradas: en móvil ocupan todo el ancho y su esquina no debe ensanchar la página */
+  overflow-x: clip;
 }
 .offseries-text { grid-column: 1 / 5; padding-bottom: 1rem; }
 .offseries-text p {
