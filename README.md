@@ -6,7 +6,7 @@ Portfolio de una sola página de Cecilia Pelayo (CECE), diseñadora gráfica e i
 
 ## Características
 
-- Una sola página, sin secciones de navegación: expositor de proyectos, obra personal («Fuera de serie»), servicios y contacto.
+- Una sola página, sin secciones de navegación: expositor de proyectos, «Sobre mí», obra personal («Fuera de serie»), servicios y contacto.
 - Bilingüe ES/EN en la misma página: detecta el idioma del navegador y recuerda la elección.
 - Galería por proyecto: al pulsar una caja se desliza el cajón y se abre la galería con ficha (año, rol, herramientas, contexto).
 - Accesible con teclado y respeta «movimiento reducido».
@@ -41,9 +41,9 @@ PRODUCT.md, DESIGN.md     Contexto de producto y sistema de diseño (Impeccable)
 
 Cada imagen publicada sale del original con el mismo nombre: `source-images/buna/1.png` → `assets/img/buna/1.webp`. Para añadir una, guarda el original en `source-images/<proyecto>/`, redúcelo con `sips -Z <lado largo> original.png --out tmp.png` (entre 1000 y 2000 px) y conviértelo con `cwebp -q 80 tmp.png -o assets/img/<proyecto>/<nombre>.webp`.
 
-Los motivos de las cenefas se recortan al contorno y se convierten con un script (solo necesita `cwebp` y `dwebp`): `python3 -I scripts/build_motifs.py source-images/motifs assets/img/motifs <carpeta temporal>`. Acepta PNG transparentes y SVG con imágenes incrustadas (compone las capas), descarta motas sueltas y saca cada WebP a 160px de alto.
+Los motivos de las cenefas se recortan al contorno y se convierten con un script (solo necesita `cwebp` y `dwebp`): `python3 -I scripts/build_motifs.py source-images/motifs assets/img/motifs <carpeta temporal>`. Acepta PNG transparentes y SVG con imágenes incrustadas (compone las capas), descarta motas sueltas y saca cada WebP a 160px de alto. Las pegatinas de «Sobre mí» (`assets/img/stickers/`) son dos de esos motivos (estrellas y cóctel) sacados con el mismo script a 280px de alto (cambiando `TARGET_H` en una copia del script), porque se ven hasta a 140px.
 
-Excepción: `assets/img/cata-la-lata/box.webp` es un recorte de `source-images/cata-la-lata/2.jpg` (escalado a 2000 px y recortado a la lata: 1160×970 desde 440,290).
+Excepciones: `assets/img/personal/me.webp` (el retrato del sobre de «Sobre mí») es un recorte de `source-images/motifs/08-me.png` de la cabeza a las caderas (1040×1100 desde 695,0), sin las motas sueltas del fondo transparente. `assets/img/cata-la-lata/box.webp` es un recorte de `source-images/cata-la-lata/2.jpg` (escalado a 2000 px y recortado a la lata: 1160×970 desde 440,290).
 
 En `source-images/` hay tres originales sin versión web: `neil-leifer/street-banner.png`, `colores/shopping-bag.png` y `colores/bookmarks-alt.png`.
 
