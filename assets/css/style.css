@@ -212,6 +212,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .pack[data-project="fireball"]  { grid-column: 9 / 13;  grid-row: 4; }
 .pack[data-project="olatuak"]   { grid-column: 1 / 5;   grid-row: 5; }
 .pack[data-project="museo"]     { grid-column: 5 / 9;   grid-row: 5; }
+.pack[data-project="lyric"]     { grid-column: 9 / 13;  grid-row: 5; }
 
 /* ── Portada del álbum ── */
 .master {
@@ -1110,6 +1111,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .motion .pack[data-project="fireball"]   { animation-delay: 0.66s; }
 .motion .pack[data-project="olatuak"]    { animation-delay: 0.72s; }
 .motion .pack[data-project="museo"]      { animation-delay: 0.78s; }
+.motion .pack[data-project="lyric"]      { animation-delay: 0.84s; }
 .motion .drawer[open],
 .motion .drawer[open]::backdrop { animation: fade-in 0.34s ease-out; }
 

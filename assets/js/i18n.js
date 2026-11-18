@@ -46,6 +46,8 @@ const I18N = {
     'p.olatuak.ctx': 'Encargo · TFM',
     'p.museo.short': 'MNAD',
     'p.museo.ctx': 'Académico · UDIT',
+    'p.lyric.short': 'What’s My Name?',
+    'p.lyric.ctx': 'Académico · UDIT',
 
     'about.title': 'Sobre mí',
     'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora, me he formado en UDIT y trabajo desde Madrid.',
@@ -84,7 +86,7 @@ const I18N = {
     'ct.copy': 'Copiar email',
     'ct.copied': 'Email copiado',
     'ct.copyFail': 'No se pudo copiar; selecciona el email a mano',
-    'ct.colophon': 'Colección completa: 11 sobres · 2 fuera de serie',
+    'ct.colophon': 'Colección completa: 12 sobres · 2 fuera de serie',
 
     'g.prev': 'Imagen anterior',
     'g.next': 'Imagen siguiente',
@@ -231,6 +233,18 @@ const I18N = {
         role: 'Diseño UI/UX',
         tools: 'Figma, Photoshop, HTML, CSS, JavaScript',
         context: 'Proyecto académico · UDIT (rediseño no encargado por el museo)'
+      },
+      lyric: {
+        title: 'What’s My Name? — Lyric video',
+        disc: 'Motion',
+        desc: [
+          'Lyric video de casi 50 segundos para «What’s My Name?», de Rihanna: la letra se anima con tipografía cinética sobre texturas de cebra, labios y siluetas en rosas y naranjas.',
+          'Animación tipográfica y dirección de arte en After Effects, con el montaje final en Premiere Pro.'
+        ],
+        year: '2026',
+        role: 'Animación tipográfica y dirección de arte',
+        tools: 'After Effects, Premiere Pro',
+        context: 'Proyecto académico · UDIT. Canción: «What’s My Name?», de Rihanna'
       }
     }
   },
@@ -276,6 +290,8 @@ const I18N = {
     'p.olatuak.ctx': 'Commission · MA thesis',
     'p.museo.short': 'MNAD',
     'p.museo.ctx': 'Academic · UDIT',
+    'p.lyric.short': 'What’s My Name?',
+    'p.lyric.ctx': 'Academic · UDIT',
 
     'about.title': 'About me',
     'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator, trained at UDIT and based in Madrid.',
@@ -314,7 +330,7 @@ const I18N = {
     'ct.copy': 'Copy email',
     'ct.copied': 'Email copied',
     'ct.copyFail': 'Could not copy; please select the email by hand',
-    'ct.colophon': 'Full collection: 11 packs · 2 off the series',
+    'ct.colophon': 'Full collection: 12 packs · 2 off the series',
 
     'g.prev': 'Previous image',
     'g.next': 'Next image',
@@ -461,6 +477,18 @@ const I18N = {
         role: 'UI/UX design',
         tools: 'Figma, Photoshop, HTML, CSS, JavaScript',
         context: 'Academic project · UDIT (redesign not commissioned by the museum)'
+      },
+      lyric: {
+        title: 'What’s My Name? — Lyric video',
+        disc: 'Motion',
+        desc: [
+          'A lyric video of almost 50 seconds for Rihanna’s “What’s My Name?”: the lyrics come alive through kinetic type over zebra textures, lips and silhouettes in pinks and oranges.',
+          'Type animation and art direction in After Effects, with the final edit in Premiere Pro.'
+        ],
+        year: '2026',
+        role: 'Type animation and art direction',
+        tools: 'After Effects, Premiere Pro',
+        context: 'Academic project · UDIT. Song: “What’s My Name?” by Rihanna'
       }
     }
   }
