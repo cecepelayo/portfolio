@@ -34,7 +34,8 @@ PRODUCT.md, DESIGN.md     Contexto de producto y sistema de diseño (Impeccable)
 ## Editar contenido
 
 - **Textos:** en `assets/js/i18n.js`. Cada clave existe en `es` y en `en`.
-- **Añadir un proyecto:** duplicar un `<button class="box">` en `index.html` con su `data-project` e imágenes, añadir su ficha en `projects` de ambos idiomas en `assets/js/i18n.js` y colocarlo en la rejilla de `.board` en `assets/css/style.css`.
+- **Añadir un proyecto:** duplicar un `<button class="pack">` en `index.html` con su `data-project`, número de serie e imágenes, añadir su ficha en `projects` de ambos idiomas en `assets/js/i18n.js` y colocarlo en la rejilla de `.board` en `assets/css/style.css` (filas de tres a partir de la cuarta: columnas 1/5, 5/9 y 9/13). Después, actualizar el número del hueco de contacto (siempre el siguiente al último sobre), el recuento del colofón (`ct.colophon`) y los Nº de su servicio.
+- **Vídeos en la galería:** en `data-images` va el `.mp4` y, al lado, su cartel `.webp` con el mismo nombre (`video.mp4` y `video.webp`). En la galería se ve el cartel con un botón de reproducir. Para comprimirlo: `ffmpeg -i original.mp4 -c:v libx264 -preset slow -crf 26 -pix_fmt yuv420p -c:a aac -b:a 96k -movflags +faststart assets/img/<proyecto>/video.mp4`, y el cartel con `ffmpeg -ss <segundo> -i original.mp4 -frames:v 1 cartel.png` + `cwebp`.
 - **Cenefas:** las cenefas y el marco de la portada se construyen en `assets/js/main.js` a partir de la lista `MOTIFS` (secuencia fija). Para añadir un motivo: guarda el original con fondo transparente en `source-images/motifs/` con prefijo de orden (`12-nombre.png`), genera su WebP con el script de abajo y añade una línea a `MOTIFS` con su ancho y alto (y, si quieres, escala, inclinación y desplazamiento). La velocidad y la separación de las cenefas en carrusel se ajustan en `CAROUSEL_SPEED` y `CAROUSEL_GAP`, en el mismo fichero; si cambias `CAROUSEL_GAP`, cambia también el `gap` de `.band--moving .motif-run` en `assets/css/style.css`, o el bucle dará un salto en cada vuelta.
 
 ## Imágenes
@@ -45,7 +46,7 @@ Los motivos de las cenefas se recortan al contorno y se convierten con un script
 
 Excepciones: `assets/img/personal/me.webp` (el retrato del sobre de «Sobre mí») es un recorte de `source-images/motifs/08-me.png` de la cabeza a las caderas (1040×1100 desde 695,0), sin las motas sueltas del fondo transparente. `assets/img/cata-la-lata/box.webp` es un recorte de `source-images/cata-la-lata/2.jpg` (escalado a 2000 px y recortado a la lata: 1160×970 desde 440,290).
 
-En `source-images/` hay tres originales sin versión web: `neil-leifer/street-banner.png`, `colores/shopping-bag.png` y `colores/bookmarks-alt.png`.
+En `source-images/` hay originales sin versión web: `neil-leifer/street-banner.png`, `colores/shopping-bag.png`, `colores/bookmarks-alt.png`, `axon/render.png` (la portada sin rótulo, a menor resolución) y `axon/Revista copia.png` (versión anterior de `axon/6.png`). El cartel `assets/img/axon/video.webp` es el fotograma del segundo 20 de `axon/video.mp4`. Ese vídeo original (42 MB) está en `.gitignore`: no se sube al repositorio y solo existe en local.
 
 ## Desarrollo local
 

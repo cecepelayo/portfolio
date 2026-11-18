@@ -45,7 +45,7 @@ She draws her own illustration (Procreate) and turns it into real, finished prod
 
 ## Evidence on Hand
 
-Six projects (images in `source-images/<project>/`):
+Projects (images in `source-images/<project>/`):
 
 1. Cata la Lata 2026 · 8ª edición: illustrated packaging for three tins (tuna, sardines, mussels). Competition.
 2. Colores: three-volume book collection (blue, red, yellow), covers, interiors, promo and merchandising. Academic, UDIT, 2025.
@@ -53,6 +53,7 @@ Six projects (images in `source-images/<project>/`):
 4. Cháchara: Valencian wine brand identity and labels. Academic, UDIT, 2023.
 5. En el ojo del artista: Neil Leifer exhibition (signage, catalogue, tickets, spaces). Academic, UDIT, 2024.
 6. Black Sheep Iced Coffee: 3D packaging in Cinema 4D. Speculative proposal, not a commission. 2026.
+7. Axon — Core Collection: 3D eyewear collection for a conceptual optics brand, with renders, campaign, magazine and an animated sequence (video). Academic, UDIT, 2026.
 
 Personal pieces: `source-images/personal/jazz.png`, `source-images/personal/feelit.png`.
 
