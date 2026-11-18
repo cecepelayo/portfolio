@@ -188,6 +188,8 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-rows: var(--row) var(--row) clamp(300px, 42svh, 440px);
+  /* Filas de proyectos añadidos: misma altura que la tercera, en filas de tres sobres */
+  grid-auto-rows: clamp(300px, 42svh, 440px);
   gap: var(--gap);
   padding: var(--pad);
   /* El abanico de cromos sobresale por los lados: sin recorte, el móvil ensancha la página */
@@ -201,6 +203,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .pack[data-project="chachara"]  { grid-column: 1 / 5;   grid-row: 3; }
 .pack[data-project="neil"]      { grid-column: 5 / 9;   grid-row: 3; }
 .pack[data-project="blacksheep"]{ grid-column: 9 / 13;  grid-row: 3; }
+.pack[data-project="axon"]      { grid-column: 1 / 5;   grid-row: 4; }
 
 /* ── Portada del álbum ── */
 .master {
@@ -1093,6 +1096,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
 .motion .pack[data-project="chachara"]   { animation-delay: 0.36s; }
 .motion .pack[data-project="neil"]       { animation-delay: 0.42s; }
 .motion .pack[data-project="blacksheep"] { animation-delay: 0.48s; }
+.motion .pack[data-project="axon"]       { animation-delay: 0.54s; }
 .motion .drawer[open],
 .motion .drawer[open]::backdrop { animation: fade-in 0.34s ease-out; }
 
@@ -1232,6 +1236,8 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   .board {
     grid-template-columns: repeat(6, minmax(0, 1fr));
     grid-template-rows: auto;
+    /* Sin filas fijas: cada sobre toma la altura de su contenido */
+    grid-auto-rows: auto;
   }
   .master                         { grid-column: 1 / -1; grid-row: auto; min-height: 62svh; }
   .pack[data-project]              { grid-column: span 2; grid-row: auto; }

@@ -77,3 +77,6 @@ tmbootpicker.efi
 .vercel/
 # Ajustes personales de Claude Code
 .claude/settings.local.json
+
+# Originales demasiado pesados para el historial: la web usa su versión comprimida en assets/img/
+source-images/axon/video.mp4

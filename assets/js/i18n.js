@@ -34,6 +34,8 @@ const I18N = {
     'p.neil.ctx': 'Académico · UDIT',
     'p.blacksheep.short': 'Black Sheep',
     'p.blacksheep.ctx': 'Propuesta · no encargo',
+    'p.axon.short': 'Axon',
+    'p.axon.ctx': 'Académico · UDIT',
 
     'about.title': 'Sobre mí',
     'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora, me he formado en UDIT y trabajo desde Madrid.',
@@ -68,7 +70,7 @@ const I18N = {
     'ct.copy': 'Copiar email',
     'ct.copied': 'Email copiado',
     'ct.copyFail': 'No se pudo copiar; selecciona el email a mano',
-    'ct.colophon': 'Colección completa: 6 sobres · 2 fuera de serie',
+    'ct.colophon': 'Colección completa: 7 sobres · 2 fuera de serie',
 
     'g.prev': 'Imagen anterior',
     'g.next': 'Imagen siguiente',
@@ -155,6 +157,18 @@ const I18N = {
         role: '3D y dirección de arte',
         tools: 'Cinema 4D, Photoshop',
         context: 'Propuesta especulativa para Black Sheep Coffee (no encargo)'
+      },
+      axon: {
+        title: 'Axon — Core Collection',
+        disc: '3D',
+        desc: [
+          'Diseño, modelado y presentación de una colección de gafas en 3D para Axon, una marca conceptual de óptica contemporánea, con una estética moderna y funcional.',
+          'Cada pieza se modeló por separado y con su propio mapeado UV, para controlar la forma, los materiales y los acabados con realismo. La colección se presenta con renders, campaña, revista y una secuencia animada.'
+        ],
+        year: '2026',
+        role: 'Modelado 3D, dirección de arte y campaña',
+        tools: 'Cinema 4D, After Effects',
+        context: 'Proyecto académico · UDIT'
       }
     }
   },
@@ -188,6 +202,8 @@ const I18N = {
     'p.neil.ctx': 'Academic · UDIT',
     'p.blacksheep.short': 'Black Sheep',
     'p.blacksheep.ctx': 'Proposal · not commissioned',
+    'p.axon.short': 'Axon',
+    'p.axon.ctx': 'Academic · UDIT',
 
     'about.title': 'About me',
     'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator, trained at UDIT and based in Madrid.',
@@ -222,7 +238,7 @@ const I18N = {
     'ct.copy': 'Copy email',
     'ct.copied': 'Email copied',
     'ct.copyFail': 'Could not copy; please select the email by hand',
-    'ct.colophon': 'Full collection: 6 packs · 2 off the series',
+    'ct.colophon': 'Full collection: 7 packs · 2 off the series',
 
     'g.prev': 'Previous image',
     'g.next': 'Next image',
@@ -309,6 +325,18 @@ const I18N = {
         role: '3D and art direction',
         tools: 'Cinema 4D, Photoshop',
         context: 'Speculative proposal for Black Sheep Coffee (not commissioned)'
+      },
+      axon: {
+        title: 'Axon — Core Collection',
+        disc: '3D',
+        desc: [
+          'Design, modelling and presentation of a 3D eyewear collection for Axon, a conceptual contemporary optics brand, with a modern, functional look.',
+          'Each piece was modelled separately with its own UV mapping, for realistic control over shape, materials and finishes. The collection is presented through renders, a campaign, a magazine and an animated sequence.'
+        ],
+        year: '2026',
+        role: '3D modelling, art direction and campaign',
+        tools: 'Cinema 4D, After Effects',
+        context: 'Academic project · UDIT'
       }
     }
   }
