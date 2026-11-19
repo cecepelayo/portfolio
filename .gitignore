@@ -92,3 +92,7 @@ source-images/un-viaje-de-ida-y-vuelta/*
 !source-images/un-viaje-de-ida-y-vuelta/cover.jpg
 !source-images/un-viaje-de-ida-y-vuelta/[1-9].jpg
 !source-images/un-viaje-de-ida-y-vuelta/1[0-2].jpg
+
+# Portfolio en PDF: fotos preparadas y PDF generados por print/build.sh
+print/img/
+print/*.pdf
