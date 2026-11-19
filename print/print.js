@@ -26,7 +26,7 @@ const PRINT = {
         'Becaria de Diseño Gráfico · Plenergy · 2025',
         'Logotipo e ilustración · Coordinación de Trasplantes, Hospital Universitario de Toledo · 2026'
       ]],
-      ['Busco', ['Prácticas o primer empleo · Madrid / remoto']],
+      ['Busco', ['Prácticas o primer empleo · Madrid']],
       ['Idiomas', ['Español nativo · Inglés B2 (Cambridge B2 First)']]
     ]
   },
@@ -38,7 +38,7 @@ const PRINT = {
         'Graphic Design Intern · Plenergy · 2025',
         'Logo and illustration · Transplant Coordination Unit, Hospital Universitario de Toledo · 2026'
       ]],
-      ['Looking for', ['Internship or first job · Madrid / remote']],
+      ['Looking for', ['Internship or first job · Madrid']],
       ['Languages', ['Spanish (native) · English B2 (Cambridge B2 First)']]
     ]
   }
