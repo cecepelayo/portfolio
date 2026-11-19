@@ -53,7 +53,7 @@ const I18N = {
     'p.viaje.ctx': 'Proyecto personal',
 
     'about.title': 'Sobre mí',
-    'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora, me estoy formando en UDIT y trabajo desde Madrid.',
+    'about.p1': 'Soy Cecilia Pelayo, aunque todo el mundo me llama Cece. Soy diseñadora gráfica e ilustradora. Estoy realizando mi formación en UDIT, en el Grado en Diseño Multimedia y Gráfico, y trabajo desde Madrid.',
     'about.p2': 'Dibujo a mano en Procreate y lo convierto en producto real: latas, cajas de café, etiquetas de vino, cubiertas de libro. Diseño e ilustración en una misma persona, para que tu marca no tenga que buscar a dos.',
     'about.alt': 'Autorretrato ilustrado de Cecilia: moño, sudadera verde azulado y vaqueros grises',
     'about.label': 'La autora',
@@ -314,7 +314,7 @@ const I18N = {
     'p.viaje.ctx': 'Personal project',
 
     'about.title': 'About me',
-    'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator, studying at UDIT and based in Madrid.',
+    'about.p1': 'I’m Cecilia Pelayo, though everyone calls me Cece. I’m a graphic designer and illustrator based in Madrid, currently completing my Bachelor’s Degree in Multimedia and Graphic Design at UDIT.',
     'about.p2': 'I draw by hand in Procreate and turn it into real product: tins, coffee boxes, wine labels, book covers. Design and illustration in one person, so your brand doesn’t have to find two.',
     'about.alt': 'Cecilia’s illustrated self-portrait: hair bun, teal hoodie and grey jeans',
     'about.label': 'The author',
