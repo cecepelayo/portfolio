@@ -580,14 +580,14 @@ if (look && finePointer.matches) {
       // Durante la apertura no vuelve a aparecer, aunque el puntero pase a otro sobre
       if (opening || drawer.open) return;
       // Se coloca antes de mostrarlo para que no aparezca en su posición anterior
-      look.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      look.style.translate = `${e.clientX}px ${e.clientY}px`;
       look.classList.add('on');
     });
     pack.addEventListener('pointerleave', () => look.classList.remove('on'));
     // Al abrir se oculta para no tapar el abanico; vuelve al entrar de nuevo en un sobre
     pack.addEventListener('click', () => look.classList.remove('on'));
     pack.addEventListener('pointermove', e => {
-      look.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      look.style.translate = `${e.clientX}px ${e.clientY}px`;
     });
   });
 }

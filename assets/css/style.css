@@ -563,11 +563,17 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 2px
   left: 0;
   z-index: 150;
   width: 96px;
-  height: 63px;          /* 96px de ancho con la proporción del motivo (243×160) */
-  margin: -31.5px 0 0 -48px;
+  aspect-ratio: 243 / 160; /* proporción del motivo */
+  /* Centrado en el puntero sea cual sea su tamaño. main.js lo lleva al puntero con «translate»,
+     que se aplica después de «scale»: así la animación no encoge esa distancia y el ojo crece
+     en su sitio. El origen en 0 0, tras centrarlo, es el propio puntero */
+  transform: translate(-50%, -50%);
+  transform-origin: 0 0;
   background: url('../img/motifs/10-pink-eye.webp') center / contain no-repeat;
   /* Sombra suave para que no se pierda sobre la ilustración del sobre */
-  filter: drop-shadow(0 3px 6px rgb(20 20 19 / 0.35));
+  filter: drop-shadow(0 3px 6px color-mix(in srgb, var(--ink) 35%, transparent));
+  /* Capa propia: la sombra se pinta una vez y al mover el ratón solo se desplaza la capa */
+  will-change: translate;
   pointer-events: none;
   opacity: 0;
   scale: 0.5;
