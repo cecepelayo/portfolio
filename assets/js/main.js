@@ -60,7 +60,6 @@ function applyLang(next) {
     const project = I18N[lang].projects[pack.dataset.project];
     if (project) pack.setAttribute('aria-label', `${t('g.open')}: ${project.title}`);
   });
-  if (look) look.textContent = t('look');
   if (drawer.open && current) {
     // Con la galería abierta se rehacen la ficha y los textos alternativos en el nuevo idioma
     renderInfo();
@@ -571,7 +570,7 @@ window.addEventListener('resize', () => {
 });
 
 /* ══════════════════════════════════════════════════
-   CURSOR «VER» — solo sobre los sobres y con ratón
+   CURSOR OJO — solo sobre los sobres y con ratón
 ══════════════════════════════════════════════════ */
 const look = document.getElementById('look');
 
